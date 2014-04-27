@@ -16,6 +16,7 @@ import com.l3info.projet_volley_android.R;
 import controleur.Controleur;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.res.Resources;
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
@@ -56,6 +57,12 @@ public class SaisieStatsActivity extends Activity {
 	
 	RadioButton[] equipeRouge = new RadioButton[6];
 	RadioButton[] equipeBleu = new RadioButton[6];
+	
+	int matriceIdRouge[][] = new int [4][12];
+	TextView matriceTextViewRouge[][] = new TextView [4][12];
+	
+	int matriceIdBleu[][] = new int [4][12];
+	TextView matriceTextViewBleu[][] = new TextView [4][12];
 	
 	// initialisation des noms
 	TextView nom_rouge1 = null;
@@ -745,12 +752,190 @@ public class SaisieStatsActivity extends Activity {
 		}
 		return "er";
 	}
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+	
+	public void initialiseRouge(int i, int numeroJoueur, String nomJoueur) {
+	    Resources res = getResources();
+		String numero = String.format(res.getString(matriceIdRouge[0][i]), numeroJoueur);
+	    matriceTextViewRouge[0][i] = (TextView) findViewById(matriceIdRouge[1][i]);
+	    matriceTextViewRouge[0][i].setText(numero);
+	    
+	    String nom = String.format(res.getString(matriceIdRouge[2][i]), nomJoueur);
+	    matriceTextViewRouge[1][i] = (TextView) findViewById(matriceIdRouge[3][i]);
+	    matriceTextViewRouge[1][i].setText(nom);		
+	}
+	
+	
+	public void initialiseBleu(int i, int numeroJoueur, String nomJoueur) {
+	    Resources res = getResources();
+		String numero = String.format(res.getString(matriceIdBleu[0][i]), numeroJoueur);
+	    matriceTextViewBleu[0][i] = (TextView) findViewById(matriceIdBleu[1][i]);
+	    matriceTextViewBleu[0][i].setText(numero);
+	    
+	    String nom = String.format(res.getString(matriceIdBleu[2][i]), nomJoueur);
+	    matriceTextViewBleu[1][i] = (TextView) findViewById(matriceIdBleu[3][i]);
+	    matriceTextViewBleu[1][i].setText(nom);		
+	}
+	
+	public void onCreate(Bundle savedInstanceState) {super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_saisie_stats);
 		
-		// on va chercher toutes les vues dans le fichier xml
+		matriceIdRouge[0][0] = R.string.num_e1_n1;
+		matriceIdRouge[0][1] = R.string.num_e1_n2;
+		matriceIdRouge[0][2] = R.string.num_e1_n3;
+		matriceIdRouge[0][3] = R.string.num_e1_n4;
+		matriceIdRouge[0][4] = R.string.num_e1_n5;
+		matriceIdRouge[0][5] = R.string.num_e1_n6;
+		matriceIdRouge[0][6] = R.string.num_e1_n7;
+		matriceIdRouge[0][7] = R.string.num_e1_n8;
+		matriceIdRouge[0][8] = R.string.num_e1_n9;
+		matriceIdRouge[0][9] = R.string.num_e1_n10;
+		matriceIdRouge[0][10] = R.string.num_e1_n11;
+		matriceIdRouge[0][11] = R.string.num_e1_n12;
 		
+		matriceIdRouge[1][0] = R.id.num_joueur_e1_n1;
+		matriceIdRouge[1][1] = R.id.num_joueur_e1_n2;
+		matriceIdRouge[1][2] = R.id.num_joueur_e1_n3;
+		matriceIdRouge[1][3] = R.id.num_joueur_e1_n4;
+		matriceIdRouge[1][4] = R.id.num_joueur_e1_n5;
+		matriceIdRouge[1][5] = R.id.num_joueur_e1_n6;
+		matriceIdRouge[1][6] = R.id.num_joueur_e1_n7;
+		matriceIdRouge[1][7] = R.id.num_joueur_e1_n8;
+		matriceIdRouge[1][8] = R.id.num_joueur_e1_n9;
+		matriceIdRouge[1][9] = R.id.num_joueur_e1_n10;
+		matriceIdRouge[1][10] = R.id.num_joueur_e1_n11;
+		matriceIdRouge[1][11] = R.id.num_joueur_e1_n12;
+		
+		matriceIdRouge[2][0] = R.string.nom_e1_n1;
+		matriceIdRouge[2][1] = R.string.nom_e1_n2;
+		matriceIdRouge[2][2] = R.string.nom_e1_n3;
+		matriceIdRouge[2][3] = R.string.nom_e1_n4;
+		matriceIdRouge[2][4] = R.string.nom_e1_n5;
+		matriceIdRouge[2][5] = R.string.nom_e1_n6;
+		matriceIdRouge[2][6] = R.string.nom_e1_n7;
+		matriceIdRouge[2][7] = R.string.nom_e1_n8;
+		matriceIdRouge[2][8] = R.string.nom_e1_n9;
+		matriceIdRouge[2][9] = R.string.nom_e1_n10;
+		matriceIdRouge[2][10] = R.string.nom_e1_n11;
+		matriceIdRouge[2][11] = R.string.nom_e1_n12;
+		
+		matriceIdRouge[3][0] = R.id.nom_joueur_e1_n1;
+		matriceIdRouge[3][1] = R.id.nom_joueur_e1_n2;
+		matriceIdRouge[3][2] = R.id.nom_joueur_e1_n3;
+		matriceIdRouge[3][3] = R.id.nom_joueur_e1_n4;
+		matriceIdRouge[3][4] = R.id.nom_joueur_e1_n5;
+		matriceIdRouge[3][5] = R.id.nom_joueur_e1_n6;
+		matriceIdRouge[3][6] = R.id.nom_joueur_e1_n7;
+		matriceIdRouge[3][7] = R.id.nom_joueur_e1_n8;
+		matriceIdRouge[3][8] = R.id.nom_joueur_e1_n9;
+		matriceIdRouge[3][9] = R.id.nom_joueur_e1_n10;
+		matriceIdRouge[3][10] = R.id.nom_joueur_e1_n11;
+		matriceIdRouge[3][11] = R.id.nom_joueur_e1_n12;
+		
+		matriceTextViewRouge[0][0] = num_rouge1;
+		matriceTextViewRouge[0][1] = num_rouge2;
+		matriceTextViewRouge[0][2] = num_rouge3;
+		matriceTextViewRouge[0][3] = num_rouge4;
+		matriceTextViewRouge[0][4] = num_rouge5;
+		matriceTextViewRouge[0][5] = num_rouge6;
+		matriceTextViewRouge[0][6] = num_rouge7;
+		matriceTextViewRouge[0][7] = num_rouge8;
+		matriceTextViewRouge[0][8] = num_rouge9;
+		matriceTextViewRouge[0][9] = num_rouge10;
+		matriceTextViewRouge[0][10] = num_rouge11;
+		matriceTextViewRouge[0][11] = num_rouge12;
+		
+		matriceTextViewRouge[1][0] = nom_rouge1;
+		matriceTextViewRouge[1][1] = nom_rouge2;
+		matriceTextViewRouge[1][2] = nom_rouge3;
+		matriceTextViewRouge[1][3] = nom_rouge4;
+		matriceTextViewRouge[1][4] = nom_rouge5;
+		matriceTextViewRouge[1][5] = nom_rouge6;
+		matriceTextViewRouge[1][6] = nom_rouge7;
+		matriceTextViewRouge[1][7] = nom_rouge8;
+		matriceTextViewRouge[1][8] = nom_rouge9;
+		matriceTextViewRouge[1][9] = nom_rouge10;
+		matriceTextViewRouge[1][10] = nom_rouge11;
+		matriceTextViewRouge[1][11] = nom_rouge12;
+		
+		matriceIdBleu[0][0] = R.string.num_e2_n1;
+		matriceIdBleu[0][1] = R.string.num_e2_n2;
+		matriceIdBleu[0][2] = R.string.num_e2_n3;
+		matriceIdBleu[0][3] = R.string.num_e2_n4;
+		matriceIdBleu[0][4] = R.string.num_e2_n5;
+		matriceIdBleu[0][5] = R.string.num_e2_n6;
+		matriceIdBleu[0][6] = R.string.num_e2_n7;
+		matriceIdBleu[0][7] = R.string.num_e2_n8;
+		matriceIdBleu[0][8] = R.string.num_e2_n9;
+		matriceIdBleu[0][9] = R.string.num_e2_n10;
+		matriceIdBleu[0][10] = R.string.num_e2_n11;
+		matriceIdBleu[0][11] = R.string.num_e2_n12;
+		
+		matriceIdBleu[1][0] = R.id.num_joueur_e2_n1;
+		matriceIdBleu[1][1] = R.id.num_joueur_e2_n2;
+		matriceIdBleu[1][2] = R.id.num_joueur_e2_n3;
+		matriceIdBleu[1][3] = R.id.num_joueur_e2_n4;
+		matriceIdBleu[1][4] = R.id.num_joueur_e2_n5;
+		matriceIdBleu[1][5] = R.id.num_joueur_e2_n6;
+		matriceIdBleu[1][6] = R.id.num_joueur_e2_n7;
+		matriceIdBleu[1][7] = R.id.num_joueur_e2_n8;
+		matriceIdBleu[1][8] = R.id.num_joueur_e2_n9;
+		matriceIdBleu[1][9] = R.id.num_joueur_e2_n10;
+		matriceIdBleu[1][10] = R.id.num_joueur_e2_n11;
+		matriceIdBleu[1][11] = R.id.num_joueur_e2_n12;
+		
+		matriceIdBleu[2][0] = R.string.nom_e2_n1;
+		matriceIdBleu[2][1] = R.string.nom_e2_n2;
+		matriceIdBleu[2][2] = R.string.nom_e2_n3;
+		matriceIdBleu[2][3] = R.string.nom_e2_n4;
+		matriceIdBleu[2][4] = R.string.nom_e2_n5;
+		matriceIdBleu[2][5] = R.string.nom_e2_n6;
+		matriceIdBleu[2][6] = R.string.nom_e2_n7;
+		matriceIdBleu[2][7] = R.string.nom_e2_n8;
+		matriceIdBleu[2][8] = R.string.nom_e2_n9;
+		matriceIdBleu[2][9] = R.string.nom_e2_n10;
+		matriceIdBleu[2][10] = R.string.nom_e2_n11;
+		matriceIdBleu[2][11] = R.string.nom_e2_n12;
+		
+		matriceIdBleu[3][0] = R.id.nom_joueur_e2_n1;
+		matriceIdBleu[3][1] = R.id.nom_joueur_e2_n2;
+		matriceIdBleu[3][2] = R.id.nom_joueur_e2_n3;
+		matriceIdBleu[3][3] = R.id.nom_joueur_e2_n4;
+		matriceIdBleu[3][4] = R.id.nom_joueur_e2_n5;
+		matriceIdBleu[3][5] = R.id.nom_joueur_e2_n6;
+		matriceIdBleu[3][6] = R.id.nom_joueur_e2_n7;
+		matriceIdBleu[3][7] = R.id.nom_joueur_e2_n8;
+		matriceIdBleu[3][8] = R.id.nom_joueur_e2_n9;
+		matriceIdBleu[3][9] = R.id.nom_joueur_e2_n10;
+		matriceIdBleu[3][10] = R.id.nom_joueur_e2_n11;
+		matriceIdBleu[3][11] = R.id.nom_joueur_e2_n12;
+		
+		matriceTextViewBleu[0][0] = num_bleu1;
+		matriceTextViewBleu[0][1] = num_bleu2;
+		matriceTextViewBleu[0][2] = num_bleu3;
+		matriceTextViewBleu[0][3] = num_bleu4;
+		matriceTextViewBleu[0][4] = num_bleu5;
+		matriceTextViewBleu[0][5] = num_bleu6;
+		matriceTextViewBleu[0][6] = num_bleu7;
+		matriceTextViewBleu[0][7] = num_bleu8;
+		matriceTextViewBleu[0][8] = num_bleu9;
+		matriceTextViewBleu[0][9] = num_bleu10;
+		matriceTextViewBleu[0][10] = num_bleu11;
+		matriceTextViewBleu[0][11] = num_bleu12;
+		
+		matriceTextViewBleu[1][0] = nom_bleu1;
+		matriceTextViewBleu[1][1] = nom_bleu2;
+		matriceTextViewBleu[1][2] = nom_bleu3;
+		matriceTextViewBleu[1][3] = nom_bleu4;
+		matriceTextViewBleu[1][4] = nom_bleu5;
+		matriceTextViewBleu[1][5] = nom_bleu6;
+		matriceTextViewBleu[1][6] = nom_bleu7;
+		matriceTextViewBleu[1][7] = nom_bleu8;
+		matriceTextViewBleu[1][8] = nom_bleu9;
+		matriceTextViewBleu[1][9] = nom_bleu10;
+		matriceTextViewBleu[1][10] = nom_bleu11;
+		matriceTextViewBleu[1][11] = nom_bleu12;
+		
+		// on va chercher toutes les vues dans le fichier xml
 		maillot_rouge1 = (RadioButton) findViewById(R.id.maillot_rouge1);
 		maillot_rouge2 = (RadioButton) findViewById(R.id.maillot_rouge2);
 		maillot_rouge3 = (RadioButton) findViewById(R.id.maillot_rouge3);
@@ -790,55 +975,31 @@ public class SaisieStatsActivity extends Activity {
 		equipeBleu[4] = maillot_bleu5;
 		equipeBleu[5] = maillot_bleu6;
 		
-		nom_rouge1 = (TextView) findViewById(R.id.nom_joueur_e1_n1);
-		nom_rouge2 = (TextView) findViewById(R.id.nom_joueur_e1_n2);
-		nom_rouge3 = (TextView) findViewById(R.id.nom_joueur_e1_n3);
-		nom_rouge4 = (TextView) findViewById(R.id.nom_joueur_e1_n4);
-		nom_rouge5 = (TextView) findViewById(R.id.nom_joueur_e1_n5);
-		nom_rouge6 = (TextView) findViewById(R.id.nom_joueur_e1_n6);
-		nom_rouge7 = (TextView) findViewById(R.id.nom_joueur_e1_n7);
-		nom_rouge8 = (TextView) findViewById(R.id.nom_joueur_e1_n8);
-		nom_rouge9 = (TextView) findViewById(R.id.nom_joueur_e1_n9);
-		nom_rouge10 = (TextView) findViewById(R.id.nom_joueur_e1_n10);
-		nom_rouge11= (TextView) findViewById(R.id.nom_joueur_e1_n11);
-		nom_rouge12 = (TextView) findViewById(R.id.nom_joueur_e1_n12);
-		nom_bleu1 = (TextView) findViewById(R.id.nom_joueur_e2_n1);
-		nom_bleu2 = (TextView) findViewById(R.id.nom_joueur_e2_n2);
-		nom_bleu3 = (TextView) findViewById(R.id.nom_joueur_e2_n3);
-		nom_bleu4 = (TextView) findViewById(R.id.nom_joueur_e2_n4);
-		nom_bleu5 = (TextView) findViewById(R.id.nom_joueur_e2_n5);
-		nom_bleu6 = (TextView) findViewById(R.id.nom_joueur_e2_n6);
-		nom_bleu7 = (TextView) findViewById(R.id.nom_joueur_e2_n7);
-		nom_bleu8 = (TextView) findViewById(R.id.nom_joueur_e2_n8);
-		nom_bleu9 = (TextView) findViewById(R.id.nom_joueur_e2_n9);
-		nom_bleu10 = (TextView) findViewById(R.id.nom_joueur_e2_n10);
-		nom_bleu11= (TextView) findViewById(R.id.nom_joueur_e2_n11);
-		nom_bleu12 = (TextView) findViewById(R.id.nom_joueur_e2_n12);
+		initialiseRouge(0, 1, "Joueur11");
+		initialiseRouge(1, 2, "Joueur12");
+		initialiseRouge(2, 3, "Joueur13");
+		initialiseRouge(3, 4, "Joueur14");
+		initialiseRouge(4, 5, "Joueur15");
+		initialiseRouge(5, 6, "Joueur16");
+		initialiseRouge(6, 7, "Joueur17");
+		initialiseRouge(7, 8, "Joueur18");
+		initialiseRouge(8, 9, "Joueur19");
+		initialiseRouge(9, 10, "Joueur110");
+		initialiseRouge(10, 11, "Joueur111");
+		initialiseRouge(11, 12, "Joueur112");
 		
-		num_rouge1 = (TextView) findViewById(R.id.num_joueur_e1_n1);
-		num_rouge2 = (TextView) findViewById(R.id.num_joueur_e1_n2);
-		num_rouge3 = (TextView) findViewById(R.id.num_joueur_e1_n3);
-		num_rouge4 = (TextView) findViewById(R.id.num_joueur_e1_n4);
-		num_rouge5 = (TextView) findViewById(R.id.num_joueur_e1_n5);
-		num_rouge6 = (TextView) findViewById(R.id.num_joueur_e1_n6);
-		num_rouge7 = (TextView) findViewById(R.id.num_joueur_e1_n7);
-		num_rouge8 = (TextView) findViewById(R.id.num_joueur_e1_n8);
-		num_rouge9 = (TextView) findViewById(R.id.num_joueur_e1_n9);
-		num_rouge10 = (TextView) findViewById(R.id.num_joueur_e1_n10);
-		num_rouge11= (TextView) findViewById(R.id.num_joueur_e1_n11);
-		num_rouge12 = (TextView) findViewById(R.id.num_joueur_e1_n12);
-		num_bleu1 = (TextView) findViewById(R.id.num_joueur_e2_n1);
-		num_bleu2 = (TextView) findViewById(R.id.num_joueur_e2_n2);
-		num_bleu3 = (TextView) findViewById(R.id.num_joueur_e2_n3);
-		num_bleu4 = (TextView) findViewById(R.id.num_joueur_e2_n4);
-		num_bleu5 = (TextView) findViewById(R.id.num_joueur_e2_n5);
-		num_bleu6 = (TextView) findViewById(R.id.num_joueur_e2_n6);
-		num_bleu7 = (TextView) findViewById(R.id.num_joueur_e2_n7);
-		num_bleu8 = (TextView) findViewById(R.id.num_joueur_e2_n8);
-		num_bleu9 = (TextView) findViewById(R.id.num_joueur_e2_n9);
-		num_bleu10 = (TextView) findViewById(R.id.num_joueur_e2_n10);
-		num_bleu11= (TextView) findViewById(R.id.num_joueur_e2_n11);
-		num_bleu12 = (TextView) findViewById(R.id.num_joueur_e2_n12);
+		initialiseBleu(0, 1, "Joueur21");
+		initialiseBleu(1, 2, "Joueur22");
+		initialiseBleu(2, 3, "Joueur23");
+		initialiseBleu(3, 4, "Joueur24");
+		initialiseBleu(4, 5, "Joueur25");
+		initialiseBleu(5, 6, "Joueur26");
+		initialiseBleu(6, 7, "Joueur27");
+		initialiseBleu(7, 8, "Joueur28");
+		initialiseBleu(8, 9, "Joueur29");
+		initialiseBleu(9, 10, "Joueur210");
+		initialiseBleu(10, 11, "Joueur211");
+		initialiseBleu(11, 12, "Joueur212");
 		
 		bouton_service = (RadioButton) findViewById(R.id.button_service);
 		bouton_defense = (RadioButton) findViewById(R.id.button_reception);
@@ -876,7 +1037,6 @@ public class SaisieStatsActivity extends Activity {
 		maillot_bleu10.setOnTouchListener(touchListenerBleu10);
 		maillot_bleu11.setOnTouchListener(touchListenerBleu11);
 		maillot_bleu12.setOnTouchListener(touchListenerBleu12);	
-		
 		
 		bouton_excellent.setOnTouchListener(touchListenerQualiteAction);
 		bouton_bien.setOnTouchListener(touchListenerQualiteAction);
