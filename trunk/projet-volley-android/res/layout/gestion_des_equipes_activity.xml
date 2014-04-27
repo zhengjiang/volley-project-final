@@ -1,0 +1,91 @@
+
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:stretchColumns="1">
+
+     
+    
+    
+    <TableRow >
+        <Button
+        android:id="@+id/Precedent"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+        
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/fleche_precedent" />
+
+        <TextView
+            android:id="@+id/libGestionDesEquipes"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:layout_marginTop="70dp"
+            android:gravity="center_horizontal"
+            android:text="Gestion des équipes"
+            android:textSize="50sp" />
+        
+        <Button
+        android:id="@+id/RetourAccueil"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="25dp"
+        android:background="@drawable/accueil" />
+    </TableRow>
+    
+	<TableRow>
+	     <Button
+	    android:layout_column="1"
+        android:id="@+id/creerMatch1"
+        style="@style/styleBouton"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="25dp"
+        android:text="Créer une équipe" />
+	</TableRow>
+   
+	<TableRow >
+	     <Button
+	    android:layout_column="1"
+        android:id="@+id/modifierEquipe"
+        style="@style/styleBouton"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="25dp"
+        android:text="Modifier une équipe" />
+	</TableRow>
+   
+
+	<TableRow >
+	    <Button
+	    android:layout_column="1"
+        android:id="@+id/supprimerEquipe"
+        style="@style/styleBouton"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="25dp"
+        android:text="Supprimer une équipe" />
+	</TableRow>
+    
+
+	<TableRow >
+	    <Button
+	    android:layout_column="1"
+        android:id="@+id/consulterEquipe"
+        style="@style/styleBouton"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="25dp"
+        android:text="Consulter les équipes" />
+	</TableRow>
+    
+    
+
+</TableLayout>

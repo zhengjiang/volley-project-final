@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">VolleyBall</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    
+    <!--TABLEAU DES SCORES-->
+	<string name="numero_set">n°set</string>
+	<string name="set1">1</string>
+	<string name="set2">2</string>
+	<string name="set3">3</string>
+	<string name="set4">4</string>
+	<string name="set5">5</string>
+	<string name="equipe1">NomEquipe1</string>
+	<string name="equipe2">NomEquipe2</string>
+	<string name="score_e1_s1">25</string>
+	<string name="score_e1_s2">20</string>
+	<string name="score_e1_s3">25</string>
+	<string name="score_e1_s4">21</string>
+	<string name="score_e1_s5">15</string>
+    <string name="score_e2_s1">19</string>
+	<string name="score_e2_s2">25</string>
+	<string name="score_e2_s3">16</string>
+	<string name="score_e2_s4">25</string>
+	<string name="score_e2_s5">7</string>
+	
+	<!--NOM DE L'ACTION -->
+	<string name="service">Service</string>
+	<string name="defense">Défense</string>
+	<string name="passe">Passe</string>
+	<string name="attaque">Attaque</string>
+	<string name="bloc">Bloc</string>
+	<string name="faute">Faute</string>
+	
+	<!--QUALITE DE L'ACTION-->	
+	<string name="excellent">+ +</string>
+	<string name="bien">+</string>
+	<string name="neutre">0</string>
+	<string name="mauvais">-</string>
+	<string name="catastrophique">- -</string>
+	<string name="annuler">Annuler</string>
+	
+	<!--NOM DES JOUEURS DE L'EQUIPE ROUGE -->
+	<string name="nom_e1_n1">Joueur11</string>
+	<string name="nom_e1_n2">Joueur12</string>
+	<string name="nom_e1_n3">Joueur13</string>
+	<string name="nom_e1_n4">Joueur14</string>
+	<string name="nom_e1_n5">Joueur15</string>
+	<string name="nom_e1_n6">Joueur16</string>
+	<string name="nom_e1_n7">Joueur17</string>
+	<string name="nom_e1_n8">Joueur18</string>
+	<string name="nom_e1_n9">Joueur19</string>
+	<string name="nom_e1_n10">Joueur110</string>
+	<string name="nom_e1_n11">Joueur111</string>
+	<string name="nom_e1_n12">Joueur112</string>
+	
+	<!--NUMERO DES JOUEURS DE L'EQUIPE ROUGE -->
+	<string name="num_e1_n1">15</string>
+	<string name="num_e1_n2">2</string>
+	<string name="num_e1_n3">3</string>
+	<string name="num_e1_n4">4</string>
+	<string name="num_e1_n5">5</string>
+	<string name="num_e1_n6">6</string>
+	<string name="num_e1_n7">7</string>
+	<string name="num_e1_n8">8</string>
+	<string name="num_e1_n9">9</string>
+	<string name="num_e1_n10">10</string>
+	<string name="num_e1_n11">18</string>
+	<string name="num_e1_n12">12</string>
+
+	
+	<!--NOM DES JOUEURS DE L'EQUIPE BLEU -->
+	<string name="nom_e2_n1">Joueur21</string>
+	<string name="nom_e2_n2">Joueur22</string>
+	<string name="nom_e2_n3">Joueur23</string>
+	<string name="nom_e2_n4">Joueur24</string>
+	<string name="nom_e2_n5">Joueur25</string>
+	<string name="nom_e2_n6">Joueur26</string>
+	<string name="nom_e2_n7">Joueur27</string>
+	<string name="nom_e2_n8">Joueur28</string>
+	<string name="nom_e2_n9">Joueur29</string>
+	<string name="nom_e2_n10">Joueur210</string>
+	<string name="nom_e2_n11">Joueur211</string>
+	<string name="nom_e2_n12">Joueur212</string>
+	
+	<!--NUMERO DES JOUEURS DE L'EQUIPE BLEUE -->
+	<string name="num_e2_n1">21</string>
+	<string name="num_e2_n2">28</string>
+	<string name="num_e2_n3">3</string>
+	<string name="num_e2_n4">5</string>
+	<string name="num_e2_n5">4</string>
+	<string name="num_e2_n6">6</string>
+	<string name="num_e2_n7">7</string>
+	<string name="num_e2_n8">8</string>
+	<string name="num_e2_n9">9</string>
+	<string name="num_e2_n10">10</string>
+	<string name="num_e2_n11">11</string>
+	<string name="num_e2_n12">12</string>
+	
+</resources>

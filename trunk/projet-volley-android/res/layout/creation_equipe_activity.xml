@@ -1,0 +1,83 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <EditText
+        android:id="@+id/nomEntraineur"
+        android:layout_width="700dp"
+        android:layout_height="150dp"
+        android:layout_alignLeft="@+id/nomEquipe"
+        android:layout_below="@+id/nomEquipe"
+        android:layout_marginTop="120dp"
+        android:ems="10"
+        android:hint="Nom de l&apos;entraineur"
+        android:textSize="50sp" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/nomEquipe"
+        android:layout_width="700dp"
+        android:layout_height="150dp"
+        android:layout_alignLeft="@+id/ValidationCreationEquipe"
+        android:layout_below="@+id/libCreationEquipe"
+        android:layout_marginTop="104dp"
+        android:ems="10"
+        android:hint="Nom "
+        android:textSize="50sp" />
+
+    <Button
+        android:id="@+id/ValidationAvecAjoutJoueur"
+        style="@style/styleBoutonFormulaire"
+        android:layout_width="300dp"
+        android:layout_height="175dp"
+        android:layout_alignRight="@+id/nomEntraineur"
+        android:layout_alignTop="@+id/ValidationCreationEquipe"
+        android:layout_marginRight="23dp"
+        android:text="Ajouter des joueurs" />
+
+    <TextView
+        android:id="@+id/libCreationEquipe"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/Precedent"
+        android:layout_marginTop="45dp"
+        android:gravity="center_horizontal"
+        android:text="Création d&apos;une equipe"
+        android:textSize="55sp" />
+
+    <Button
+        android:id="@+id/ValidationCreationEquipe"
+        style="@style/styleBoutonFormulaire"
+        android:layout_width="300dp"
+        android:layout_height="175dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/nomEntraineur"
+        android:layout_marginLeft="49dp"
+        android:layout_marginTop="115dp"
+        android:text="Valider" />
+
+    <Button
+        android:id="@+id/RetourAccueil"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/accueil" />
+
+    <Button
+        android:id="@+id/Precedent"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/fleche_precedent" />
+
+</RelativeLayout>

@@ -1,0 +1,939 @@
+/**
+ * \file      SaisieStatsActivity.java
+ * \author    Jérémy Pastor
+ * \date      30 mars 2014
+ * \brief     Permet la gestion de l'interface graphique lors de la saisie de statistiques
+ * \details   Gestion des évenements sur les boutons, Gestion des remplacements etc.
+ */
+
+package vue;
+
+
+import java.util.ArrayList;
+
+import com.l3info.projet_volley_android.R;
+
+import controleur.Controleur;
+import android.os.Bundle;
+import android.app.Activity;
+import android.view.Menu;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnTouchListener;
+import android.widget.RadioButton;
+import android.widget.TextView;
+
+public class SaisieStatsActivity extends Activity {
+
+	// initialisation des maillots
+	RadioButton maillot_rouge1 = null;
+	RadioButton maillot_rouge2 = null;
+	RadioButton maillot_rouge3 = null;
+	RadioButton maillot_rouge4 = null;
+	RadioButton maillot_rouge5 = null;
+	RadioButton maillot_rouge6 = null;
+	RadioButton maillot_rouge7 = null;
+	RadioButton maillot_rouge8 = null;
+	RadioButton maillot_rouge9 = null;
+	RadioButton maillot_rouge10 = null;
+	RadioButton maillot_rouge11 = null;
+	RadioButton maillot_rouge12 = null;
+	RadioButton maillot_bleu1 = null;
+	RadioButton maillot_bleu2 = null;
+	RadioButton maillot_bleu3 = null;
+	RadioButton maillot_bleu4 = null;
+	RadioButton maillot_bleu5 = null;
+	RadioButton maillot_bleu6 = null;
+	RadioButton maillot_bleu7 = null;
+	RadioButton maillot_bleu8 = null;
+	RadioButton maillot_bleu9 = null;
+	RadioButton maillot_bleu10 = null;
+	RadioButton maillot_bleu11 = null;
+	RadioButton maillot_bleu12 = null;
+
+	RadioButton premier_checked = null;
+	RadioButton dernier_checked = null;
+	
+	RadioButton[] equipeRouge = new RadioButton[6];
+	RadioButton[] equipeBleu = new RadioButton[6];
+	
+	// initialisation des noms
+	TextView nom_rouge1 = null;
+	TextView nom_rouge2 = null;
+	TextView nom_rouge3 = null;
+	TextView nom_rouge4 = null;
+	TextView nom_rouge5 = null;
+	TextView nom_rouge6 = null;
+	TextView nom_rouge7 = null;
+	TextView nom_rouge8 = null;
+	TextView nom_rouge9 = null;
+	TextView nom_rouge10 = null;
+	TextView nom_rouge11= null;
+	TextView nom_rouge12 = null;
+	TextView nom_bleu1 = null;
+	TextView nom_bleu2 = null;
+	TextView nom_bleu3 = null;
+	TextView nom_bleu4 = null;
+	TextView nom_bleu5 = null;
+	TextView nom_bleu6 = null;
+	TextView nom_bleu7 = null;
+	TextView nom_bleu8 = null;
+	TextView nom_bleu9 = null;
+	TextView nom_bleu10 = null;
+	TextView nom_bleu11= null;
+	TextView nom_bleu12 = null;
+	
+	// initialisation des numéros
+	TextView num_rouge1 = null;
+	TextView num_rouge2 = null;
+	TextView num_rouge3 = null;
+	TextView num_rouge4 = null;
+	TextView num_rouge5 = null;
+	TextView num_rouge6 = null;
+	TextView num_rouge7 = null;
+	TextView num_rouge8 = null;
+	TextView num_rouge9 = null;
+	TextView num_rouge10 = null;
+	TextView num_rouge11= null;
+	TextView num_rouge12 = null;
+	TextView num_bleu1 = null;
+	TextView num_bleu2 = null;
+	TextView num_bleu3 = null;
+	TextView num_bleu4 = null;
+	TextView num_bleu5 = null;
+	TextView num_bleu6 = null;
+	TextView num_bleu7 = null;
+	TextView num_bleu8 = null;
+	TextView num_bleu9 = null;
+	TextView num_bleu10 = null;
+	TextView num_bleu11= null;
+	TextView num_bleu12 = null;
+	
+	// initialisation des boutons des types d'actions
+	RadioButton bouton_service = null;
+	RadioButton bouton_defense = null;
+	RadioButton bouton_passe = null;
+	RadioButton bouton_attaque = null;
+	RadioButton bouton_bloc = null;
+	
+	// initialisation des boutons jugeant la qualité d'action
+	RadioButton bouton_excellent = null;
+	RadioButton bouton_bien = null;
+	RadioButton bouton_neutre = null;
+	RadioButton bouton_mauvais = null;
+	RadioButton bouton_catastrophique = null;
+	
+	ArrayList<Integer> joueurs_checked = new ArrayList<Integer>(2);
+	int cptTouch = 0;
+	Controleur ctrl;
+	
+	
+	
+	// rend cliquable tous les joueurs sur le terrain de l'équipe bleu
+	private void equipeBleuClickable() {
+		maillot_bleu1.setClickable(true);
+		maillot_bleu2.setClickable(true);
+		maillot_bleu3.setClickable(true);
+		maillot_bleu4.setClickable(true);
+		maillot_bleu5.setClickable(true);
+		maillot_bleu6.setClickable(true);
+	}
+	
+	// rend cliquable tous les joueurs sur le terrain de l'équipe rouge
+	private void equipeRougeClickable() {
+		maillot_rouge1.setClickable(true);
+		maillot_rouge2.setClickable(true);
+		maillot_rouge3.setClickable(true);
+		maillot_rouge4.setClickable(true);
+		maillot_rouge5.setClickable(true);
+		maillot_rouge6.setClickable(true);
+	}
+	
+	// rend cliquable tous les remplacants des deux équipes
+	private void remplacantsClickable() {
+		maillot_rouge7.setClickable(true);
+		maillot_rouge8.setClickable(true);
+		maillot_rouge9.setClickable(true);
+		maillot_rouge10.setClickable(true);
+		maillot_rouge11.setClickable(true);
+		maillot_rouge12.setClickable(true);
+		maillot_bleu7.setClickable(true);
+		maillot_bleu8.setClickable(true);
+		maillot_bleu9.setClickable(true);
+		maillot_bleu10.setClickable(true);
+		maillot_bleu11.setClickable(true);
+		maillot_bleu12.setClickable(true);
+	}
+	
+	// rend non cliquable tous les boutons de type d'action
+	private void typeActionNonEnabled() {
+		typeActionNonChecked();
+		
+		bouton_service.setEnabled(false);
+		bouton_defense.setEnabled(false);
+		bouton_passe.setEnabled(false);
+		bouton_attaque.setEnabled(false);
+		bouton_bloc.setEnabled(false);
+	}
+	
+	private void qualiteActionIsEnable() {
+		if (bouton_service.isChecked() || bouton_defense.isChecked() || bouton_passe.isChecked()
+				|| bouton_attaque.isChecked() || bouton_bloc.isChecked()) {
+			bouton_excellent.setEnabled(true);
+			bouton_bien.setEnabled(true);
+			bouton_neutre.setEnabled(true);
+			bouton_mauvais.setEnabled(true);
+			bouton_catastrophique.setEnabled(true);
+		}
+		else {
+			bouton_excellent.setEnabled(false);
+			bouton_bien.setEnabled(false);
+			bouton_neutre.setEnabled(false);
+			bouton_mauvais.setEnabled(false);
+			bouton_catastrophique.setEnabled(false);
+		}
+	}
+	
+	private void typeActionEnabled() {
+		bouton_service.setEnabled(true);
+		bouton_defense.setEnabled(true);
+		bouton_passe.setEnabled(true);
+		bouton_attaque.setEnabled(true);
+		bouton_bloc.setEnabled(true);
+	}
+	
+	
+	// decoche tous les joueurs sur le terrain de l'équipe bleu
+	private void equipeBleuNonChecked() {
+		maillot_bleu1.setChecked(false);
+		maillot_bleu2.setChecked(false);
+		maillot_bleu3.setChecked(false);
+		maillot_bleu4.setChecked(false);
+		maillot_bleu5.setChecked(false);
+		maillot_bleu6.setChecked(false);
+		
+		joueurs_checked.clear();			// ATTENTION : VALABLE CAR ON N'UTILISE LES DEUX METHODES que ENSEMBLE (BLEU/ROUGE)
+		
+	}
+	
+	// decoche tous les joueurs sur le terrain de l'équipe rouge
+	private void equipeRougeNonChecked() {
+		maillot_rouge1.setChecked(false);
+		maillot_rouge2.setChecked(false);
+		maillot_rouge3.setChecked(false);
+		maillot_rouge4.setChecked(false);
+		maillot_rouge5.setChecked(false);
+		maillot_rouge6.setChecked(false);
+		
+		joueurs_checked.clear();			// ATTENTION : VALABLE CAR ON N'UTILISE LES DEUX METHODES que ENSEMBLE (BLEU/ROUGE)
+		
+	}
+	
+	private void typeActionNonChecked() {
+    	bouton_service.setChecked(false);
+    	bouton_defense.setChecked(false);
+    	bouton_passe.setChecked(false);
+    	bouton_attaque.setChecked(false);
+    	bouton_bloc.setChecked(false);
+	}
+	
+    // echange de position 2 textviews
+	private void echange(TextView t1, TextView t2) {
+		CharSequence c = t1.getText();
+		t1.setText(t2.getText());
+		t2.setText(c);
+	}
+	
+	// permet le remplacement entre 2 joueurs de l'équipe rouge
+	private void remplacementRouge(TextView nomSortant, TextView numSortant, int indice) {
+    	if (cptTouch ==1)
+    	{
+			if (maillot_rouge1 == dernier_checked) {
+	    		echange(nom_rouge1, nomSortant); // échange noms des joueurs
+	    		echange(num_rouge1, numSortant); // échange numéros des joueurs
+	    		ctrl.echangeJ(1, indice, 0);
+	    		maillot_rouge1.setChecked(false); // remplacement effectué: on décoche
+	    		joueurs_checked.remove(new Integer(0));
+	    		dernier_checked = null;
+	    	}
+	    	else if (maillot_rouge2 == dernier_checked) {
+	    		echange(nom_rouge2, nomSortant);
+	    		echange(num_rouge2, numSortant);
+	    		ctrl.echangeJ(1, indice, 1);
+	    		maillot_rouge2.setChecked(false);
+	    		joueurs_checked.remove(new Integer(1));
+	    		dernier_checked = null;
+	    	}
+	    	else if (maillot_rouge3 == dernier_checked) {
+	    		echange(nom_rouge3, nomSortant);
+	    		echange(num_rouge3, numSortant);
+	    		ctrl.echangeJ(1, indice, 2);
+	    		maillot_rouge3.setChecked(false);
+	    		joueurs_checked.remove(new Integer(2));
+	    		dernier_checked = null;
+	    	}
+	    	else if (maillot_rouge4 == dernier_checked) {
+	    		echange(nom_rouge4, nomSortant);
+	    		echange(num_rouge4, numSortant);
+	    		ctrl.echangeJ(1, indice, 3);
+	    		maillot_rouge4.setChecked(false);
+	    		joueurs_checked.remove(new Integer(3));
+	    		dernier_checked = null;
+	    		
+	    	}
+	    	else if (maillot_rouge5 == dernier_checked) {
+	    		echange(nom_rouge5, nomSortant);
+	    		echange(num_rouge5, numSortant);
+	    		ctrl.echangeJ(1, indice, 4);
+	    		maillot_rouge5.setChecked(false);
+	    		joueurs_checked.remove(new Integer(4));
+	    		dernier_checked = null;
+	    	}
+	    	else if (maillot_rouge6 == dernier_checked) {
+	    		echange(nom_rouge6, nomSortant);
+	    		echange(num_rouge6, numSortant);
+	    		ctrl.echangeJ(1, indice, 5);
+	    		maillot_rouge6.setChecked(false);
+	    		joueurs_checked.remove(new Integer(5));
+	    		dernier_checked = null;
+	    	}
+			cptTouch = 0;
+    	} else {cptTouch ++;}
+	}
+	
+	// permet le remplacement entre 2 joueurs de l'équipe bleu
+	private void remplacementBleu(TextView nomSortant, TextView numSortant, int indice) {
+		if (cptTouch ==1)
+    	{
+	    	if (maillot_bleu1 == dernier_checked) {
+	    		echange(nom_bleu1, nomSortant);
+	    		echange(num_bleu1, numSortant);
+	    		ctrl.echangeJ(0, indice, 0);
+	    		
+	    		maillot_bleu1.setChecked(false);
+	    		joueurs_checked.remove(new Integer(12));
+	    		dernier_checked = null;
+	    	}
+	    	else if (maillot_bleu2 == dernier_checked) {
+	    		echange(nom_bleu2, nomSortant);
+	    		echange(num_bleu2, numSortant);
+	    		ctrl.echangeJ(0, indice, 1);
+	    		maillot_bleu2.setChecked(false);
+	    		joueurs_checked.remove(new Integer(13));
+	    		dernier_checked = null;
+	    		
+	    	}
+	    	else if (maillot_bleu3 == dernier_checked) {
+	    		echange(nom_bleu3, nomSortant);
+	    		echange(num_bleu3, numSortant);
+	    		ctrl.echangeJ(0, indice, 2);
+	    		maillot_bleu3.setChecked(false);
+	    		joueurs_checked.remove(new Integer(14));
+	    		dernier_checked = null;
+	    	}
+	    	else if (maillot_bleu4 == dernier_checked) {
+	    		echange(nom_bleu4, nomSortant);
+	    		echange(num_bleu4, numSortant);
+	    		ctrl.echangeJ(0, indice, 3);
+	    		maillot_bleu4.setChecked(false);
+	    		joueurs_checked.remove(new Integer(15));
+	    		dernier_checked = null;
+	    	}
+	    	else if (maillot_bleu5 == dernier_checked) {
+	    		echange(nom_bleu5, nomSortant);
+	    		echange(num_bleu5, numSortant);
+	    		ctrl.echangeJ(0, indice, 4);
+	    		maillot_bleu5.setChecked(false);
+	    		joueurs_checked.remove(new Integer(16));
+	    		dernier_checked = null;
+	    	}
+	    	else if (maillot_bleu6 == dernier_checked) {
+	    		echange(nom_bleu6, nomSortant);
+	    		echange(num_bleu6, numSortant);
+	    		ctrl.echangeJ(0, indice, 5);
+	    		maillot_bleu6.setChecked(false);
+	    		joueurs_checked.remove(new Integer(17));
+	    		dernier_checked = null;
+	    	}
+	    	cptTouch = 0;
+	    	
+    	} else {cptTouch ++;}
+	}
+	
+	// compte le nombre de joueurs coché
+	private int nbJoueursChecked() {
+		/*int compteur = 0;
+		for (int i=0 ; i<6 ; i++) {
+			if (equipeRouge[i].isChecked()) {
+				compteur++;
+			}
+			if (equipeBleu[i].isChecked()) {
+				compteur++;
+			}
+		}*/
+		return joueurs_checked.size();	
+	}
+	
+	private boolean joueursMemeEquipeChecked(RadioButton[] equipe) {
+		
+		for (int i=0 ; i<6 ; i++) {
+			for (int j=i+1 ; j<6 ; j++) {
+				if (equipe[i].isChecked() && equipe[j].isChecked()) {
+					return true;
+				}
+			}
+		}
+		return false;	
+	}
+	
+	private void notEnabledServiceAttaqueBloc() {
+		if (joueursMemeEquipeChecked(equipeRouge) || joueursMemeEquipeChecked(equipeBleu)) {
+			bouton_service.setChecked(false);
+			bouton_attaque.setChecked(false);
+			bouton_bloc.setChecked(false);
+			bouton_service.setEnabled(false);
+			bouton_attaque.setEnabled(false);
+			bouton_bloc.setEnabled(false);
+		}
+	}
+	
+	private boolean joueursPasMemeEquipeChecked() {
+		for (int i=0 ; i<6 ; i++) {
+			for (int j=0 ; j<6 ; j++) {
+				if (equipeRouge[i].isChecked() && equipeBleu[j].isChecked()) {
+					return true;
+				}
+			}
+		}
+		return false;
+		
+	}
+	
+	private void notEnabledPasse() {
+		if (joueursPasMemeEquipeChecked()) {
+			bouton_passe.setChecked(false);
+			bouton_passe.setEnabled(false);
+		}
+	}
+	private void cocheTitulaire(RadioButton rad, int indice)
+	{
+		System.out.println(joueurs_checked.size());
+		if (cptTouch == 1)					// Adapte le click PC à un touch tablette
+		{
+			if (rad.isChecked())
+			{
+				rad.setChecked(false);
+				joueurs_checked.remove(new Integer(indice));
+				if (dernier_checked == rad) {dernier_checked = null;}
+			}
+			else
+			{
+				if (nbJoueursChecked() < 2) {
+					
+					rad.setChecked(true); // on le coche
+					joueurs_checked.add(indice);
+					dernier_checked = rad;
+					
+				}
+				if (nbJoueursChecked() == 2) {
+					if (dernier_checked != null)
+					{
+						dernier_checked.setChecked(false);
+						joueurs_checked.remove(1);
+					}
+					dernier_checked = rad;
+					joueurs_checked.add(indice);
+					rad.setChecked(true);
+					typeActionEnabled();
+				}
+				else {
+					typeActionNonEnabled();
+				}
+				notEnabledServiceAttaqueBloc();
+				notEnabledPasse();
+			}
+			cptTouch = 0;
+		}
+		else {cptTouch ++;}
+	}
+	
+	// listener du joueur rouge au poste 1 (titulaire)
+	private OnTouchListener touchListenerRouge1 = new View.OnTouchListener() {
+	    public boolean onTouch(View v, MotionEvent event) {
+	    	cocheTitulaire(maillot_rouge1,0);
+	        return true;
+	    }
+	};
+	
+	// listener du joueur rouge au poste 2 (titulaire)
+	private OnTouchListener touchListenerRouge2 = new View.OnTouchListener() {
+	    public boolean onTouch(View v, MotionEvent event) {
+	    	cocheTitulaire(maillot_rouge2,1);
+	        return true;
+	    }
+	};
+	
+	// listener du joueur rouge au poste 3 (titulaire)
+	private OnTouchListener touchListenerRouge3 = new View.OnTouchListener() {
+	    public boolean onTouch(View v, MotionEvent event) {
+	    	cocheTitulaire(maillot_rouge3,2);
+	        return true;
+	    }
+	};
+	
+	// listener du joueur rouge au poste 4 (titulaire)
+	private OnTouchListener touchListenerRouge4 = new View.OnTouchListener() {
+	    public boolean onTouch(View v, MotionEvent event) {
+	    	cocheTitulaire(maillot_rouge4,3);
+	        return true;
+	    }
+	};
+	
+	// listener du joueur rouge au poste 5 (titulaire)
+	private OnTouchListener touchListenerRouge5 = new View.OnTouchListener() {
+	    public boolean onTouch(View v, MotionEvent event) {
+	    	cocheTitulaire(maillot_rouge5,4);
+	        return true;
+	    }
+	};
+	
+	// listener du joueur rouge au poste 6 (titulaire)
+	private OnTouchListener touchListenerRouge6 = new View.OnTouchListener() {
+	    public boolean onTouch(View v, MotionEvent event) {
+	    	cocheTitulaire(maillot_rouge6,5);
+	        return true;
+	    }
+	};
+	
+	// listener du joueur rouge au poste 7 (remplacant)
+	private OnTouchListener touchListenerRouge7 = new View.OnTouchListener() {
+	    public boolean onTouch(View v, MotionEvent event) {
+	    	/* si les remplacants sont cliquables c'est qu'un joueur titulaire a été coché précédement
+	    	 * au clic sur le remplacant, on échange les deux */
+	    	if (maillot_rouge7.isClickable()) {
+	    		remplacementRouge(nom_rouge7, num_rouge7, 6);
+		        return true;
+	    	}
+	    	return true;
+	    }
+	};
+	
+	// listener du joueur rouge au poste 8 (remplacant)
+	private OnTouchListener touchListenerRouge8 = new View.OnTouchListener() {
+	    public boolean onTouch(View v, MotionEvent event) {
+	    	if (maillot_rouge8.isClickable()) {
+	    		remplacementRouge(nom_rouge8, num_rouge8, 7);
+		        return true;
+	    	}
+	    	return true;
+	    }
+	};
+	
+	// listener du joueur rouge au poste 9 (remplacant)
+	private OnTouchListener touchListenerRouge9 = new View.OnTouchListener() {
+	    public boolean onTouch(View v, MotionEvent event) {
+	    	if (maillot_rouge9.isClickable()) {
+	    		remplacementRouge(nom_rouge9, num_rouge9, 8);
+		        return true;
+	    	}
+	    	return true;
+	    }
+	};
+	
+	// listener du joueur rouge au poste 10 (remplacant)
+	private OnTouchListener touchListenerRouge10 = new View.OnTouchListener() {
+	    public boolean onTouch(View v, MotionEvent event) {
+	    	if (maillot_rouge10.isClickable()) {
+	    		remplacementRouge(nom_rouge10, num_rouge10, 9);
+		        return true;
+	    	}
+	    	return true;
+	    }
+	};
+
+	// listener du joueur rouge au poste 11 (remplacant)
+	private OnTouchListener touchListenerRouge11 = new View.OnTouchListener() {
+	    public boolean onTouch(View v, MotionEvent event) {
+	    	if (maillot_rouge11.isClickable()) {
+	    		remplacementRouge(nom_rouge11, num_rouge11, 10);
+		        return true;
+	    	}
+	    	return true;
+	    }
+	};
+	
+	// listener du joueur rouge au poste 12 (remplacant)
+	private OnTouchListener touchListenerRouge12 = new View.OnTouchListener() {
+	    public boolean onTouch(View v, MotionEvent event) {
+	    	if (maillot_rouge12.isClickable()) {
+	    		remplacementRouge(nom_rouge12, num_rouge12, 11);
+		        return true;
+	    	}
+	    	return true;
+	    }
+	};
+	
+	// listener du joueur bleu au poste 1 (titulaire)
+	private OnTouchListener touchListenerBleu1 = new View.OnTouchListener() {
+	    public boolean onTouch(View v, MotionEvent event) {	    	
+	    	cocheTitulaire(maillot_bleu1,12);
+	        return true;
+	    }
+	};
+	
+	// listener du joueur bleu au poste 2 (titulaire)
+	private OnTouchListener touchListenerBleu2 = new View.OnTouchListener() {
+	    public boolean onTouch(View v, MotionEvent event) {	    	
+	    	cocheTitulaire(maillot_bleu2,13);
+	        return true;
+	    }
+	};
+	
+	// listener du joueur bleu au poste 3 (titulaire)
+	private OnTouchListener touchListenerBleu3 = new View.OnTouchListener() {
+	    public boolean onTouch(View v, MotionEvent event) {	    	
+	    	cocheTitulaire(maillot_bleu3,14);
+	        return true;
+	    }
+	};
+	
+	// listener du joueur bleu au poste 4 (titulaire)
+	private OnTouchListener touchListenerBleu4 = new View.OnTouchListener() {
+	    public boolean onTouch(View v, MotionEvent event) {	    	
+	    	cocheTitulaire(maillot_bleu4,15);
+	        return true;
+	    }
+	};
+	
+	// listener du joueur bleu au poste 5 (titulaire)
+	private OnTouchListener touchListenerBleu5 = new View.OnTouchListener() {
+	    public boolean onTouch(View v, MotionEvent event) {	    	
+	    	cocheTitulaire(maillot_bleu5,16);
+	        return true;
+	    }
+	};
+	
+	// listener du joueur bleu au poste 6 (titulaire)
+	private OnTouchListener touchListenerBleu6 = new View.OnTouchListener() {
+	    public boolean onTouch(View v, MotionEvent event) {	    	
+	    	cocheTitulaire(maillot_bleu6,17);
+	        return true;
+	    }
+	};
+	
+	// listener du joueur bleu au poste 7 (remplacant)
+	private OnTouchListener touchListenerBleu7 = new View.OnTouchListener() {
+	    public boolean onTouch(View v, MotionEvent event) {
+	    	if (maillot_bleu7.isClickable()) {
+	    		remplacementBleu(nom_bleu7, num_bleu7, 18);
+		        return true;
+	    	}
+	    	return true;
+	    }
+	};
+	
+	// listener du joueur bleu au poste 8 (remplacant)
+	private OnTouchListener touchListenerBleu8 = new View.OnTouchListener() {
+	    public boolean onTouch(View v, MotionEvent event) {
+	    	if (maillot_bleu8.isClickable()) {
+	    		remplacementBleu(nom_bleu8, num_bleu8, 19);
+		        return true;
+	    	}
+	    	return true;
+	    }
+	};
+	
+	// listener du joueur bleu au poste 9 (remplacant)
+	private OnTouchListener touchListenerBleu9 = new View.OnTouchListener() {
+	    public boolean onTouch(View v, MotionEvent event) {
+	    	if (maillot_bleu9.isClickable()) {
+	    		remplacementBleu(nom_bleu9, num_bleu9, 20);
+		        return true;
+	    	}
+	    	return true;
+	    }
+	};
+	
+	// listener du joueur bleu au poste 10 (remplacant)
+	private OnTouchListener touchListenerBleu10 = new View.OnTouchListener() {
+	    public boolean onTouch(View v, MotionEvent event) {
+	    	if (maillot_bleu10.isClickable()) {
+	    		remplacementBleu(nom_bleu10, num_bleu10, 21);
+		        return true;
+	    	}
+	    	return true;
+	    }
+	};
+	
+	// listener du joueur bleu au poste 11 (remplacant)
+	private OnTouchListener touchListenerBleu11 = new View.OnTouchListener() {
+	    public boolean onTouch(View v, MotionEvent event) {
+	    	if (maillot_bleu11.isClickable()) {
+	    		remplacementBleu(nom_bleu11, num_bleu11, 22);
+		        return true;
+	    	}
+	    	return true;
+	    }
+	};
+	
+	// listener du joueur bleu au poste 12 (remplacant)
+	private OnTouchListener touchListenerBleu12 = new View.OnTouchListener() {
+	    public boolean onTouch(View v, MotionEvent event) {
+	    	if (maillot_bleu12.isClickable()) {
+	    		remplacementBleu(nom_bleu12, num_bleu12, 23);
+		        return true;
+	    	}
+	    	return true;
+	    }
+	};
+	
+	
+	// listener des boutons jugeant la qualité d'une action
+	private OnTouchListener touchListenerQualiteAction = new View.OnTouchListener() {
+	    public boolean onTouch(View v, MotionEvent event) {
+	    	
+	    	if (joueurs_checked.size() == 2)
+	    	{
+	    		String typeA = actionSelectionnee();
+	    		if(typeA != "err")
+	    		{
+	    			System.out.println("Action " + joueurs_checked.get(0) + "  ====>  " + joueurs_checked.get(1));	    		
+	    			ctrl.soumettreAction(joueurs_checked.get(0), joueurs_checked.get(1), typeA, 0);
+	    			
+	    			
+			    	typeActionNonEnabled();
+			    	// on decoche tout les boutons
+			    	typeActionNonChecked();
+			    	
+		
+			    	equipeRougeNonChecked();
+			    	equipeBleuNonChecked();
+			    	
+			    	// on rend à nouveau cliquable tous les joueurs
+			    	equipeRougeClickable();
+			    	equipeBleuClickable();
+		        	remplacantsClickable();
+	    		}
+	    	}
+	    	return true;
+	    }   
+	    
+	    	
+	};
+	
+	private String actionSelectionnee()
+	{
+		if (bouton_service.isChecked())
+		{
+			return "se";
+		}
+		if (bouton_defense.isChecked())
+		{
+			return "de";
+		}
+		if (bouton_passe.isChecked())
+		{
+			return "pa";
+		}
+		if (bouton_attaque.isChecked())
+		{
+			return "at";
+		}
+		if (bouton_bloc.isChecked())
+		{
+			return "bl";
+		}
+		return "er";
+	}
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_saisie_stats);
+		
+		// on va chercher toutes les vues dans le fichier xml
+		
+		maillot_rouge1 = (RadioButton) findViewById(R.id.maillot_rouge1);
+		maillot_rouge2 = (RadioButton) findViewById(R.id.maillot_rouge2);
+		maillot_rouge3 = (RadioButton) findViewById(R.id.maillot_rouge3);
+		maillot_rouge4 = (RadioButton) findViewById(R.id.maillot_rouge4);
+		maillot_rouge5 = (RadioButton) findViewById(R.id.maillot_rouge5);
+		maillot_rouge6 = (RadioButton) findViewById(R.id.maillot_rouge6);
+		maillot_rouge7 = (RadioButton) findViewById(R.id.maillot_rouge7);
+		maillot_rouge8 = (RadioButton) findViewById(R.id.maillot_rouge8);
+		maillot_rouge9 = (RadioButton) findViewById(R.id.maillot_rouge9);
+		maillot_rouge10 = (RadioButton) findViewById(R.id.maillot_rouge10);
+		maillot_rouge11 = (RadioButton) findViewById(R.id.maillot_rouge11);
+		maillot_rouge12 = (RadioButton) findViewById(R.id.maillot_rouge12);
+		maillot_bleu1 = (RadioButton) findViewById(R.id.maillot_bleu1);
+		maillot_bleu2 = (RadioButton) findViewById(R.id.maillot_bleu2);
+		maillot_bleu3 = (RadioButton) findViewById(R.id.maillot_bleu3);
+		maillot_bleu4 = (RadioButton) findViewById(R.id.maillot_bleu4);
+		maillot_bleu5 = (RadioButton) findViewById(R.id.maillot_bleu5);
+		maillot_bleu6 = (RadioButton) findViewById(R.id.maillot_bleu6);
+		maillot_bleu7 = (RadioButton) findViewById(R.id.maillot_bleu7);
+		maillot_bleu8 = (RadioButton) findViewById(R.id.maillot_bleu8);
+		maillot_bleu9 = (RadioButton) findViewById(R.id.maillot_bleu9);
+		maillot_bleu10 = (RadioButton) findViewById(R.id.maillot_bleu10);
+		maillot_bleu11 = (RadioButton) findViewById(R.id.maillot_bleu11);
+		maillot_bleu12 = (RadioButton) findViewById(R.id.maillot_bleu12);
+		
+		equipeRouge[0] = maillot_rouge1;
+		equipeRouge[1] = maillot_rouge2;
+		equipeRouge[2] = maillot_rouge3;
+		equipeRouge[3] = maillot_rouge4;
+		equipeRouge[4] = maillot_rouge5;
+		equipeRouge[5] = maillot_rouge6;
+		
+		equipeBleu[0] = maillot_bleu1;
+		equipeBleu[1] = maillot_bleu2;
+		equipeBleu[2] = maillot_bleu3;
+		equipeBleu[3] = maillot_bleu4;
+		equipeBleu[4] = maillot_bleu5;
+		equipeBleu[5] = maillot_bleu6;
+		
+		nom_rouge1 = (TextView) findViewById(R.id.nom_joueur_e1_n1);
+		nom_rouge2 = (TextView) findViewById(R.id.nom_joueur_e1_n2);
+		nom_rouge3 = (TextView) findViewById(R.id.nom_joueur_e1_n3);
+		nom_rouge4 = (TextView) findViewById(R.id.nom_joueur_e1_n4);
+		nom_rouge5 = (TextView) findViewById(R.id.nom_joueur_e1_n5);
+		nom_rouge6 = (TextView) findViewById(R.id.nom_joueur_e1_n6);
+		nom_rouge7 = (TextView) findViewById(R.id.nom_joueur_e1_n7);
+		nom_rouge8 = (TextView) findViewById(R.id.nom_joueur_e1_n8);
+		nom_rouge9 = (TextView) findViewById(R.id.nom_joueur_e1_n9);
+		nom_rouge10 = (TextView) findViewById(R.id.nom_joueur_e1_n10);
+		nom_rouge11= (TextView) findViewById(R.id.nom_joueur_e1_n11);
+		nom_rouge12 = (TextView) findViewById(R.id.nom_joueur_e1_n12);
+		nom_bleu1 = (TextView) findViewById(R.id.nom_joueur_e2_n1);
+		nom_bleu2 = (TextView) findViewById(R.id.nom_joueur_e2_n2);
+		nom_bleu3 = (TextView) findViewById(R.id.nom_joueur_e2_n3);
+		nom_bleu4 = (TextView) findViewById(R.id.nom_joueur_e2_n4);
+		nom_bleu5 = (TextView) findViewById(R.id.nom_joueur_e2_n5);
+		nom_bleu6 = (TextView) findViewById(R.id.nom_joueur_e2_n6);
+		nom_bleu7 = (TextView) findViewById(R.id.nom_joueur_e2_n7);
+		nom_bleu8 = (TextView) findViewById(R.id.nom_joueur_e2_n8);
+		nom_bleu9 = (TextView) findViewById(R.id.nom_joueur_e2_n9);
+		nom_bleu10 = (TextView) findViewById(R.id.nom_joueur_e2_n10);
+		nom_bleu11= (TextView) findViewById(R.id.nom_joueur_e2_n11);
+		nom_bleu12 = (TextView) findViewById(R.id.nom_joueur_e2_n12);
+		
+		num_rouge1 = (TextView) findViewById(R.id.num_joueur_e1_n1);
+		num_rouge2 = (TextView) findViewById(R.id.num_joueur_e1_n2);
+		num_rouge3 = (TextView) findViewById(R.id.num_joueur_e1_n3);
+		num_rouge4 = (TextView) findViewById(R.id.num_joueur_e1_n4);
+		num_rouge5 = (TextView) findViewById(R.id.num_joueur_e1_n5);
+		num_rouge6 = (TextView) findViewById(R.id.num_joueur_e1_n6);
+		num_rouge7 = (TextView) findViewById(R.id.num_joueur_e1_n7);
+		num_rouge8 = (TextView) findViewById(R.id.num_joueur_e1_n8);
+		num_rouge9 = (TextView) findViewById(R.id.num_joueur_e1_n9);
+		num_rouge10 = (TextView) findViewById(R.id.num_joueur_e1_n10);
+		num_rouge11= (TextView) findViewById(R.id.num_joueur_e1_n11);
+		num_rouge12 = (TextView) findViewById(R.id.num_joueur_e1_n12);
+		num_bleu1 = (TextView) findViewById(R.id.num_joueur_e2_n1);
+		num_bleu2 = (TextView) findViewById(R.id.num_joueur_e2_n2);
+		num_bleu3 = (TextView) findViewById(R.id.num_joueur_e2_n3);
+		num_bleu4 = (TextView) findViewById(R.id.num_joueur_e2_n4);
+		num_bleu5 = (TextView) findViewById(R.id.num_joueur_e2_n5);
+		num_bleu6 = (TextView) findViewById(R.id.num_joueur_e2_n6);
+		num_bleu7 = (TextView) findViewById(R.id.num_joueur_e2_n7);
+		num_bleu8 = (TextView) findViewById(R.id.num_joueur_e2_n8);
+		num_bleu9 = (TextView) findViewById(R.id.num_joueur_e2_n9);
+		num_bleu10 = (TextView) findViewById(R.id.num_joueur_e2_n10);
+		num_bleu11= (TextView) findViewById(R.id.num_joueur_e2_n11);
+		num_bleu12 = (TextView) findViewById(R.id.num_joueur_e2_n12);
+		
+		bouton_service = (RadioButton) findViewById(R.id.button_service);
+		bouton_defense = (RadioButton) findViewById(R.id.button_reception);
+		bouton_passe = (RadioButton) findViewById(R.id.button_passe);
+		bouton_attaque = (RadioButton) findViewById(R.id.button_attaque);
+		bouton_bloc = (RadioButton) findViewById(R.id.button_bloc);
+		bouton_excellent = (RadioButton) findViewById(R.id.button_excellent);
+		bouton_bien = (RadioButton) findViewById(R.id.button_bien);
+		bouton_neutre = (RadioButton) findViewById(R.id.button_neutre);
+		bouton_mauvais = (RadioButton) findViewById(R.id.button_mauvais);
+		bouton_catastrophique = (RadioButton) findViewById(R.id.button_catastrophique);
+		
+		// on associe chaque bouton a son listener correspondant
+		maillot_rouge1.setOnTouchListener(touchListenerRouge1);
+		maillot_rouge2.setOnTouchListener(touchListenerRouge2);
+		maillot_rouge3.setOnTouchListener(touchListenerRouge3);
+		maillot_rouge4.setOnTouchListener(touchListenerRouge4);
+		maillot_rouge5.setOnTouchListener(touchListenerRouge5);
+		maillot_rouge6.setOnTouchListener(touchListenerRouge6);
+		maillot_rouge7.setOnTouchListener(touchListenerRouge7);
+		maillot_rouge8.setOnTouchListener(touchListenerRouge8);
+		maillot_rouge9.setOnTouchListener(touchListenerRouge9);
+		maillot_rouge10.setOnTouchListener(touchListenerRouge10);
+		maillot_rouge11.setOnTouchListener(touchListenerRouge11);
+		maillot_rouge12.setOnTouchListener(touchListenerRouge12);
+		maillot_bleu1.setOnTouchListener(touchListenerBleu1);
+		maillot_bleu2.setOnTouchListener(touchListenerBleu2);
+		maillot_bleu3.setOnTouchListener(touchListenerBleu3);
+		maillot_bleu4.setOnTouchListener(touchListenerBleu4);
+		maillot_bleu5.setOnTouchListener(touchListenerBleu5);
+		maillot_bleu6.setOnTouchListener(touchListenerBleu6);
+		maillot_bleu7.setOnTouchListener(touchListenerBleu7);
+		maillot_bleu8.setOnTouchListener(touchListenerBleu8);
+		maillot_bleu9.setOnTouchListener(touchListenerBleu9);
+		maillot_bleu10.setOnTouchListener(touchListenerBleu10);
+		maillot_bleu11.setOnTouchListener(touchListenerBleu11);
+		maillot_bleu12.setOnTouchListener(touchListenerBleu12);	
+		
+		
+		bouton_excellent.setOnTouchListener(touchListenerQualiteAction);
+		bouton_bien.setOnTouchListener(touchListenerQualiteAction);
+		bouton_neutre.setOnTouchListener(touchListenerQualiteAction);
+		bouton_mauvais.setOnTouchListener(touchListenerQualiteAction);
+		bouton_catastrophique.setOnTouchListener(touchListenerQualiteAction);
+		
+		// le type et la qualité d'une action ne sont pas cliquable au lancement
+		typeActionNonEnabled();
+		// Initialisations...
+		ctrl = Controleur.getInstance();
+		miseAJour();
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+	
+	public void miseAJour()
+	{
+		if (ctrl.estNouveauMatch())
+		{
+			
+		}
+		if (ctrl.estNouveauSet())
+		{
+			
+		}
+		String etat = ctrl.getEtatAuto();
+		if (etat == "in")
+		{
+			if (ctrl.getService())
+			{
+				maillot_bleu1.setChecked(true);
+				maillot_rouge6.setChecked(true);
+				joueurs_checked.add(12);
+				joueurs_checked.add(5);
+				dernier_checked = maillot_rouge6;
+				bouton_service.setEnabled(true);
+				bouton_service.setChecked(true);
+			}
+			else
+			{
+				maillot_rouge1.setChecked(true);
+				maillot_bleu6.setChecked(true);
+				joueurs_checked.add(0);
+				joueurs_checked.add(17);
+				dernier_checked = maillot_bleu6;
+				bouton_service.setEnabled(true);
+				bouton_service.setChecked(true);
+			}
+		}
+	}
+
+}
+
+
