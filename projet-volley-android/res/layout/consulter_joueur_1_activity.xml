@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+
+ <Button
+      android:id="@+id/RetourAccueil"
+      android:layout_width="100dp"
+      android:layout_height="100dp"
+      android:layout_alignParentRight="true"
+      android:layout_alignParentTop="true"
+      android:layout_marginRight="25dp"
+      android:layout_marginTop="25dp"
+      android:background="@drawable/accueil" />
+
+      <requestFocus />
+
+  <Button
+      android:id="@+id/Precedent"
+      android:layout_width="100dp"
+      android:layout_height="70dp"
+      android:layout_alignBaseline="@+id/RetourAccueil"
+      android:layout_alignBottom="@+id/RetourAccueil"
+      android:layout_alignParentLeft="true"
+      android:layout_marginLeft="25dp"
+      android:layout_marginTop="25dp"
+      android:background="@drawable/fleche_precedent" />
+<!-- android:textColor="#0431B4" -->
+
+ <TextView
+     android:id="@+id/libConsulterJoueur1"
+     android:layout_width="match_parent"
+     android:layout_height="100dp"
+     android:layout_alignParentLeft="true"
+     android:layout_below="@+id/Precedent"
+     android:gravity="center_horizontal"
+     android:text="Consulter un joueur"
+     android:textSize="55sp" />
+
+ <TextView
+     android:id="@+id/libNomJoueur"
+     android:layout_width="600dp"
+     android:layout_height="100dp"
+     android:layout_below="@+id/libConsulterJoueur1"
+     android:layout_marginTop="100dp"
+     android:layout_toLeftOf="@+id/RetourAccueil"
+     android:text="Nom :"
+     android:textSize="40sp" />
+
+ <TextView
+     android:id="@+id/libTailleJoueur"
+     android:layout_width="600dp"
+     android:layout_height="100dp"
+     android:layout_alignLeft="@+id/libAgeJoueur"
+     android:layout_below="@+id/libAgeJoueur"
+     android:layout_marginTop="40dp"
+     android:text="Taille :"
+     android:textSize="40sp" />
+
+ <TextView
+     android:id="@+id/libPosteJoueur"
+     android:layout_width="600dp"
+     android:layout_height="100dp"
+     android:layout_alignLeft="@+id/libTailleJoueur"
+     android:layout_below="@+id/libTailleJoueur"
+     android:layout_marginTop="40dp"
+     android:text="Poste :"
+     android:textSize="40sp" />
+
+ <TextView
+     android:id="@+id/libEquipeJoueur"
+     android:layout_width="600dp"
+     android:layout_height="100dp"
+     android:layout_alignLeft="@+id/libPosteJoueur"
+     android:layout_below="@+id/libPosteJoueur"
+     android:layout_marginTop="40dp"
+     android:text="Equipe :"
+     android:textSize="40sp" />
+
+ <TextView
+     android:id="@+id/libAgeJoueur"
+     android:layout_width="600dp"
+     android:layout_height="100dp"
+     android:layout_alignLeft="@+id/libNomJoueur"
+     android:layout_below="@+id/libNomJoueur"
+     android:layout_marginTop="40dp"
+     android:text="Age :"
+     android:textSize="40sp" />
+
+</RelativeLayout>

@@ -1,0 +1,87 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <Button
+        android:id="@+id/Precedent"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="22dp"
+        android:background="@drawable/fleche_precedent" />
+
+    <Button
+        android:id="@+id/RetourAccueil"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/accueil" />
+
+    <TextView
+        android:id="@+id/libModificationJoueur"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/RetourAccueil"
+        android:gravity="center_horizontal"
+        android:text="Modification d'un joueur"
+        android:textSize="55sp" />
+
+    <EditText
+        android:id="@+id/AgeJoueur"
+        android:layout_width="700dp"
+        android:layout_height="125dp"
+        android:layout_alignLeft="@+id/nomJoueur"
+        android:layout_below="@+id/nomJoueur"
+        android:layout_marginTop="45dp"
+        android:ems="10"
+        android:hint="Age"
+        android:textSize="50sp" />
+
+    <EditText
+        android:id="@+id/tailleJoueur"
+        android:layout_width="700dp"
+        android:layout_height="125dp"
+        android:layout_alignLeft="@+id/AgeJoueur"
+        android:layout_below="@+id/AgeJoueur"
+        android:layout_marginTop="45dp"
+        android:ems="10"
+        android:hint="Taille "
+        android:textSize="50sp" />
+
+    <EditText
+        android:id="@+id/Poste_en_courJoueur"
+        android:layout_width="700dp"
+        android:layout_height="125dp"
+        android:layout_alignLeft="@+id/tailleJoueur"
+        android:layout_below="@+id/tailleJoueur"
+        android:layout_marginTop="45dp"
+        android:ems="10"
+        android:hint="Poste en cours"
+        android:textSize="50sp" />
+
+    <Button
+        android:id="@+id/ValidationModifieJoueur"
+        style="@style/styleBoutonFormulaire"
+        android:layout_width="400dp"
+        android:layout_height="160dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="24dp"
+        android:text="Valider" />
+
+    <EditText
+        android:id="@+id/nomJoueur"
+        android:layout_width="700dp"
+        android:layout_height="125dp"
+        android:layout_below="@+id/libModificationJoueur"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="45dp"
+        android:ems="10"
+        android:hint="Nom"
+        android:textSize="50sp" />
+
+</RelativeLayout>

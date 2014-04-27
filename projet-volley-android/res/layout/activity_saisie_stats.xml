@@ -1,0 +1,1018 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- File: activity_saisie_stats.xml -->
+<!-- Author: Jérémy Pastor -->
+<!-- Date: 30 mars 2014 -->
+<!-- Brief: interface graphique de la saisie des statistiques -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <!--layout du terrain de volley -->    
+    <RelativeLayout
+        android:id="@+id/layout_terrain"
+        android:layout_width="wrap_content"
+        android:layout_height="600dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="230dp" >
+
+        <ImageView
+            android:id="@+id/terrain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/terrain2" />
+        
+        
+        
+        <!--layout du joueur rouge au poste 1 (titulaire)-->
+        <RelativeLayout
+        android:id="@+id/layout_e1_n1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+	    android:layout_marginTop="30dp" >
+	    
+            <RadioButton
+                android:id="@+id/maillot_rouge1"
+	            android:layout_width="100dp"
+	            android:layout_height="wrap_content"
+	            android:button="@drawable/button_rouge_selector"
+	            android:layout_centerHorizontal="true" />
+	        	       
+	       <TextView
+	            android:id="@+id/num_joueur_e1_n1"
+	            style="@style/num_joueur"
+	            android:layout_alignTop="@id/maillot_rouge1"
+	            android:layout_centerHorizontal="true"
+	            android:text="@string/num_e1_n1" />
+	       
+	        <TextView
+	            android:id="@+id/nom_joueur_e1_n1"
+	            style="@style/nom_joueur"
+	            android:layout_centerHorizontal="true"
+	            android:text="@string/nom_e1_n1" />
+	    </RelativeLayout>
+
+        
+        
+        <!--layout du joueur rouge au poste 2 (titulaire)-->
+        <RelativeLayout
+        android:id="@+id/layout_e1_n2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+		android:layout_alignLeft="@id/layout_e1_n1"
+		android:layout_alignTop="@id/layout_e1_n1"
+	    android:layout_marginTop="130dp">
+	    
+            <RadioButton
+                android:id="@+id/maillot_rouge2"
+	            android:layout_width="100dp"
+	            android:layout_height="wrap_content"
+	            android:button="@drawable/button_rouge_selector"
+	            android:layout_centerHorizontal="true" />
+	        
+	        <TextView
+	            android:id="@+id/nom_joueur_e1_n2"
+	            style="@style/nom_joueur"
+	            android:layout_centerHorizontal="true"        
+	            android:text="@string/nom_e1_n2" />
+	        
+	       <TextView
+	            android:id="@+id/num_joueur_e1_n2"
+	            style="@style/num_joueur"
+	            android:layout_alignTop="@id/maillot_rouge2"
+	            android:layout_centerHorizontal="true"
+	            android:text="@string/num_e1_n2" />
+	    </RelativeLayout>
+	    
+
+	            
+        <!--layout du joueur rouge au poste 3 (titulaire)-->
+        <RelativeLayout
+        android:id="@+id/layout_e1_n3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+		android:layout_centerHorizontal="true"
+	    android:layout_alignTop="@id/layout_e1_n2" >
+        
+            <RadioButton
+                android:id="@+id/maillot_rouge3"
+	            android:layout_width="100dp"
+	            android:layout_height="wrap_content"
+	            android:button="@drawable/button_rouge_selector"
+	            android:layout_centerHorizontal="true" />
+	        
+	        <TextView
+	            android:id="@+id/nom_joueur_e1_n3"
+	            style="@style/nom_joueur"
+	            android:layout_centerHorizontal="true"        
+	            android:text="@string/nom_e1_n3" />
+	        
+	       <TextView
+	            android:id="@+id/num_joueur_e1_n3"
+	            style="@style/num_joueur"
+	            android:layout_alignTop="@id/maillot_rouge3"
+	            android:layout_centerHorizontal="true"
+	            android:text="@string/num_e1_n3" />
+	    </RelativeLayout>
+	    
+        
+
+        <!--layout du joueur rouge au poste 4 (titulaire)-->
+        <RelativeLayout
+        android:id="@+id/layout_e1_n4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/layout_e1_n5"
+	    android:layout_alignTop="@id/layout_e1_n2" >
+        
+            <RadioButton
+                android:id="@+id/maillot_rouge4"
+	            android:layout_width="100dp"
+	            android:layout_height="wrap_content"
+	            android:button="@drawable/button_rouge_selector"
+	            android:layout_centerHorizontal="true" />
+	        
+	        <TextView
+	            android:id="@+id/nom_joueur_e1_n4"
+	            style="@style/nom_joueur"
+	            android:layout_centerHorizontal="true"        
+	            android:text="@string/nom_e1_n4" />
+	        
+	       <TextView
+	            android:id="@+id/num_joueur_e1_n4"
+	            style="@style/num_joueur"
+	            android:layout_alignTop="@id/maillot_rouge4"
+	            android:layout_centerHorizontal="true"
+	            android:text="@string/num_e1_n4" />
+	    </RelativeLayout>
+        
+        
+        
+        <!--layout du joueur rouge au poste 5 (titulaire)-->
+        <RelativeLayout
+        android:id="@+id/layout_e1_n5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/terrain"
+	    android:layout_marginRight="60dp"
+	    android:layout_alignTop="@id/layout_e1_n1" >
+	       
+            <RadioButton
+                android:id="@+id/maillot_rouge5"
+	            android:layout_width="100dp"
+	            android:layout_height="wrap_content"
+	            android:button="@drawable/button_rouge_selector"
+	            android:layout_centerHorizontal="true" />
+	        
+	        <TextView
+	            android:id="@+id/nom_joueur_e1_n5"
+	            style="@style/nom_joueur"
+	            android:layout_centerHorizontal="true"        
+	            android:text="@string/nom_e1_n5" />
+	        
+	       <TextView
+	            android:id="@+id/num_joueur_e1_n5"
+	            style="@style/num_joueur"
+	            android:layout_alignTop="@id/maillot_rouge5"
+	            android:layout_centerHorizontal="true"
+	            android:text="@string/num_e1_n5" />
+        </RelativeLayout>
+    
+        
+        
+        <!--layout du joueur rouge au poste 6 (titulaire)-->
+        <RelativeLayout
+        android:id="@+id/layout_e1_n6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:layout_centerHorizontal="true"
+	    android:layout_alignTop="@id/layout_e1_n1">
+
+            <RadioButton
+                android:id="@+id/maillot_rouge6"
+	            android:layout_width="100dp"
+	            android:layout_height="wrap_content"
+	            android:button="@drawable/button_rouge_selector"
+	            android:layout_centerHorizontal="true" />
+	        
+	        <TextView
+	            android:id="@+id/nom_joueur_e1_n6"
+	            style="@style/nom_joueur"
+	            android:layout_centerHorizontal="true"        
+	            android:text="@string/nom_e1_n6" />
+	        
+	       <TextView
+	            android:id="@+id/num_joueur_e1_n6"
+	            style="@style/num_joueur"
+	            android:layout_alignTop="@id/maillot_rouge6"
+	            android:layout_centerHorizontal="true"
+	            android:text="@string/num_e1_n6" />
+        </RelativeLayout>
+
+        
+
+        <!--layout du joueur bleu au poste 1 (titulaire)-->
+        <RelativeLayout
+        android:id="@+id/layout_e2_n1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/layout_e1_n5"
+	    android:layout_alignTop="@+id/layout_e2_n5" >
+	       
+            <RadioButton
+                android:id="@+id/maillot_bleu1"
+	            android:layout_width="100dp"
+	            android:layout_height="wrap_content"
+	            android:button="@drawable/button_bleu_selector"
+	            android:layout_centerHorizontal="true" />
+	        
+	        <TextView
+	            android:id="@+id/nom_joueur_e2_n1"
+	            style="@style/nom_joueur"
+	            android:layout_centerHorizontal="true"        
+	            android:text="@string/nom_e2_n1" />
+	        
+	       <TextView
+	            android:id="@+id/num_joueur_e2_n1"
+	            style="@style/num_joueur"
+	            android:layout_alignTop="@id/maillot_bleu1"
+	            android:layout_centerHorizontal="true"
+	            android:text="@string/num_e2_n1" />
+	    </RelativeLayout>
+	    
+                
+        
+        <!--layout du joueur bleu au poste 2 (titulaire)-->
+        <RelativeLayout
+        android:id="@+id/layout_e2_n2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/layout_e1_n5"
+	    android:layout_alignTop="@+id/layout_e2_n4" >
+	       
+            <RadioButton
+                android:id="@+id/maillot_bleu2"
+	            android:layout_width="100dp"
+	            android:layout_height="wrap_content"
+	            android:button="@drawable/button_bleu_selector"
+	            android:layout_centerHorizontal="true" />
+	        
+	        <TextView
+	            android:id="@+id/nom_joueur_e2_n2"
+	            style="@style/nom_joueur"
+	            android:layout_centerHorizontal="true"        
+	            android:text="@string/nom_e2_n2" />
+	        
+	       <TextView
+	            android:id="@+id/num_joueur_e2_n2"
+	            style="@style/num_joueur"
+	            android:layout_alignTop="@id/maillot_bleu2"
+	            android:layout_centerHorizontal="true"
+	            android:text="@string/num_e2_n2" />
+	   </RelativeLayout>
+     
+        
+        
+        <!--layout du joueur bleu au poste 3 (titulaire)-->
+        <RelativeLayout
+        android:id="@+id/layout_e2_n3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/layout_e2_n4"
+        android:layout_centerHorizontal="true"  >
+	       
+            <RadioButton
+                android:id="@+id/maillot_bleu3"
+	            android:layout_width="100dp"
+	            android:layout_height="wrap_content"
+	            android:button="@drawable/button_bleu_selector"
+	            android:layout_centerHorizontal="true" />
+	        
+	        <TextView
+	            android:id="@+id/nom_joueur_e2_n3"
+	            style="@style/nom_joueur"
+	            android:layout_centerHorizontal="true"        
+	            android:text="@string/nom_e2_n3" />
+	        
+	       <TextView
+	            android:id="@+id/num_joueur_e2_n3"
+	            style="@style/num_joueur"
+	            android:layout_alignTop="@id/maillot_bleu3"
+	            android:layout_centerHorizontal="true"
+	            android:text="@string/num_e2_n3" />
+	    </RelativeLayout>
+	    
+        
+
+        <!--layout du joueur bleu au poste 4 (titulaire)-->
+        <RelativeLayout
+        android:id="@+id/layout_e2_n4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/layout_e2_n5"
+		android:layout_alignBottom="@id/layout_e2_n5"
+	    android:layout_marginBottom="130dp" >
+	       
+            <RadioButton
+                android:id="@+id/maillot_bleu4"
+	            android:layout_width="100dp"
+	            android:layout_height="wrap_content"
+	            android:button="@drawable/button_bleu_selector"
+	            android:layout_centerHorizontal="true" />
+	        
+	        <TextView
+	            android:id="@+id/nom_joueur_e2_n4"
+	            style="@style/nom_joueur"
+	            android:layout_centerHorizontal="true"        
+	            android:text="@string/nom_e2_n4" />
+	        
+	       <TextView
+	            android:id="@+id/num_joueur_e2_n4"
+	            style="@style/num_joueur"
+	            android:layout_alignTop="@id/maillot_bleu4"
+	            android:layout_centerHorizontal="true"
+	            android:text="@string/num_e2_n4" />
+	    </RelativeLayout>
+	    
+        
+        
+        <!--layout du joueur bleu au poste 5 (titulaire)-->
+        <RelativeLayout
+        android:id="@+id/layout_e2_n5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/terrain"
+	    android:layout_marginBottom="30dp"
+	    android:layout_alignLeft="@+id/layout_e1_n1" >
+        
+            <RadioButton
+                android:id="@+id/maillot_bleu5"
+	            android:layout_width="100dp"
+	            android:layout_height="wrap_content"
+	            android:button="@drawable/button_bleu_selector"
+	            android:layout_centerHorizontal="true" />
+	        
+	        <TextView
+	            android:id="@+id/nom_joueur_e2_n5"
+	            style="@style/nom_joueur"
+	            android:layout_centerHorizontal="true"        
+	            android:text="@string/nom_e2_n5" />
+	        
+	       <TextView
+	            android:id="@+id/num_joueur_e2_n5"
+	            style="@style/num_joueur"
+	            android:layout_alignTop="@id/maillot_bleu5"
+	            android:layout_centerHorizontal="true"
+	            android:text="@string/num_e2_n5" />
+	    </RelativeLayout>
+	    
+        
+        
+        <!--layout du joueur bleu au poste 6 (titulaire)-->
+        <RelativeLayout
+        android:id="@+id/layout_e2_n6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+	    android:layout_alignTop="@id/layout_e2_n5"  >
+
+            <RadioButton
+                android:id="@+id/maillot_bleu6"
+	            android:layout_width="100dp"
+	            android:layout_height="wrap_content"
+	            android:button="@drawable/button_bleu_selector"
+	            android:layout_centerHorizontal="true" />
+	        
+	        <TextView
+	            android:id="@+id/nom_joueur_e2_n6"
+	            style="@style/nom_joueur"
+	            android:layout_centerHorizontal="true"        
+	            android:text="@string/nom_e2_n6" />
+	        
+	       <TextView
+	            android:id="@+id/num_joueur_e2_n6"
+	            style="@style/num_joueur"
+	            android:layout_alignTop="@id/maillot_bleu6"
+	            android:layout_centerHorizontal="true"
+	            android:text="@string/num_e2_n6" />
+	    </RelativeLayout>        
+
+    </RelativeLayout>
+
+    
+    
+    <!--noms des équipes-->
+    <TextView
+        android:id="@+id/nom_equipe1"
+        style="@style/nom_equipe_rouge"
+        android:layout_alignLeft="@id/layout_terrain"
+    	android:layout_marginTop="13dp"
+    	android:layout_marginLeft="35dp"
+    	android:text="@string/equipe1" />
+        
+    <TextView
+        android:id="@+id/nom_equipe2"
+        style="@style/nom_equipe_bleue"
+        android:layout_marginLeft="530dp"
+        android:layout_marginTop="652dp"
+        android:text="@string/equipe2" />
+
+    
+    
+    <!--layout des remplacants-->
+    <RelativeLayout
+        android:id="@+id/layout_remplacants"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+        
+        
+        <!--layout du joueur rouge au poste 7 (remplacant)-->
+        <RelativeLayout
+            android:id="@+id/layout_e1_n7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp" >
+              
+	        <RadioButton
+	            android:id="@+id/maillot_rouge7"
+	            android:layout_width="100dp"
+	            android:layout_height="wrap_content"
+	            android:button="@drawable/button_rouge_selector"
+	            android:layout_centerHorizontal="true" />
+	        
+	        <TextView
+	            android:id="@+id/nom_joueur_e1_n7"
+	            style="@style/nom_joueur"
+	            android:text="@string/nom_e1_n7" />
+	        
+	       <TextView
+	            android:id="@+id/num_joueur_e1_n7"
+	            style="@style/num_joueur"
+	            android:layout_alignTop="@id/maillot_rouge7"
+	            android:layout_centerHorizontal="true"
+	            android:text="@string/num_e1_n7" />	        
+	    </RelativeLayout>
+	    
+        
+        	
+		<!--layout du joueur rouge au poste 8 (remplacant)-->
+        <RelativeLayout
+            android:id="@+id/layout_e1_n8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/layout_e1_n7"
+            android:layout_alignLeft="@id/layout_e1_n7" 
+            android:layout_marginLeft="120dp" >
+            
+	        <RadioButton
+		            android:id="@+id/maillot_rouge8"
+		            android:layout_width="100dp"
+	                android:layout_height="wrap_content"
+	                android:button="@drawable/button_rouge_selector"
+	                android:layout_centerHorizontal="true" /> 
+	        
+	        <TextView
+	            android:id="@+id/nom_joueur_e1_n8"
+	            style="@style/nom_joueur"
+	            android:layout_centerHorizontal="true"        
+	            android:text="@string/nom_e1_n8" />
+	        
+	       <TextView
+	            android:id="@+id/num_joueur_e1_n8"
+	            style="@style/num_joueur"
+	            android:layout_alignTop="@id/maillot_rouge8"
+	            android:layout_centerHorizontal="true"
+	            android:text="@string/num_e1_n8" />	        
+	    </RelativeLayout>
+	
+        
+        
+    	<!--layout du joueur rouge au poste 9 (remplacant)-->   
+        <RelativeLayout
+            android:id="@+id/layout_e1_n9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/layout_e1_n7"
+            android:layout_alignTop="@id/layout_e1_n7"
+            android:layout_marginTop="110dp" >
+            
+            <RadioButton
+                android:id="@+id/maillot_rouge9"
+	            android:layout_width="100dp"
+	            android:layout_height="wrap_content"
+	            android:button="@drawable/button_rouge_selector"
+	            android:layout_centerHorizontal="true" />
+	               
+	        <TextView
+	            android:id="@+id/nom_joueur_e1_n9"
+	            style="@style/nom_joueur"
+	            android:layout_centerHorizontal="true"        
+	            android:text="@string/nom_e1_n9" />
+	        
+	       <TextView
+	            android:id="@+id/num_joueur_e1_n9"
+	            style="@style/num_joueur"
+	            android:layout_alignTop="@id/maillot_rouge9"
+	            android:layout_centerHorizontal="true"
+	            android:text="@string/num_e1_n9" />	        
+	    </RelativeLayout>        
+        
+        
+        
+		<!--layout du joueur rouge au poste 10 (remplacant)-->
+        <RelativeLayout
+            android:id="@+id/layout_e1_n10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/layout_e1_n9"
+            android:layout_alignLeft="@id/layout_e1_n8" >
+            
+            <RadioButton
+                android:id="@+id/maillot_rouge10"
+	            android:layout_width="100dp"
+	            android:layout_height="wrap_content"
+	            android:button="@drawable/button_rouge_selector"
+	            android:layout_centerHorizontal="true" />
+	        
+	        <TextView
+	            android:id="@+id/nom_joueur_e1_n10"
+	            style="@style/nom_joueur"
+	            android:layout_centerHorizontal="true"        
+	            android:text="@string/nom_e1_n10" />
+	        
+	        <TextView
+	            android:id="@+id/num_joueur_e1_n10"
+	            style="@style/num_joueur"
+	            android:layout_alignTop="@id/maillot_rouge10"
+	            android:layout_centerHorizontal="true"
+	            android:text="@string/num_e1_n10" />	        
+	    </RelativeLayout>
+
+
+
+    	<!--layout du joueur rouge au poste 11 (remplacant)-->  
+        <RelativeLayout
+            android:id="@+id/layout_e1_n11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/layout_e1_n9"
+            android:layout_alignTop="@id/layout_e1_n9"
+            android:layout_marginTop="110dp" >
+            
+            <RadioButton
+                android:id="@+id/maillot_rouge11"
+	            android:layout_width="100dp"
+	            android:layout_height="wrap_content"
+	            android:button="@drawable/button_rouge_selector"
+	            android:layout_centerHorizontal="true" />
+	        
+	        <TextView
+	            android:id="@+id/nom_joueur_e1_n11"
+	            style="@style/nom_joueur"
+	            android:layout_centerHorizontal="true"        
+	            android:text="@string/nom_e1_n11" />
+	        
+	        <TextView
+	            android:id="@+id/num_joueur_e1_n11"
+	            style="@style/num_joueur"
+	            android:layout_alignTop="@id/maillot_rouge11"
+	            android:layout_centerHorizontal="true"
+	            android:text="@string/num_e1_n11" />	        
+	    </RelativeLayout> 
+        
+        
+        
+        <!--layout du joueur rouge au poste 12 (remplacant)-->>    
+        <RelativeLayout
+            android:id="@+id/layout_e1_n12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/layout_e1_n10"
+            android:layout_alignTop="@id/layout_e1_n11" >
+            
+            <RadioButton
+                android:id="@+id/maillot_rouge12"
+	            android:layout_width="100dp"
+	            android:layout_height="wrap_content"
+	            android:button="@drawable/button_rouge_selector"
+	            android:layout_centerHorizontal="true" />
+	        
+	        <TextView
+	            android:id="@+id/nom_joueur_e1_n12"
+	            style="@style/nom_joueur"
+	            android:layout_centerHorizontal="true"        
+	            android:text="@string/nom_e1_n12" />
+	        
+	        <TextView
+	            android:id="@+id/num_joueur_e1_n12"
+	            style="@style/num_joueur"
+	            android:layout_alignTop="@id/maillot_rouge12"
+	            android:layout_centerHorizontal="true"
+	            android:text="@string/num_e1_n12" />	        
+	    </RelativeLayout>     
+        
+        
+        
+        <!--layout du joueur bleu au poste 7 (remplacant)-->
+        <RelativeLayout
+            android:id="@+id/layout_e2_n7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/layout_e1_n11"
+            android:layout_alignTop="@id/layout_e1_n11"
+            android:layout_marginTop="120dp" >
+            
+            <RadioButton
+                android:id="@+id/maillot_bleu7"
+	            android:layout_width="100dp"
+	            android:layout_height="wrap_content"
+	            android:button="@drawable/button_bleu_selector"
+	            android:layout_centerHorizontal="true" />
+	        
+	        <TextView
+	            android:id="@+id/nom_joueur_e2_n7"
+	            style="@style/nom_joueur"
+	            android:layout_centerHorizontal="true"        
+	            android:text="@string/nom_e2_n7" />
+	        
+	        <TextView
+	            android:id="@+id/num_joueur_e2_n7"
+	            style="@style/num_joueur"
+	            android:layout_alignTop="@id/maillot_bleu7"
+	            android:layout_centerHorizontal="true"
+	            android:text="@string/num_e2_n7" />	        
+	    </RelativeLayout>
+	    
+        
+        	
+        <!--layout du joueur bleu au poste 8 (remplacant)-->
+        <RelativeLayout
+            android:id="@+id/layout_e2_n8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/layout_e2_n7"
+            android:layout_alignLeft="@id/layout_e1_n8">
+            
+            <RadioButton
+                android:id="@+id/maillot_bleu8"
+	            android:layout_width="100dp"
+	            android:layout_height="wrap_content"
+	            android:button="@drawable/button_bleu_selector"
+	            android:layout_centerHorizontal="true" />
+	        
+	        <TextView
+	            android:id="@+id/nom_joueur_e2_n8"
+	            style="@style/nom_joueur"
+	            android:layout_centerHorizontal="true"        
+	            android:text="@string/nom_e2_n8" />
+	        
+	        <TextView
+	            android:id="@+id/num_joueur_e2_n8"
+	            style="@style/num_joueur"
+	            android:layout_alignTop="@id/maillot_bleu8"
+	            android:layout_centerHorizontal="true"
+	            android:text="@string/num_e2_n8" />	        
+	    </RelativeLayout>
+	
+        
+        
+        <!--layout du joueur bleu au poste 9 (remplacant)-->   
+        <RelativeLayout
+            android:id="@+id/layout_e2_n9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/layout_e2_n7"
+            android:layout_alignTop="@id/layout_e2_n7"
+            android:layout_marginTop="110dp" >
+            
+            <RadioButton
+                android:id="@+id/maillot_bleu9"
+	            android:layout_width="100dp"
+	            android:layout_height="wrap_content"
+	            android:button="@drawable/button_bleu_selector"
+	            android:layout_centerHorizontal="true" />
+	        
+	        <TextView
+	            android:id="@+id/nom_joueur_e2_n9"
+	            style="@style/nom_joueur"
+	            android:layout_centerHorizontal="true"        
+	            android:text="@string/nom_e2_n9" />
+	        
+	        <TextView
+	            android:id="@+id/num_joueur_e2_n9"
+	            style="@style/num_joueur"
+	            android:layout_alignTop="@id/maillot_bleu9"
+	            android:layout_centerHorizontal="true"
+	            android:text="@string/num_e2_n9" />	        
+	    </RelativeLayout>        
+        
+        
+        
+        <!--layout du joueur bleu au poste 10 (remplacant)-->
+        <RelativeLayout
+            android:id="@+id/layout_e2_n10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/layout_e2_n9"
+            android:layout_alignLeft="@id/layout_e2_n8" >
+            
+            <RadioButton
+                android:id="@+id/maillot_bleu10"
+	            android:layout_width="100dp"
+	            android:layout_height="wrap_content"
+	            android:button="@drawable/button_bleu_selector"
+	            android:layout_centerHorizontal="true" />
+	        
+	        <TextView
+	            android:id="@+id/nom_joueur_e2_n10"
+	            style="@style/nom_joueur"
+	            android:layout_centerHorizontal="true"        
+	            android:text="@string/nom_e2_n10" />
+	        
+	        <TextView
+	            android:id="@+id/num_joueur_e2_n10"
+	            style="@style/num_joueur"
+	            android:layout_alignTop="@id/maillot_bleu10"
+	            android:layout_centerHorizontal="true"
+	            android:text="@string/num_e2_n10" />	        
+	    </RelativeLayout>
+
+
+
+    	<!--layout du joueur bleu au poste 11 (remplacant)-->   
+        <RelativeLayout
+            android:id="@+id/layout_e2_n11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/layout_e2_n9"
+            android:layout_alignTop="@id/layout_e2_n9"
+            android:layout_marginTop="110dp" >
+            
+            <RadioButton
+                android:id="@+id/maillot_bleu11"
+	            android:layout_width="100dp"
+	            android:layout_height="wrap_content"
+	            android:button="@drawable/button_bleu_selector"
+	            android:layout_centerHorizontal="true" />
+	        
+	        <TextView
+	            android:id="@+id/nom_joueur_e2_n11"
+	            style="@style/nom_joueur"
+	            android:layout_centerHorizontal="true"        
+	            android:text="@string/nom_e2_n11" />
+	        
+	       <TextView
+	            android:id="@+id/num_joueur_e2_n11"
+	            style="@style/num_joueur"
+	            android:layout_alignTop="@id/maillot_bleu11"
+	            android:layout_centerHorizontal="true"
+	            android:text="@string/num_e2_n11" />	        
+	    </RelativeLayout> 
+        
+        
+        
+        <!--layout du joueur bleu au poste 12 (remplacant)-->   
+        <RelativeLayout
+            android:id="@+id/layout_e2_n12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/layout_e2_n10"
+            android:layout_alignTop="@id/layout_e2_n11">
+            
+            <RadioButton
+                android:id="@+id/maillot_bleu12"
+	            android:layout_width="100dp"
+	            android:layout_height="wrap_content"
+	            android:button="@drawable/button_bleu_selector"
+	            android:layout_centerHorizontal="true" />
+	        
+	        <TextView
+	            android:id="@+id/nom_joueur_e2_n12"
+	            style="@style/nom_joueur"
+	            android:layout_centerHorizontal="true"        
+	            android:text="@string/nom_e2_n12" />
+	        
+	       <TextView
+	            android:id="@+id/num_joueur_e2_n12"
+	            style="@style/num_joueur"
+	            android:layout_alignTop="@id/maillot_bleu12"
+	            android:layout_centerHorizontal="true"
+	            android:text="@string/num_e2_n12" />	        
+	    </RelativeLayout> 
+	</RelativeLayout>
+
+    
+     <!--layout du tableau des scores-->
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="725dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/tableau_score" >
+
+        <TableRow android:background="@drawable/border" >
+            <TextView
+                style="@style/texte_score"
+                android:minWidth="270dp"
+                android:text="@string/numero_set" />
+
+            <TextView
+                style="@style/texte_score"
+                android:minWidth="50dp"
+                android:text="@string/set1" />
+
+            <TextView
+                style="@style/texte_score"
+                android:minWidth="50dp"
+                android:text="@string/set2" />
+
+            <TextView
+                style="@style/texte_score"
+                android:minWidth="50dp"
+                android:text="@string/set3" />
+
+            <TextView
+                style="@style/texte_score"
+                android:minWidth="50dp"
+                android:text="@string/set4" />
+
+            <TextView
+                style="@style/texte_score"
+                android:minWidth="50dp"
+                android:text="@string/set5" />            
+        </TableRow>
+        
+        <TableRow>
+            <TextView
+                style="@style/texte_score"
+                android:background="@drawable/border_fond_rouge"
+                android:text="@string/equipe1"
+                android:minHeight="40dp" />
+
+            <TextView
+                style="@style/texte_score"
+                android:background="@drawable/border_white"
+                android:text="@string/score_e1_s1"
+                android:minHeight="40dp"/>
+
+            <TextView
+                style="@style/texte_score"
+                android:background="@drawable/border_white"
+                android:text="@string/score_e1_s2" 
+                android:minHeight="40dp"/>
+
+            <TextView
+                style="@style/texte_score"
+                android:background="@drawable/border_white"
+                android:text="@string/score_e1_s3"
+                android:minHeight="40dp" />
+
+            <TextView
+                style="@style/texte_score"
+                android:background="@drawable/border_white"
+                android:text="@string/score_e1_s4"
+                android:minHeight="40dp" />
+
+            <TextView
+                style="@style/texte_score"
+                android:background="@drawable/border_white"
+                android:text="@string/score_e1_s5"
+                android:minHeight="40dp" />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                style="@style/texte_score"
+                android:background="@drawable/border_fond_bleu"
+                android:text="@string/equipe2"
+                android:minHeight="40dp" />
+
+            <TextView
+                style="@style/texte_score"
+                android:background="@drawable/border_white"
+                android:text="@string/score_e2_s1"
+                android:minHeight="40dp" />
+
+            <TextView
+                style="@style/texte_score"
+                android:background="@drawable/border_white"
+                android:text="@string/score_e2_s2"
+                android:minHeight="40dp" />
+
+            <TextView
+                style="@style/texte_score"
+                android:background="@drawable/border_white"
+                android:text="@string/score_e2_s3"
+                android:minHeight="40dp" />
+
+            <TextView
+                style="@style/texte_score"
+                android:background="@drawable/border_white"
+                android:text="@string/score_e2_s4"
+                android:minHeight="40dp" />
+
+            <TextView
+                style="@style/texte_score"
+                android:background="@drawable/border_white"
+                android:text="@string/score_e2_s5"
+                android:minHeight="40dp" />             
+        </TableRow>
+    </TableLayout> 
+
+
+    <!--radioGroup permettant le choix du type d'action-->
+    <RadioGroup
+        android:id="@+id/radioGroupTypeAction"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="725dp"
+	    android:layout_marginTop="160dp" >
+		
+	        <RadioButton
+	            android:id="@+id/button_service"
+	            android:layout_width="match_parent"
+	            android:button="@drawable/button_service_selector" />
+	    
+		    <RadioButton
+		        android:id="@+id/button_reception"
+		        android:button="@drawable/button_defense_selector"
+		        android:layout_width="match_parent"
+		        android:layout_marginTop="10dp" />
+		    
+		    <RadioButton
+		        android:id="@+id/button_passe"
+		        android:button="@drawable/button_passe_selector"
+		        android:layout_width="match_parent"
+		        android:layout_marginTop="10dp" />
+		    
+		    <RadioButton
+		        android:id="@+id/button_attaque"
+		        android:button="@drawable/button_attaque_selector"
+		        android:layout_width="match_parent"
+		        android:layout_marginTop="10dp" />
+			
+		    <RadioButton
+		        android:id="@+id/button_bloc"
+		        android:button="@drawable/button_bloc_selector"
+		        android:layout_width="match_parent"
+		        android:layout_marginTop="10dp" />
+	 </RadioGroup>
+	 
+     <!--radioGroup permettant de juger la qualité d'une action-->
+     <RadioGroup
+        android:id="@+id/radioGroupQualiteAction"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="1000dp"
+        android:layout_marginTop="160dp" >
+
+        <RadioButton
+            android:id="@+id/button_excellent"
+            android:button="@drawable/bouton_excellent"
+            android:layout_width="300dp"
+            android:layout_height="match_parent" />
+    
+	    <RadioButton
+	        android:id="@+id/button_bien"
+	        android:button="@drawable/bouton_bien"
+	        android:layout_marginTop="10dp"
+	        android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+	    
+	    <RadioButton
+	        android:id="@+id/button_neutre"
+	        android:button="@drawable/bouton_neutre"
+	        android:layout_marginTop="10dp"
+	        android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+	    
+	    <RadioButton
+	        android:id="@+id/button_mauvais"
+	        android:button="@drawable/bouton_mauvais"
+	        android:layout_marginTop="10dp"
+	        android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+	    
+	    <RadioButton
+	        android:id="@+id/button_catastrophique"
+	        android:button="@drawable/bouton_catastrophique"
+	        android:layout_marginTop="10dp"
+	        android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+	 </RadioGroup>
+	 
+      <!--bouton annuler-->
+     <Button
+        android:id="@+id/button_annuler"
+        style="@style/style_annuler"
+        android:layout_width="250dp"
+        android:layout_below="@id/radioGroupQualiteAction"
+        android:layout_alignLeft="@id/radioGroupQualiteAction"
+        android:layout_marginTop="10dp"
+        android:text="@string/annuler" />   
+    
+</RelativeLayout>
