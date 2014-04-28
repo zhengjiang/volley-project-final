@@ -132,6 +132,8 @@ public class SaisieStatsActivity extends Activity {
 	
 	ArrayList<Integer> joueurs_checked = new ArrayList<Integer>(2);
 	int cptTouch = 0;
+	int note;
+	ArrayList<RadioButton> actionsPoss;
 	Controleur ctrl;
 	
 	
@@ -696,8 +698,48 @@ public class SaisieStatsActivity extends Activity {
 	
 	
 	// listener des boutons jugeant la qualité d'une action
-	private OnTouchListener touchListenerQualiteAction = new View.OnTouchListener() {
+	
+	private OnTouchListener touchListenerExcellent = new View.OnTouchListener() {
 	    public boolean onTouch(View v, MotionEvent event) {
+	    	note = 2;
+	    	validerAction();
+	    	return true;
+	    }
+	};
+	
+	private OnTouchListener touchListenerBon = new View.OnTouchListener() {
+	    public boolean onTouch(View v, MotionEvent event) {
+	    	note = 1;
+	    	validerAction();
+	    	return true;
+	    }
+	};
+	
+	private OnTouchListener touchListenerNeutre = new View.OnTouchListener() {
+	    public boolean onTouch(View v, MotionEvent event) {
+	    	note = 0;
+	    	validerAction();
+	    	return true;
+	    }
+	};
+	
+	private OnTouchListener touchListenerMoyen = new View.OnTouchListener() {
+	    public boolean onTouch(View v, MotionEvent event) {
+	    	note = -1;
+	    	validerAction();
+	    	return true;
+	    }
+	};
+	
+	private OnTouchListener touchListenerMauvais = new View.OnTouchListener() {
+	    public boolean onTouch(View v, MotionEvent event) {
+	    	note = -2;
+	    	validerAction();
+	    	return true;
+	    }
+	};
+	
+	private void validerAction() {
 	    	
 	    	if (joueurs_checked.size() == 2)
 	    	{
@@ -705,7 +747,7 @@ public class SaisieStatsActivity extends Activity {
 	    		if(typeA != "err")
 	    		{
 	    			System.out.println("Action " + joueurs_checked.get(0) + "  ====>  " + joueurs_checked.get(1));	    		
-	    			ctrl.soumettreAction(joueurs_checked.get(0), joueurs_checked.get(1), typeA, 0);
+	    			ctrl.soumettreAction(joueurs_checked.get(0), joueurs_checked.get(1), typeA, note);
 	    			
 	    			
 			    	typeActionNonEnabled();
@@ -720,13 +762,14 @@ public class SaisieStatsActivity extends Activity {
 			    	equipeRougeClickable();
 			    	equipeBleuClickable();
 		        	remplacantsClickable();
+		        	miseAJour();
 	    		}
 	    	}
-	    	return true;
+	    	
 	    }   
 	    
 	    	
-	};
+	
 	
 	private String actionSelectionnee()
 	{
@@ -736,7 +779,7 @@ public class SaisieStatsActivity extends Activity {
 		}
 		if (bouton_defense.isChecked())
 		{
-			return "de";
+			return "re";
 		}
 		if (bouton_passe.isChecked())
 		{
@@ -1038,16 +1081,25 @@ public class SaisieStatsActivity extends Activity {
 		maillot_bleu11.setOnTouchListener(touchListenerBleu11);
 		maillot_bleu12.setOnTouchListener(touchListenerBleu12);	
 		
-		bouton_excellent.setOnTouchListener(touchListenerQualiteAction);
+		bouton_excellent.setOnTouchListener(touchListenerExcellent);
+		bouton_bien.setOnTouchListener(touchListenerBon);
+		bouton_neutre.setOnTouchListener(touchListenerNeutre);
+		bouton_mauvais.setOnTouchListener(touchListenerMoyen);
+		bouton_catastrophique.setOnTouchListener(touchListenerMauvais);
+		
+		/*bouton_excellent.setOnTouchListener(touchListenerQualiteAction);
 		bouton_bien.setOnTouchListener(touchListenerQualiteAction);
 		bouton_neutre.setOnTouchListener(touchListenerQualiteAction);
 		bouton_mauvais.setOnTouchListener(touchListenerQualiteAction);
-		bouton_catastrophique.setOnTouchListener(touchListenerQualiteAction);
+		bouton_catastrophique.setOnTouchListener(touchListenerQualiteAction);*/
+		
 		
 		// le type et la qualité d'une action ne sont pas cliquable au lancement
 		typeActionNonEnabled();
 		// Initialisations...
 		ctrl = Controleur.getInstance();
+		note = -4;
+		actionsPoss = new ArrayList<RadioButton>();
 		miseAJour();
 	}
 
@@ -1066,11 +1118,12 @@ public class SaisieStatsActivity extends Activity {
 		}
 		if (ctrl.estNouveauSet())
 		{
-			
+			ctrl.nouveauSet();
 		}
 		String etat = ctrl.getEtatAuto();
 		if (etat == "in")
 		{
+			ctrl.nouveauPoint();
 			if (ctrl.getService())
 			{
 				maillot_bleu1.setChecked(true);
@@ -1092,7 +1145,31 @@ public class SaisieStatsActivity extends Activity {
 				bouton_service.setChecked(true);
 			}
 		}
+		else
+		{
+			int jSuiv = ctrl.getJSuiv();
+			RadioButton courant;
+			if (jSuiv > 11){courant = equipeBleu[(jSuiv%12)];}
+			else{courant = equipeRouge[jSuiv];}
+			
+			courant.setChecked(true);
+			joueurs_checked.add(jSuiv);
+			dernier_checked = courant;
+			
+			ArrayList<String> actPoss = ctrl.getActionsPossibles();
+			setActionsPoss(actPoss);
+			
+		}
 	}
+	
+	private void setActionsPoss(ArrayList<String> actPoss)
+	{
+		for (String s : actPoss)
+		{
+			
+		}
+	}
+	
 
 }
 

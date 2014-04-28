@@ -13,10 +13,13 @@ public class Modele {
 	ArrayList<Joueur> eqBleu;
 	ArrayList<Set> score;
 	Automate automate;
+	Point courant;
+	int jSuiv;
 	boolean nouveauMatch;
 	boolean nouveauSet;
 	boolean service;
 	int gagne;
+	int numPoint;
 	
 	
 	public Modele()
@@ -25,13 +28,25 @@ public class Modele {
 		score = new ArrayList<Set>(5);
 		nouveauMatch = true;
 		nouveauSet = true;
+		numPoint = 0;
+		jSuiv = -5;
+		courant = new Point();
 		initMatchTest();
 	}
 	
 	public boolean estNouveauMatch(){return nouveauMatch;}
 	public boolean estNouveauSet(){return nouveauSet;}
+	public ArrayList<String> getEtatsAuto(){return automate.getEtats();}
 	public String getEtatAuto(){return automate.getEtat();}
-
+	public Match getMatch(){return match;}
+	public int getNumPoint(){return numPoint;}
+	public int getGagne(){return gagne;}
+	public int getJSuiv(){return jSuiv;}
+	
+	public void setGagne(int i){gagne = i;}
+	public void setNouveauSet(boolean bool){nouveauSet = bool;}
+	public void setJSuiv(int i){jSuiv = i;}
+	
 	private void initMatchTest()
 	{
 		eqRouge = new ArrayList<Joueur>(12);
@@ -104,4 +119,26 @@ public class Modele {
 	
 	
 	public boolean getService(){return service;}
+	
+	public void ajouterAction(ActionJoueur act)
+	{
+		courant.ajouterAction(act);
+	}
+	
+	public void ajouterNouveauSet()
+	{
+		score.add(new Set(0, score.size()+1, 0, 0, match));
+	}
+	
+	public void nouveauPoint()
+	{
+		courant = new Point();
+	}
+	
+	public void avancerAuto(String type)
+	{
+		automate.transition(type);
+	}
+	
+	
 }
