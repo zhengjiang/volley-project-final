@@ -134,6 +134,7 @@ public class SaisieStatsActivity extends Activity {
 	int cptTouch = 0;
 	int note;
 	ArrayList<RadioButton> actionsPoss;
+	RadioButton courant;
 	Controleur ctrl;
 	
 	
@@ -204,11 +205,11 @@ public class SaisieStatsActivity extends Activity {
 	}
 	
 	private void typeActionEnabled() {
-		bouton_service.setEnabled(true);
-		bouton_defense.setEnabled(true);
-		bouton_passe.setEnabled(true);
-		bouton_attaque.setEnabled(true);
-		bouton_bloc.setEnabled(true);
+		for (RadioButton b : actionsPoss)
+		{
+			b.setEnabled(true);
+			
+		}
 	}
 	
 	
@@ -426,14 +427,17 @@ public class SaisieStatsActivity extends Activity {
 	}
 	private void cocheTitulaire(RadioButton rad, int indice)
 	{
-		System.out.println(joueurs_checked.size());
+		//System.out.println(joueurs_checked.size());
 		if (cptTouch == 1)					// Adapte le click PC à un touch tablette
 		{
 			if (rad.isChecked())
 			{
-				rad.setChecked(false);
-				joueurs_checked.remove(new Integer(indice));
-				if (dernier_checked == rad) {dernier_checked = null;}
+				if (rad != courant)
+				{
+					rad.setChecked(false);
+					joueurs_checked.remove(new Integer(indice));
+					if (dernier_checked == rad) {dernier_checked = null;}
+				}
 			}
 			else
 			{
@@ -443,23 +447,30 @@ public class SaisieStatsActivity extends Activity {
 					joueurs_checked.add(indice);
 					dernier_checked = rad;
 					
+					
 				}
 				if (nbJoueursChecked() == 2) {
-					if (dernier_checked != null)
+					if (dernier_checked != courant)
 					{
-						dernier_checked.setChecked(false);
-						joueurs_checked.remove(1);
+						if (dernier_checked != null)
+						{
+							dernier_checked.setChecked(false);
+							joueurs_checked.remove(1);
+						}
+						dernier_checked = rad;
+						joueurs_checked.add(indice);
+						rad.setChecked(true);
+						
 					}
-					dernier_checked = rad;
-					joueurs_checked.add(indice);
-					rad.setChecked(true);
+					
+					
+				}
+				if (nbJoueursChecked() == 2)
+				{
 					typeActionEnabled();
-				}
-				else {
-					typeActionNonEnabled();
-				}
-				notEnabledServiceAttaqueBloc();
-				notEnabledPasse();
+					notEnabledServiceAttaqueBloc();
+					notEnabledPasse();
+				}else{typeActionNonEnabled();}
 			}
 			cptTouch = 0;
 		}
@@ -740,31 +751,36 @@ public class SaisieStatsActivity extends Activity {
 	};
 	
 	private void validerAction() {
-	    	
-	    	if (joueurs_checked.size() == 2)
+			
+	    	if(cptTouch == 1)
 	    	{
-	    		String typeA = actionSelectionnee();
-	    		if(typeA != "err")
-	    		{
-	    			System.out.println("Action " + joueurs_checked.get(0) + "  ====>  " + joueurs_checked.get(1));	    		
-	    			ctrl.soumettreAction(joueurs_checked.get(0), joueurs_checked.get(1), typeA, note);
-	    			
-	    			
-			    	typeActionNonEnabled();
-			    	// on decoche tout les boutons
-			    	typeActionNonChecked();
-			    	
-		
-			    	equipeRougeNonChecked();
-			    	equipeBleuNonChecked();
-			    	
-			    	// on rend à nouveau cliquable tous les joueurs
-			    	equipeRougeClickable();
-			    	equipeBleuClickable();
-		        	remplacantsClickable();
-		        	miseAJour();
-	    		}
+		    	if (joueurs_checked.size() == 2)
+		    	{
+		    		String typeA = actionSelectionnee();
+		    		if(typeA != "err")
+		    		{
+		    			System.out.println("Action " + joueurs_checked.get(0) + "  ====>  " + joueurs_checked.get(1));	    		
+		    			ctrl.soumettreAction(joueurs_checked.get(0), joueurs_checked.get(1), typeA, note);
+		    			
+		    			typeActionNonChecked();
+				    	typeActionNonEnabled();
+				    	// on decoche tout les boutons
+				    	
+				    	
+			
+				    	equipeRougeNonChecked();
+				    	equipeBleuNonChecked();
+				    	
+				    	// on rend à nouveau cliquable tous les joueurs
+				    	equipeRougeClickable();
+				    	equipeBleuClickable();
+			        	remplacantsClickable();
+			        	miseAJour();
+		    		}
+		    	}
+		    	cptTouch = 0;
 	    	}
+	    	cptTouch++;
 	    	
 	    }   
 	    
@@ -1121,10 +1137,18 @@ public class SaisieStatsActivity extends Activity {
 			ctrl.nouveauSet();
 		}
 		String etat = ctrl.getEtatAuto();
-		if (etat == "in")
+		if (ctrl.estNouveauPoint())
 		{
+			
 			ctrl.nouveauPoint();
-			if (ctrl.getService())
+			
+			actionsPoss.add(bouton_service);
+			if (ctrl.getModele().getRotation())
+			{
+				rotationEquipe(ctrl.getService());
+				ctrl.getModele().setRotation(false);
+			}
+			if (ctrl.getService() == 0)
 			{
 				maillot_bleu1.setChecked(true);
 				maillot_rouge6.setChecked(true);
@@ -1147,8 +1171,9 @@ public class SaisieStatsActivity extends Activity {
 		}
 		else
 		{
+			actionsPoss.clear();
 			int jSuiv = ctrl.getJSuiv();
-			RadioButton courant;
+			
 			if (jSuiv > 11){courant = equipeBleu[(jSuiv%12)];}
 			else{courant = equipeRouge[jSuiv];}
 			
@@ -1166,7 +1191,38 @@ public class SaisieStatsActivity extends Activity {
 	{
 		for (String s : actPoss)
 		{
-			
+			if (s == "re"){actionsPoss.add(bouton_defense);}
+			else if (s == "at"){actionsPoss.add(bouton_attaque);}
+			else if (s == "pa"){actionsPoss.add(bouton_passe);}
+			else if (s == "bl"){actionsPoss.add(bouton_bloc);}
+			else if (s == "se"){actionsPoss.add(bouton_service);}
+		}
+	}
+	
+	private void rotationEquipe(int i)
+	{
+		System.out.println("ROTATION EQUIPE " + i);
+		if (i == 0)
+		{
+			for (int j = 0;j<5;j++)
+			{
+				for (int k = 0;k<2;k++)
+				{
+					echange(matriceTextViewBleu[k][j],matriceTextViewBleu[k][j+1]);
+					ctrl.getModele().echangeBleu(j, j+1);
+				}
+			}
+		}
+		else
+		{
+			for (int j = 0;j<5;j++)
+			{
+				for (int k = 0;k<2;k++)
+				{
+					echange(matriceTextViewRouge[k][j],matriceTextViewRouge[k][j+1]);
+					ctrl.getModele().echangeRouge(j, j+1);
+				}
+			}
 		}
 	}
 	

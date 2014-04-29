@@ -17,7 +17,9 @@ public class Modele {
 	int jSuiv;
 	boolean nouveauMatch;
 	boolean nouveauSet;
-	boolean service;
+	boolean nouveauPoint;
+	boolean rotation;
+	int service;
 	int gagne;
 	int numPoint;
 	
@@ -36,14 +38,21 @@ public class Modele {
 	
 	public boolean estNouveauMatch(){return nouveauMatch;}
 	public boolean estNouveauSet(){return nouveauSet;}
+	public boolean estNouveauPoint(){return nouveauPoint;}
+
 	public ArrayList<String> getEtatsAuto(){return automate.getEtats();}
 	public String getEtatAuto(){return automate.getEtat();}
 	public Match getMatch(){return match;}
 	public int getNumPoint(){return numPoint;}
 	public int getGagne(){return gagne;}
 	public int getJSuiv(){return jSuiv;}
+	public boolean getRotation(){return rotation;}
 	
 	public void setGagne(int i){gagne = i;}
+	public void setService(int i){service = i;}
+	public void setRotation(boolean b){rotation = true;}
+	public void setNouveauPoint(boolean bool){nouveauPoint = bool;}
+
 	public void setNouveauSet(boolean bool){nouveauSet = bool;}
 	public void setJSuiv(int i){jSuiv = i;}
 	
@@ -56,8 +65,10 @@ public class Modele {
 		Competition compet = new Competition(1, 2014, "test", "test");
 
 		match = new Match(1, "01/01/2014", "Grosville", eq1, eq2, compet);
-		service = false;
+		service = 0;
 		gagne = -1;
+		rotation = false;
+		nouveauPoint = true;
 		
 		eqBleu.add(0, new Joueur(1, "Bleu0", 0, 180, 25, 0));
 		eqBleu.add(1, new Joueur(2, "Bleu1", 1, 180, 25, 1));
@@ -118,7 +129,7 @@ public class Modele {
 	
 	
 	
-	public boolean getService(){return service;}
+	public int getService(){return service;}
 	
 	public void ajouterAction(ActionJoueur act)
 	{
@@ -139,6 +150,8 @@ public class Modele {
 	{
 		automate.transition(type);
 	}
+	
+	public void resetAuto(){automate.reset();}
 	
 	
 }
