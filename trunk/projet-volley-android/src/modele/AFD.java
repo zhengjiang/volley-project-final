@@ -171,7 +171,11 @@ class Automate {
 	* @author : Warren BANGUET
 	* @brief : Remet l'automate à zero.
 	*/
-	void reset(){courant = init;}
+	void reset()
+	{
+		courant = init;
+		System.out.println("Etat courant : "+courant.getNom());
+	}
 	
 	/**
 	* @author : Warren BANGUET
