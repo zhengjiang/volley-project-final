@@ -5,6 +5,7 @@ import com.l3info.projet_volley_android.R.id;
 import com.l3info.projet_volley_android.R.layout;
 import com.l3info.projet_volley_android.R.menu;
 
+import controleur.Controleur;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -24,6 +25,8 @@ public class MatchActivity extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+	
+		
 		if (savedInstanceState == null) {
 			
 			getSupportFragmentManager().beginTransaction()

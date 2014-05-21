@@ -3,6 +3,7 @@ package basededonnees;
 import java.util.ArrayList;
 import java.util.List;
 
+import modele.ActionJoueur;
 import modele.Joueur;
 import android.database.sqlite.SQLiteDatabase;
 import android.content.Context;
@@ -14,80 +15,59 @@ import android.content.*;
  * @author Thibaut C
  *
  */
-public class JoueurBdd{
+public class JoueurBdd extends BDD {
+	  public JoueurBdd(Context pContext){
+		  super(pContext);
+	  }
+	  /**
+	   * @param m le métier à ajouter à la base
+	   */
+	  public void ajouter(Joueur j) {
+	    // CODE
+		  ContentValues value = new ContentValues();
+		  value.put("nomJ", j.getNom());
+		  value.put("tailleJ", j.getTaille());
+		  value.put("ageJ", j.getAge());
+		  mDb.insert("JOUEURS", null, value);
+	  }
 
-	private static  String TABLE = "Joueur";
-	private static  String [] TABLEAU = {"ID int primary key","NOM VARCHAR2","TAILLE INT","AGE INT","POSTE INT"};
-	private BDD volley;
-	private SQLiteDatabase bdd;
-	
-	public JoueurBdd(Context c){ 
-		this.volley = new BDD(c, TABLE, TABLEAU); 
-	}
-	
-	public void open(){
-		this.bdd = this.volley.getWritableDatabase();
-	}
-	
-	public void close(){
-		this.bdd.close();
-	}
-	
-	/**
-	 * @param Joueur j
-	 */
-	public void ajouter(Joueur j){
-		ContentValues parametres = new ContentValues();
-		parametres.put("ID", j.getId());
-		parametres.put("NOM", j.getNom());
-		parametres.put("TAILLE", j.getTaille());
-		parametres.put("AGE", j.getAge());
-		parametres.put("POSTE", j.getPoste());
-		this.bdd.insert(TABLE, null, parametres);
-	}
-	
-	/**
-	 * @param Joueur j
-	 */
-	public void modifier(Joueur j){
-		
-		ContentValues parametres = new ContentValues();
-		parametres.put("NOM", j.getNom());
-		parametres.put("TAILLE", j.getTaille());
-		parametres.put("AGE", j.getAge());
-		parametres.put("POSTE", j.getPoste());
-		this.bdd.update(TABLE, parametres, "ID = " + j.getId(), null);
-	}
-	
-	/**
-	 * @param Joueur j
-	 */
-	public void supprimer(Joueur j){
-		this.bdd.delete(TABLE, "ID = " + j.getId(), null);
-	}
-	
-	/**
-	 * @param joueur id
-	 */
-	public Joueur selectionner(int i){
-		Cursor c = this.bdd.query(TABLE, new String[]  {"ID","NOM","TAILLE","AGE","POSTE"}, "ID = " + i, null, null, null, null);
-		c.moveToFirst();
-		Joueur j = new Joueur(c.getInt(0), c.getString(1), c.getInt(2), c.getInt(3), c.getInt(4));
-		c.close();
-		return j;
-	}
-	
-	public List<Joueur> selectionnerTout(){
-		Cursor c = this.bdd.query(TABLE, new String[]  {"ID","NOM","TAILLE","AGE","POSTE"}, null, null, null, null, null);
+	  /**
+	   * @param id l'identifiant du métier à supprimer
+	   */
+	  public void supprimer(int id) {
+	    // CODE
+		  mDb.delete("JOUEURS", "idJ = ?", new String[]{String.valueOf(id)});
+	  }
+
+	  /**
+	   * @param m le métier modifié
+	   */
+	  public void modifier(Joueur j) {
+	    // CODE
+		  ContentValues value = new ContentValues();
+		  value.put("nomJ", j.getNom());
+		  value.put("tailleJ", j.getTaille());
+		  value.put("ageJ", j.getAge());
+		  mDb.update("JOUEURS", value, "idJ = ?", new String[] {String.valueOf(j.getId())});
+	  }
+
+	  /**
+	   * @param id l'identifiant du métier à récupérer
+	   */
+	  public Joueur selectionner(int i){
+		  Cursor c = mDb.rawQuery("SELECT * FROM JOUEURS WHERE idJ = ?", new String[]{String.valueOf(i)});
+		  c.moveToFirst();
+		  return new Joueur(c.getInt(0), c.getString(1), 0, c.getInt(2), c.getInt(3), 0);
+	  }
+	  
+	  public List<Joueur> selectionnerTout(){
+		Cursor c = mDb.rawQuery("SELECT * FROM JOUEURS", null);
 		c.moveToFirst();
 		List<Joueur> joueurs = new ArrayList<Joueur>();
-		while(!c.isAfterLast()){
-			Joueur joueur = new Joueur(c.getInt(0), c.getString(1), c.getInt(2), c.getInt(3), c.getInt(4));
-			joueurs.add(joueur);
-			c.moveToNext();
+		while(c.moveToNext()){
+			joueurs.add(new Joueur(c.getInt(0), c.getString(1), 0, c.getInt(2), c.getInt(3), 0));
 		}
 		c.close();
 		return joueurs;
+	  }
 	}
-	
-}

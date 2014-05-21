@@ -1,6 +1,10 @@
 package controleur;
 import java.util.ArrayList;
+import java.util.List;
 
+import android.content.Context;
+import android.util.Log;
+import basededonnees.*;
 import modele.*;
 
 /**
@@ -11,6 +15,7 @@ public class Controleur {
 	
 	private static Controleur instance;
 	private Modele modele;
+	private JoueurBdd jb;
 	
 	public static void main(String[] args){
 		Controleur controleur = Controleur.getInstance();
@@ -26,6 +31,23 @@ public class Controleur {
 		}
 		return instance;
 	}
+	
+	public void initialiseBdd(Context c){
+		this.jb = new JoueurBdd(c);
+	}
+	
+	public void prout(){
+		jb.open();
+		jb.ajouter(new Joueur(0, "penis", 0, 0, 0, 0));
+		jb.ajouter(new Joueur(0, "PENIS ENCULE", 0, 0, 0, 0));
+		List<Joueur> j2 = jb.selectionnerTout();
+		jb.close();
+		for(int i = 0; i < j2.size(); i++)
+	    {
+	      Log.v("test", i+":"+j2.get(i).getNom());
+	    }
+	}
+	
 	// Methodes accès Modèle
 	public Modele getModele(){return modele;}
 	public boolean estNouveauMatch(){return modele.estNouveauMatch();}
