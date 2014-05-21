@@ -18,7 +18,7 @@ public class Modele {
 	boolean nouveauMatch;
 	boolean nouveauSet;
 	boolean nouveauPoint;
-	boolean rotation;
+	int rotation;
 	int service;
 	int gagne;
 	int numPoint;
@@ -46,11 +46,11 @@ public class Modele {
 	public int getNumPoint(){return numPoint;}
 	public int getGagne(){return gagne;}
 	public int getJSuiv(){return jSuiv;}
-	public boolean getRotation(){return rotation;}
+	public int getRotation(){return rotation;}
 	
 	public void setGagne(int i){gagne = i;}
 	public void setService(int i){service = i;}
-	public void setRotation(boolean b){rotation = true;}
+	public void setRotation(int b){rotation = b;}
 	public void setNouveauPoint(boolean bool){nouveauPoint = bool;}
 
 	public void setNouveauSet(boolean bool){nouveauSet = bool;}
@@ -67,7 +67,7 @@ public class Modele {
 		match = new Match(1, "01/01/2014", "Grosville", eq1, eq2, compet);
 		service = 0;
 		gagne = -1;
-		rotation = false;
+		rotation = -1;
 		nouveauPoint = true;
 		
 		eqBleu.add(0, new Joueur(1, "Bleu0", 0, 180, 25, 0));

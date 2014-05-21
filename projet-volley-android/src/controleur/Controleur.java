@@ -79,6 +79,8 @@ public class Controleur {
 	
 	public boolean soumettreAction(int j1, int j2, String type, int note)
 	{
+		System.out.println("J1 est " + j1);
+		System.out.println("J2 est " + j2);
 		int eq = 0;
 		if (j1 < 12){eq = 1;}
 		
@@ -101,15 +103,19 @@ public class Controleur {
 		else 
 		{
 			System.out.println("Equipe " + modele.getGagne() + " remporte le point");
+			System.out.println("Test si changement de service : " + modele.getService() + " VS " + modele.getGagne());
 			if (modele.getService() != modele.getGagne())
 			{
+				System.out.println("Service != Gagne   ===> rotation");
+
 				modele.setService(modele.getGagne());
-				modele.setRotation(true);
-				modele.setGagne(-1);
+				modele.setRotation(modele.getGagne());
+				
 			}
 			modele.resetAuto();
 			modele.setNouveauPoint(true);
 			soumettrePoint();
+			modele.setGagne(-1);
 		}
 		
 		
