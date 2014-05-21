@@ -6,7 +6,6 @@
 package modele;
 
 import java.util.*;
-import java.text.*;
 
 public class Set
 {
@@ -14,7 +13,6 @@ public class Set
 	private int numSet;
 	private int scoreEquipe1;
 	private int scoreEquipe2;
-	private ArrayList<Point> points;
 	private Match match;
 	
 	/*
@@ -26,7 +24,7 @@ public class Set
 		this.numSet=numSet;
 		this.scoreEquipe1=scoreEquipe1;
 		this.scoreEquipe2=scoreEquipe2;
-		points = new ArrayList<Point>();
+		new ArrayList<Point>();
 		this.match=match;
 	}
 	

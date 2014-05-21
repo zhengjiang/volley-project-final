@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
   
-	  public static final String JOUEURS = "CREATE TABLE JOUEURS (idJ INTEGER PRIMARY KEY AUTOINCREMENT, nomJ TEXT, tailleJ INTEGER, ageJ INTEGER);";
+	  public static final String JOUEURS = "CREATE TABLE JOUEURS (idJ INTEGER PRIMARY KEY AUTOINCREMENT, nomJ TEXT, tailleJ INTEGER, ageJ INTEGER, posteJ INTEGER);";
 	  public static final String EQUIPES = "CREATE TABLE EQUIPES (idE INTEGER PRIMARY KEY AUTOINCREMENT, nomE TEXT, entraineurE TEXT);";
 	  public static final String COMPETITIONS = "CREATE TABLE COMPETITIONS (idC INTEGER PRIMARY KEY AUTOINCREMENT, anneeC INTEGER, nomC TEXT, typeC TEXT);";
 	  public static final String JOUEUREQUIPE = "CREATE TABLE JOUEUR_EQUIPE (idJE INTEGER PRIMARY KEY AUTOINCREMENT, joueurJE INTEGER, EQUIPEje INTEGER, maillotJE INTEGER, coursJE INTEGER);";

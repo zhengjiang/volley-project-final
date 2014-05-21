@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import modele.Equipe;
-import android.database.sqlite.SQLiteDatabase;
 import android.content.Context;
 import android.database.Cursor;
 import android.content.*;
@@ -14,64 +13,54 @@ import android.content.*;
  * @author Thibaut C
  *
  */
-public class EquipeBdd{
+public class EquipeBdd extends BDD {
+	  public EquipeBdd(Context pContext){
+		  super(pContext);
+	  }
+	  /**
+	   * @param e l'équipe à ajouter à la base
+	   */
+	  public void ajouter(Equipe e) {
+		  ContentValues value = new ContentValues();
+		  value.put("nomE", e.getNom());
+		  value.put("entraineurE", e.getEntraineur());
+		  mDb.insert("EQUIPES", null, value);
+	  }
 
-	private static  String TABLE = "Equipe";
-	private static  String [] TABLEAU = {"ID int primary key","NOM VARCHAR2","ENTRAINEUR VARCHAR2"};
-	private BDD volley;
-	private SQLiteDatabase bdd;
-	
-	public EquipeBdd(Context c){ 
-		this.volley = new BDD(c, TABLE, TABLEAU); 
-	}
-	
-	public void open(){
-		this.bdd = this.volley.getWritableDatabase();
-	}
-	
-	public void close(){
-		this.bdd.close();
-	}
-	
-	public void ajouter(Equipe e){
-		ContentValues parametres = new ContentValues();
-		parametres.put("ID", e.getId());
-		parametres.put("NOM", e.getNom());
-		parametres.put("ENTRAINEUR", e.getEntraineur());
-		this.bdd.insert(TABLE, null, parametres);
-	}
-	
-	public void modifier(Equipe e){
-		
-		ContentValues parametres = new ContentValues();
-		parametres.put("NOM", e.getNom());
-		parametres.put("ENTRAINEUR", e.getEntraineur());
-		this.bdd.update(TABLE, parametres, "ID = " + e.getId(), null);
-	}
-	
-	public void supprimer(Equipe e){
-		this.bdd.delete(TABLE, "ID = " + e.getId(), null);
-	}
-	
-	public Equipe selectionner(int i){
-		Cursor c = this.bdd.query(TABLE, new String[]  {"ID","NOM","ENTRAINEUR"}, "ID = " + i, null, null, null, null);
-		c.moveToFirst();
-		Equipe e = new Equipe(c.getInt(0), c.getString(1), c.getString(2));
-		c.close();
-		return e;
-	}
-	
-	public List<Equipe> selectionnerTout(){
-		Cursor c = this.bdd.query(TABLE, new String[]  {"ID","NOM","ENTRAINEUR"}, null, null, null, null, null);
+	  /**
+	   * @param id l'identifiant de l'équipe à supprimer
+	   */
+	  public void supprimer(int id) {
+		  mDb.delete("EQUIPES", "idE = ?", new String[]{String.valueOf(id)});
+	  }
+
+	  /**
+	   * @param e l'équipe modifiée
+	   */
+	  public void modifier(Equipe e) {
+		  ContentValues value = new ContentValues();
+		  value.put("nomE", e.getNom());
+		  value.put("entraineurE", e.getEntraineur());
+		  mDb.update("EQUIPES", value, "idE = ?", new String[] {String.valueOf(e.getId())});
+	  }
+
+	  /**
+	   * @param i l'identifiant de l'équipe à récupérer
+	   */
+	  public Equipe selectionner(int i){
+		  Cursor c = mDb.rawQuery("SELECT * FROM EQUIPES WHERE idE = ?", new String[]{String.valueOf(i)});
+		  c.moveToFirst();
+		  return new Equipe(c.getInt(0), c.getString(1), c.getString(2));
+	  }
+	  
+	  public List<Equipe> selectionnerTout(){
+		Cursor c = mDb.rawQuery("SELECT * FROM EQUIPES", null);
 		c.moveToFirst();
 		List<Equipe> equipes = new ArrayList<Equipe>();
-		while(!c.isAfterLast()){
-			Equipe equipe = new Equipe(c.getInt(0), c.getString(1), c.getString(2));
-			equipes.add(equipe);
-			c.moveToNext();
+		while(c.moveToNext()){
+			equipes.add(new Equipe(c.getInt(0), c.getString(1), c.getString(2)));
 		}
 		c.close();
 		return equipes;
+	  }
 	}
-	
-}

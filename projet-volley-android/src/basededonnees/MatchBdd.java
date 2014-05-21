@@ -4,78 +4,69 @@ import java.util.ArrayList;
 import java.util.List;
 
 import modele.Match;
-import android.database.sqlite.SQLiteDatabase;
 import android.content.Context;
 import android.database.Cursor;
 import android.content.*;
+
 
 /**
  * @author Thibaut C
  *
  */
-public class MatchBdd{
+public class MatchBdd extends BDD {
+	  public MatchBdd(Context pContext){
+		  super(pContext);
+	  }
+	  /**
+	   * @param m le match à ajouter à la base
+	   */
+	  public void ajouter(Match m) {
+		  ContentValues value = new ContentValues();
+		  value.put("dateM", m.getDate());
+		  value.put("lieuM", m.getLieu());
+		  value.put("equipe1", m.getEquipeDomicile().getId());// A VERIFIEEEERRRR ET TESTER !
+		  value.put("equipe2", m.getEquipeExterieur().getId());// A VERIFIEEEERRRR ET TESTER !
+		  value.put("competition", m.getCompetition().getId());// A VERIFIEEEERRRR ET TESTER !
+		  mDb.insert("MATCHS", null, value);
+	  }
 
-	private static  String TABLE = "Match";
-	private static  String [] TABLEAU = {"ID int primary key","DATE VARCHAR2","LIEU VARCHAR2","EQUIPE1 EQUIPE","EQUIPE2 EQUIPE","IDCOMPETITION COMPETITION"};
-	private BDD volley;
-	private SQLiteDatabase bdd;
-	
-	public MatchBdd(Context c){ 
-		this.volley = new BDD(c, TABLE, TABLEAU); 
-	}
-	
-	public void open(){
-		this.bdd = this.volley.getWritableDatabase();
-	}
-	
-	public void close(){
-		this.bdd.close();
-	}
-	
-	public void ajouter(Match m){
-		ContentValues parametres = new ContentValues();
-		parametres.put("ID", m.getId());
-		parametres.put("DATE", m.getDate());
-		parametres.put("LIEU", m.getLieu());
-		parametres.put("EQUIPE1", m.getEquipeDomicile());
-		parametres.put("EQUIP2", m.getEquipeExterieur());
-		parametres.put("IDCOMPETITION", m.getCompetition());
-		this.bdd.insert(TABLE, null, parametres);
-	}
-	
-	public void modifier(Match m){
-		ContentValues parametres = new ContentValues();
-		parametres.put("DATE", m.getDate());
-		parametres.put("LIEU", m.getLieu());
-		parametres.put("EQUIPE1", m.getEquipeDomicile());
-		parametres.put("EQUIP2", m.getEquipeExterieur());
-		parametres.put("IDCOMPETITION", m.getCompetition());
-		this.bdd.update(TABLE, parametres, "ID = " + m.getId(), null);
-	}
-	
-	public void supprimer(Match m){
-		this.bdd.delete(TABLE, "ID = " + m.getId(), null);
-	}
-	
-	public Match selectionner(int i){
-		Cursor c = this.bdd.query(TABLE, new String[]  {"ID","DATE","LIEU","EQUIPE1","EQUIPE2","IDCOMPETITION"}, "ID = " + i, null, null, null, null);
-		c.moveToFirst();
-		Match m = new Match(c.getInt(0), c.getString(1), c.getString(2), EQUIPE1, EQUIPE2, IDCOMPETITION);
-		c.close();
-		return m;
-	}
-	
-	public List<Match> selectionnerTout(){
-		Cursor c = this.bdd.query(TABLE, new String[]  {"ID","DATE","LIEU","EQUIPE1","EQUIPE2","IDCOMPETITION"}, null, null, null, null, null);
+	  /**
+	   * @param id l'identifiant du match à supprimer
+	   */
+	  public void supprimer(int id) {
+		  mDb.delete("JOUEURS", "idJ = ?", new String[]{String.valueOf(id)});
+	  }
+
+	  /**
+	   * @param m le match modifié
+	   */
+	  public void modifier(Match m) {
+		  ContentValues value = new ContentValues();
+		  value.put("dateM", m.getDate());
+		  value.put("lieuM", m.getLieu());
+		  value.put("equipe1", m.getEquipeDomicile().getId());// A VERIFIEEEERRRR ET TESTER !
+		  value.put("equipe2", m.getEquipeExterieur().getId());// A VERIFIEEEERRRR ET TESTER !
+		  value.put("competition", m.getCompetition().getId());// A VERIFIEEEERRRR ET TESTER !
+		  mDb.update("MATCHS", value, "idM = ?", new String[] {String.valueOf(m.getId())});
+	  }
+
+	  /**
+	   * @param i l'identifiant du match à récupérer
+	   */
+	  public Match selectionner(int i){
+		  Cursor c = mDb.rawQuery("SELECT * FROM MATCHS WHERE idJ = ?", new String[]{String.valueOf(i)});
+		  c.moveToFirst();
+		  return new Match(c.getInt(0), c.getString(1), c.getInt(2), equipe1, equipe2, competition);
+	  }
+	  
+	  public List<Match> selectionnerTout(){
+		Cursor c = mDb.rawQuery("SELECT * FROM MATCHS", null);
 		c.moveToFirst();
 		List<Match> matchs = new ArrayList<Match>();
-		while(!c.isAfterLast()){
-			Match match = new Match(c.getInt(0), c.getString(1), c.getString(2), EQUIPE1, EQUIPE2, IDCOMPETITION);
-			matchs.add(match);
-			c.moveToNext();
+		while(c.moveToNext()){
+			matchs.add(new Match(c.getInt(0), c.getString(1), c.getInt(2), equipe1, equipe2, competition));
 		}
 		c.close();
 		return matchs;
+	  }
 	}
-	
-}

@@ -6,19 +6,21 @@ package modele;
 
 public class ActionJoueur {
 	private int id;
-	private Match match;
+	private Set set;
 	private Action action;
 	private Joueur joueur;
 	private int numPoint;
 	private int note;
+	private int poste;
 	
-	public ActionJoueur(int id, Match match, Action action, Joueur joueur, int numPoint, int note) {
+	public ActionJoueur(int id, Set set, Action action, Joueur joueur, int numPoint, int note, int poste) {
 		this.id = id;
-		this.match = match;
+		this.set = set;
 		this.action = action;
 		this.joueur = joueur;
 		this.numPoint = numPoint;
 		this.note = note;
+		this.poste = poste;
 	}
 	
 	public int getId() {
@@ -29,12 +31,12 @@ public class ActionJoueur {
 		this.id = id;
 	}
 	
-	public Match getMatch() {
-		return match;
+	public Set getSet() {
+		return set;
 	}
 	
-	public void setMatch(Match match) {
-		this.match = match;
+	public void setSet(Set set) {
+		this.set = set;
 	}
 	
 	public Action getAction() {
@@ -67,6 +69,14 @@ public class ActionJoueur {
 	
 	public void setNote(int note) {
 		this.note = note;
+	}
+	
+	public int getPoste() {
+		return poste;
+	}
+	
+	public void setPoste(int poste) {
+		this.poste = poste;
 	}
 	
 	
