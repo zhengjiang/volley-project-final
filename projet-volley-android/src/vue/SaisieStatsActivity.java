@@ -316,8 +316,8 @@ public class SaisieStatsActivity extends Activity {
 		if (cptTouch ==1)
     	{
 	    	if (maillot_bleu1 == dernier_checked) {
-	    		echange(nom_bleu1, nomSortant);
-	    		echange(num_bleu1, numSortant);
+	    		echange(matriceTextViewBleu[1][0], nomSortant);
+	    		echange(matriceTextViewBleu[0][0], numSortant);
 	    		ctrl.echangeJ(0, indice, 0);
 	    		
 	    		maillot_bleu1.setChecked(false);
@@ -325,8 +325,8 @@ public class SaisieStatsActivity extends Activity {
 	    		dernier_checked = null;
 	    	}
 	    	else if (maillot_bleu2 == dernier_checked) {
-	    		echange(nom_bleu2, nomSortant);
-	    		echange(num_bleu2, numSortant);
+	    		echange(matriceTextViewBleu[1][1], nomSortant);
+	    		echange(matriceTextViewBleu[0][1], numSortant);
 	    		ctrl.echangeJ(0, indice, 1);
 	    		maillot_bleu2.setChecked(false);
 	    		joueurs_checked.remove(new Integer(13));
@@ -334,32 +334,32 @@ public class SaisieStatsActivity extends Activity {
 	    		
 	    	}
 	    	else if (maillot_bleu3 == dernier_checked) {
-	    		echange(nom_bleu3, nomSortant);
-	    		echange(num_bleu3, numSortant);
+	    		echange(matriceTextViewBleu[1][2], nomSortant);
+	    		echange(matriceTextViewBleu[0][2], numSortant);
 	    		ctrl.echangeJ(0, indice, 2);
 	    		maillot_bleu3.setChecked(false);
 	    		joueurs_checked.remove(new Integer(14));
 	    		dernier_checked = null;
 	    	}
 	    	else if (maillot_bleu4 == dernier_checked) {
-	    		echange(nom_bleu4, nomSortant);
-	    		echange(num_bleu4, numSortant);
+	    		echange(matriceTextViewBleu[1][3], nomSortant);
+	    		echange(matriceTextViewBleu[0][3], numSortant);
 	    		ctrl.echangeJ(0, indice, 3);
 	    		maillot_bleu4.setChecked(false);
 	    		joueurs_checked.remove(new Integer(15));
 	    		dernier_checked = null;
 	    	}
 	    	else if (maillot_bleu5 == dernier_checked) {
-	    		echange(nom_bleu5, nomSortant);
-	    		echange(num_bleu5, numSortant);
+	    		echange(matriceTextViewBleu[1][4], nomSortant);
+	    		echange(matriceTextViewBleu[0][4], numSortant);
 	    		ctrl.echangeJ(0, indice, 4);
 	    		maillot_bleu5.setChecked(false);
 	    		joueurs_checked.remove(new Integer(16));
 	    		dernier_checked = null;
 	    	}
 	    	else if (maillot_bleu6 == dernier_checked) {
-	    		echange(nom_bleu6, nomSortant);
-	    		echange(num_bleu6, numSortant);
+	    		echange(matriceTextViewBleu[1][5], nomSortant);
+	    		echange(matriceTextViewBleu[0][5], numSortant);
 	    		ctrl.echangeJ(0, indice, 5);
 	    		maillot_bleu6.setChecked(false);
 	    		joueurs_checked.remove(new Integer(17));
@@ -434,6 +434,7 @@ public class SaisieStatsActivity extends Activity {
 			{
 				if (rad != courant)
 				{
+					System.out.println("CACA !!!! rad - courant" + rad.getId() + courant.getId());
 					rad.setChecked(false);
 					joueurs_checked.remove(new Integer(indice));
 					if (dernier_checked == rad) {dernier_checked = null;}
