@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import modele.Competition;
-import android.database.sqlite.SQLiteDatabase;
 import android.content.Context;
 import android.database.Cursor;
 import android.content.*;
@@ -14,65 +13,56 @@ import android.content.*;
  * @author Thibaut C
  *
  */
-public class CompetitionBdd{
+public class CompetitionBdd extends BDD {
+	  public CompetitionBdd(Context pContext){
+		  super(pContext);
+	  }
+	  /**
+	   * @param c la compétition à ajouter à la base
+	   */
+	  public void ajouter(Competition c) {
+		  ContentValues value = new ContentValues();
+		  value.put("anneeC", c.getAnnee());
+		  value.put("nomC", c.getNom());
+		  value.put("typeC", c.getType());
+		  mDb.insert("COMPETITIONS", null, value);
+	  }
 
-	private static  String TABLE = "Competition";
-	private static  String [] TABLEAU = {"ID int primary key","ANNEE INT","NOM VARCHAR2","TYPE VARCHAR2"};
-	private BDD volley;
-	private SQLiteDatabase bdd;
-	
-	public CompetitionBdd(Context c){ 
-		this.volley = new BDD(c, TABLE, TABLEAU); 
-	}
-	
-	public void open(){
-		this.bdd = this.volley.getWritableDatabase();
-	}
-	
-	public void close(){
-		this.bdd.close();
-	}
-	
-	public void ajouter(Competition c){
-		ContentValues parametres = new ContentValues();
-		parametres.put("ID", c.getId());
-		parametres.put("ANNEE", c.getAnnee());
-		parametres.put("NOM", c.getNom());
-		parametres.put("TYPE", c.getType());
-		this.bdd.insert(TABLE, null, parametres);
-	}
-	
-	public void modifier(Competition c){
-		ContentValues parametres = new ContentValues();
-		parametres.put("ANNEE", c.getAnnee());
-		parametres.put("NOM", c.getNom());
-		parametres.put("TYPE", c.getType());
-		this.bdd.update(TABLE, parametres, "ID = " + c.getId(), null);
-	}
-	
-	public void supprimer(Competition c){
-		this.bdd.delete(TABLE, "ID = " + c.getId(), null);
-	}
-	
-	public Competition selectionner(int i){
-		Cursor c = this.bdd.query(TABLE, new String[]  {"ID","ANNEE","NOM","TYPE"}, "ID = " + i, null, null, null, null);
-		c.moveToFirst();
-		Competition cp = new Competition(c.getInt(0), c.getInt(1),c.getString(2),c.getString(3));
-		c.close();
-		return cp;
-	}
-	
-	public List<Competition> selectionnerTout(){
-		Cursor c = this.bdd.query(TABLE, new String[]  {"ID","ANNEE","NOM","TYPE"}, null, null, null, null, null);
+	  /**
+	   * @param id l'identifiant du métier à supprimer
+	   */
+	  public void supprimer(int id) {
+		  mDb.delete("COMPETITIONS", "idC = ?", new String[]{String.valueOf(id)});
+	  }
+
+	  /**
+	   * @param m le métier modifié
+	   */
+	  public void modifier(Competition c) {
+		  ContentValues value = new ContentValues();
+		  value.put("anneeC", c.getAnnee());
+		  value.put("nomC", c.getNom());
+		  value.put("typeC", c.getType());
+		  mDb.update("COMPETITIONS", value, "idC = ?", new String[] {String.valueOf(c.getId())});
+	  }
+
+	  /**
+	   * @param id l'identifiant du métier à récupérer
+	   */
+	  public Competition selectionner(int i){
+		  Cursor c = mDb.rawQuery("SELECT * FROM COMPETITIONS WHERE idC = ?", new String[]{String.valueOf(i)});
+		  c.moveToFirst();
+		  return new Competition(c.getInt(0), c.getInt(1), c.getString(2), c.getString(3));
+	  }
+	  
+	  public List<Competition> selectionnerTout(){
+		Cursor c = mDb.rawQuery("SELECT * FROM COMPETITIONS", null);
 		c.moveToFirst();
 		List<Competition> competitions = new ArrayList<Competition>();
-		while(!c.isAfterLast()){
-			Competition competition = new Competition(c.getInt(0), c.getInt(1),c.getString(2),c.getString(3));
-			competitions.add(competition);
-			c.moveToNext();
+		while(c.moveToNext()){
+			competitions.add(new Competition(c.getInt(0), c.getInt(1), c.getString(2), c.getString(3)));
 		}
 		c.close();
 		return competitions;
+	  }
 	}
-	
-}

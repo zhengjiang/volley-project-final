@@ -3,8 +3,8 @@ package basededonnees;
 import java.util.ArrayList;
 import java.util.List;
 
+import basededonnees.BDD;
 import modele.Action;
-import android.database.sqlite.SQLiteDatabase;
 import android.content.Context;
 import android.database.Cursor;
 import android.content.*;
@@ -14,61 +14,52 @@ import android.content.*;
  * @author Thibaut C
  *
  */
-public class ActionBdd{
+public class ActionBdd extends BDD {
+	  public ActionBdd(Context pContext){
+		  super(pContext);
+	  }
+	  /**
+	   * @param a l'action à ajouter à la base
+	   */
+	  public void ajouter(Action a) {
+		  ContentValues value = new ContentValues();
+		  value.put("nomA", a.getNom());
+		  mDb.insert("ACTIONS", null, value);
+	  }
 
-	private static  String TABLE = "Action";
-	private static  String [] TABLEAU = {"ID int primary key","NOM VARCHAR2"};
-	private BDD volley;
-	private SQLiteDatabase bdd;
-	
-	public ActionBdd(Context c){ 
-		this.volley = new BDD(c, TABLE, TABLEAU); 
-	}
-	
-	public void open(){
-		this.bdd = this.volley.getWritableDatabase();
-	}
-	
-	public void close(){
-		this.bdd.close();
-	}
-	
-	public void ajouter(Action a){
-		ContentValues parametres = new ContentValues();
-		parametres.put("ID", a.getId());
-		parametres.put("NOM", a.getNom());
-		this.bdd.insert(TABLE, null, parametres);
-	}
-	
-	public void modifier(Action a){
-		ContentValues parametres = new ContentValues();
-		parametres.put("NOM", a.getNom());
-		this.bdd.update(TABLE, parametres, "ID = " + a.getId(), null);
-	}
-	
-	public void supprimer(Action a){
-		this.bdd.delete(TABLE, "ID = " + a.getId(), null);
-	}
-	
-	public Action selectionner(int i){
-		Cursor c = this.bdd.query(TABLE, new String[]  {"ID","NOM"}, "ID = " + i, null, null, null, null);
-		c.moveToFirst();
-		Action a = new Action(c.getInt(0), c.getString(1));
-		c.close();
-		return a;
-	}
-	
-	public List<Action> selectionnerTout(){
-		Cursor c = this.bdd.query(TABLE, new String[]  {"ID","NOM"}, null, null, null, null, null);
+	  /**
+	   * @param id l'identifiant de l'action à supprimer
+	   */
+	  public void supprimer(int id) {
+		  mDb.delete("ACTIONS", "idA = ?", new String[]{String.valueOf(id)});
+	  }
+
+	  /**
+	   * @param a l'action modifiée
+	   */
+	  public void modifier(Action a) {
+		  ContentValues value = new ContentValues();
+		  value.put("nomA", a.getNom());
+		  mDb.update("ACTIONS", value, "idA = ?", new String[] {String.valueOf(a.getId())});
+	  }
+
+	  /**
+	   * @param i l'identifiant de l'action à récupérer
+	   */
+	  public Action selectionner(int i){
+		  Cursor c = mDb.rawQuery("SELECT * FROM ACTIONS WHERE idA = ?", new String[]{String.valueOf(i)});
+		  c.moveToFirst();
+		  return new Action(c.getInt(0), c.getString(1));
+	  }
+	  
+	  public List<Action> selectionnerTout(){
+		Cursor c = mDb.rawQuery("SELECT * FROM ACTIONS", null);
 		c.moveToFirst();
 		List<Action> actions = new ArrayList<Action>();
-		while(!c.isAfterLast()){
-			Action action = new Action(c.getInt(0), c.getString(1));
-			actions.add(action);
-			c.moveToNext();
+		while(c.moveToNext()){
+			actions.add(new Action(c.getInt(0), c.getString(1)));
 		}
 		c.close();
 		return actions;
+	  }
 	}
-	
-}

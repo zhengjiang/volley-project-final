@@ -98,6 +98,16 @@ public class Match
 	{
 		this.equipe2=equipe;
 	}
+	
+	public Competition getCompetition()
+	{
+		return this.competition;
+	}
+	
+	public void setCompetition(Competition compet)
+	{
+		this.competition=compet;
+	}
 
 	/*
 	* Verifie si la date est valide
