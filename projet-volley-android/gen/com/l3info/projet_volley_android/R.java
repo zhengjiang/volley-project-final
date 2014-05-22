@@ -1027,13 +1027,25 @@ containing a value of this type.
         public static final int BtnConsultationJoueur=0x7f0500c2;
         public static final int BtnModificationEquipe=0x7f0500de;
         public static final int BtnModificationJoeur=0x7f0500e2;
-        public static final int BtnSuppressionJoeur=0x7f0500e7;
-        public static final int BtnSuppressionJoueur=0x7f0500e5;
+        public static final int BtnSuppressionJoeur=0x7f050103;
+        public static final int BtnSuppressionJoueur=0x7f050101;
         public static final int CreerJoueur=0x7f0500d9;
         public static final int ModificationEquipe=0x7f0500e1;
         public static final int Poste_en_courJoueur=0x7f0500d1;
         public static final int Precedent=0x7f0500b5;
         public static final int RetourAccueil=0x7f0500b4;
+        public static final int TextView01=0x7f0500e5;
+        public static final int TextView02=0x7f0500e6;
+        public static final int TextView03=0x7f0500e7;
+        public static final int TextView04=0x7f0500e8;
+        public static final int TextView05=0x7f0500e9;
+        public static final int TextView06=0x7f0500ea;
+        public static final int TextView07=0x7f0500eb;
+        public static final int TextView08=0x7f0500ec;
+        public static final int TextView09=0x7f0500ed;
+        public static final int TextView10=0x7f0500ee;
+        public static final int TextView11=0x7f0500ef;
+        public static final int TextView12=0x7f0500f0;
         public static final int ValidationAvecAjoutJoueur=0x7f0500cc;
         public static final int ValidationCreationEquipe=0x7f0500ca;
         public static final int ValidationCreationJoueur=0x7f0500d2;
@@ -1050,7 +1062,7 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f050016;
         public static final int action_menu_presenter=0x7f050017;
         public static final int action_mode_close_button=0x7f050024;
-        public static final int action_settings=0x7f0500e8;
+        public static final int action_settings=0x7f050104;
         public static final int activity_chooser_view_content=0x7f050025;
         public static final int always=0x7f05000b;
         public static final int beginning=0x7f050011;
@@ -1131,7 +1143,7 @@ containing a value of this type.
         public static final int libNonEntrainneurEquipe=0x7f0500b8;
         public static final int libNonEquipe=0x7f0500b7;
         public static final int libPosteJoueur=0x7f0500c0;
-        public static final int libSuppressionJoueur=0x7f0500e6;
+        public static final int libSuppressionJoueur=0x7f050102;
         public static final int libTailleJoueur=0x7f0500be;
         public static final int listMode=0x7f050001;
         public static final int listView1=0x7f0500ba;
@@ -1250,6 +1262,22 @@ containing a value of this type.
         public static final int tableau_score=0x7f0500a6;
         public static final int tailleJoueur=0x7f0500d0;
         public static final int terrain=0x7f050042;
+        public static final int textView13=0x7f0500f1;
+        public static final int textView14=0x7f0500f2;
+        public static final int textView15=0x7f0500f3;
+        public static final int textView16=0x7f0500f4;
+        public static final int textView17=0x7f0500f5;
+        public static final int textView18=0x7f0500f6;
+        public static final int textView19=0x7f0500f7;
+        public static final int textView20=0x7f0500f8;
+        public static final int textView21=0x7f0500f9;
+        public static final int textView22=0x7f0500fa;
+        public static final int textView23=0x7f0500fb;
+        public static final int textView24=0x7f0500fc;
+        public static final int textView25=0x7f0500fd;
+        public static final int textView26=0x7f0500fe;
+        public static final int textView27=0x7f0500ff;
+        public static final int textView28=0x7f050100;
         public static final int title=0x7f05002b;
         public static final int top_action_bar=0x7f050020;
         public static final int up=0x7f050021;
@@ -1321,9 +1349,10 @@ containing a value of this type.
         public static final int modification_equipe_etape2_activity=0x7f030024;
         public static final int modification_joueur_etape1_activity=0x7f030025;
         public static final int modification_joueur_etape2_activity=0x7f030026;
-        public static final int support_simple_spinner_dropdown_item=0x7f030027;
-        public static final int suppresion_joueur_activity=0x7f030028;
-        public static final int suppression_equipe_activity=0x7f030029;
+        public static final int stats_joueurs=0x7f030027;
+        public static final int support_simple_spinner_dropdown_item=0x7f030028;
+        public static final int suppresion_joueur_activity=0x7f030029;
+        public static final int suppression_equipe_activity=0x7f03002a;
     }
     public static final class menu {
         public static final int main=0x7f0c0000;
@@ -1386,6 +1415,22 @@ containing a value of this type.
         public static final int hello_world=0x7f0a000f;
         public static final int mauvais=0x7f0a002b;
         public static final int neutre=0x7f0a002a;
+        /**  AFFICHAGE STATISTIQUES JOUEUR 
+         */
+        public static final int nomStatJoueur1=0x7f0a005e;
+        public static final int nomStatJoueur10=0x7f0a0067;
+        public static final int nomStatJoueur11=0x7f0a0068;
+        public static final int nomStatJoueur12=0x7f0a0069;
+        public static final int nomStatJoueur13=0x7f0a006a;
+        public static final int nomStatJoueur14=0x7f0a006b;
+        public static final int nomStatJoueur2=0x7f0a005f;
+        public static final int nomStatJoueur3=0x7f0a0060;
+        public static final int nomStatJoueur4=0x7f0a0061;
+        public static final int nomStatJoueur5=0x7f0a0062;
+        public static final int nomStatJoueur6=0x7f0a0063;
+        public static final int nomStatJoueur7=0x7f0a0064;
+        public static final int nomStatJoueur8=0x7f0a0065;
+        public static final int nomStatJoueur9=0x7f0a0066;
         /** NOM DES JOUEURS DE L'EQUIPE ROUGE 
          */
         public static final int nom_e1_n1=0x7f0a002e;
