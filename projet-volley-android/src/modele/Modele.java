@@ -43,6 +43,7 @@ public class Modele {
 	public ArrayList<String> getEtatsAuto(){return automate.getEtats();}
 	public String getEtatAuto(){return automate.getEtat();}
 	public Match getMatch(){return match;}
+	public ArrayList<Set> getTabSet(){return score;}
 	public Set getSet(){return score.get(score.size()-1);}
 	public int getNumPoint(){return numPoint;}
 	public int getGagne(){return gagne;}
@@ -97,7 +98,7 @@ public class Modele {
 		eqRouge.add(10, new Joueur(13, "Rouge10", 180, 25, 10));
 		eqRouge.add(11, new Joueur(24, "Rouge11", 180, 25, 11));
 		
-		score.add(0,new Set(1,1,0,0,match));
+		
 		
 	}
 	
@@ -153,6 +154,21 @@ public class Modele {
 	}
 	
 	public void resetAuto(){automate.reset();}
+	
+	public void incrementePoint(int i)
+	{
+		if (i==0){score.get(score.size()-1).scoreEquipe1Plus();}
+		else{score.get(score.size()-1).scoreEquipe2Plus();}
+	}
+	
+	public void afficherScore()
+	{
+		System.out.println("========================================");
+		System.out.println("Set numero : " + score.size());
+		System.out.println("Bleu - Rouge : " + score.get(score.size()-1).getScoreEquipeDomicile() + " - " + score.get(score.size()-1).getScoreEquipeExterieur());
+		System.out.println("========================================");
+
+	}
 	
 	
 }

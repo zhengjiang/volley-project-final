@@ -113,7 +113,19 @@ public class Controleur {
 			modele.resetAuto();
 			modele.setNouveauPoint(true);
 			soumettrePoint();
+			modele.incrementePoint(modele.getGagne());
 			modele.setGagne(-1);
+			modele.afficherScore();
+			
+			Set set = modele.getSet();
+			if ((set.getScoreEquipeDomicile() >= 25 || set.getScoreEquipeExterieur() >= 25) && (Math.abs(set.getScoreEquipeDomicile()-set.getScoreEquipeExterieur()) >= 2))
+			{
+				System.out.println("Gain de set détecté !");
+				modele.setNouveauSet(true);
+				
+			}
+			
+			
 		}
 		
 		

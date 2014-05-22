@@ -1167,6 +1167,7 @@ public class SaisieStatsActivity extends Activity {
 		if (ctrl.estNouveauSet())
 		{
 			ctrl.nouveauSet();
+			ctrl.getModele().setNouveauSet(false);
 		}
 		String etat = ctrl.getEtatAuto();
 		if (ctrl.estNouveauPoint())
