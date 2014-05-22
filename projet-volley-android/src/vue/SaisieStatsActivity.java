@@ -240,11 +240,7 @@ public class SaisieStatsActivity extends Activity {
 	}
 	
 	private void typeActionNonChecked() {
-    	bouton_service.setChecked(false);
-    	bouton_defense.setChecked(false);
-    	bouton_passe.setChecked(false);
-    	bouton_attaque.setChecked(false);
-    	bouton_bloc.setChecked(false);
+
 	}
 	
     // echange de position 2 textviews
@@ -259,32 +255,28 @@ public class SaisieStatsActivity extends Activity {
     	if (cptTouch ==1)
     	{
 			if (maillot_rouge1 == dernier_checked) {
-	    		echange(nom_rouge1, nomSortant); // échange noms des joueurs
-	    		echange(num_rouge1, numSortant); // échange numéros des joueurs
+
 	    		ctrl.echangeJ(1, indice, 0);
 	    		maillot_rouge1.setChecked(false); // remplacement effectué: on décoche
 	    		joueurs_checked.remove(new Integer(0));
 	    		dernier_checked = null;
 	    	}
 	    	else if (maillot_rouge2 == dernier_checked) {
-	    		echange(nom_rouge2, nomSortant);
-	    		echange(num_rouge2, numSortant);
+
 	    		ctrl.echangeJ(1, indice, 1);
 	    		maillot_rouge2.setChecked(false);
 	    		joueurs_checked.remove(new Integer(1));
 	    		dernier_checked = null;
 	    	}
 	    	else if (maillot_rouge3 == dernier_checked) {
-	    		echange(nom_rouge3, nomSortant);
-	    		echange(num_rouge3, numSortant);
+
 	    		ctrl.echangeJ(1, indice, 2);
 	    		maillot_rouge3.setChecked(false);
 	    		joueurs_checked.remove(new Integer(2));
 	    		dernier_checked = null;
 	    	}
 	    	else if (maillot_rouge4 == dernier_checked) {
-	    		echange(nom_rouge4, nomSortant);
-	    		echange(num_rouge4, numSortant);
+
 	    		ctrl.echangeJ(1, indice, 3);
 	    		maillot_rouge4.setChecked(false);
 	    		joueurs_checked.remove(new Integer(3));
@@ -292,16 +284,14 @@ public class SaisieStatsActivity extends Activity {
 	    		
 	    	}
 	    	else if (maillot_rouge5 == dernier_checked) {
-	    		echange(nom_rouge5, nomSortant);
-	    		echange(num_rouge5, numSortant);
+
 	    		ctrl.echangeJ(1, indice, 4);
 	    		maillot_rouge5.setChecked(false);
 	    		joueurs_checked.remove(new Integer(4));
 	    		dernier_checked = null;
 	    	}
 	    	else if (maillot_rouge6 == dernier_checked) {
-	    		echange(nom_rouge6, nomSortant);
-	    		echange(num_rouge6, numSortant);
+
 	    		ctrl.echangeJ(1, indice, 5);
 	    		maillot_rouge6.setChecked(false);
 	    		joueurs_checked.remove(new Integer(5));
@@ -316,6 +306,7 @@ public class SaisieStatsActivity extends Activity {
 		if (cptTouch ==1)
     	{
 	    	if (maillot_bleu1 == dernier_checked) {
+
 	    		echange(matriceTextViewBleu[1][0], nomSortant);
 	    		echange(matriceTextViewBleu[0][0], numSortant);
 	    		ctrl.echangeJ(0, indice, 0);
@@ -325,6 +316,7 @@ public class SaisieStatsActivity extends Activity {
 	    		dernier_checked = null;
 	    	}
 	    	else if (maillot_bleu2 == dernier_checked) {
+
 	    		echange(matriceTextViewBleu[1][1], nomSortant);
 	    		echange(matriceTextViewBleu[0][1], numSortant);
 	    		ctrl.echangeJ(0, indice, 1);
@@ -334,6 +326,7 @@ public class SaisieStatsActivity extends Activity {
 	    		
 	    	}
 	    	else if (maillot_bleu3 == dernier_checked) {
+
 	    		echange(matriceTextViewBleu[1][2], nomSortant);
 	    		echange(matriceTextViewBleu[0][2], numSortant);
 	    		ctrl.echangeJ(0, indice, 2);
@@ -342,6 +335,7 @@ public class SaisieStatsActivity extends Activity {
 	    		dernier_checked = null;
 	    	}
 	    	else if (maillot_bleu4 == dernier_checked) {
+
 	    		echange(matriceTextViewBleu[1][3], nomSortant);
 	    		echange(matriceTextViewBleu[0][3], numSortant);
 	    		ctrl.echangeJ(0, indice, 3);
@@ -350,6 +344,7 @@ public class SaisieStatsActivity extends Activity {
 	    		dernier_checked = null;
 	    	}
 	    	else if (maillot_bleu5 == dernier_checked) {
+
 	    		echange(matriceTextViewBleu[1][4], nomSortant);
 	    		echange(matriceTextViewBleu[0][4], numSortant);
 	    		ctrl.echangeJ(0, indice, 4);
@@ -358,6 +353,7 @@ public class SaisieStatsActivity extends Activity {
 	    		dernier_checked = null;
 	    	}
 	    	else if (maillot_bleu6 == dernier_checked) {
+
 	    		echange(matriceTextViewBleu[1][5], nomSortant);
 	    		echange(matriceTextViewBleu[0][5], numSortant);
 	    		ctrl.echangeJ(0, indice, 5);
@@ -532,7 +528,7 @@ public class SaisieStatsActivity extends Activity {
 	    	/* si les remplacants sont cliquables c'est qu'un joueur titulaire a été coché précédement
 	    	 * au clic sur le remplacant, on échange les deux */
 	    	if (maillot_rouge7.isClickable()) {
-	    		remplacementRouge(nom_rouge7, num_rouge7, 6);
+
 		        return true;
 	    	}
 	    	return true;
@@ -543,7 +539,7 @@ public class SaisieStatsActivity extends Activity {
 	private OnTouchListener touchListenerRouge8 = new View.OnTouchListener() {
 	    public boolean onTouch(View v, MotionEvent event) {
 	    	if (maillot_rouge8.isClickable()) {
-	    		remplacementRouge(nom_rouge8, num_rouge8, 7);
+
 		        return true;
 	    	}
 	    	return true;
@@ -554,7 +550,7 @@ public class SaisieStatsActivity extends Activity {
 	private OnTouchListener touchListenerRouge9 = new View.OnTouchListener() {
 	    public boolean onTouch(View v, MotionEvent event) {
 	    	if (maillot_rouge9.isClickable()) {
-	    		remplacementRouge(nom_rouge9, num_rouge9, 8);
+
 		        return true;
 	    	}
 	    	return true;
@@ -565,7 +561,7 @@ public class SaisieStatsActivity extends Activity {
 	private OnTouchListener touchListenerRouge10 = new View.OnTouchListener() {
 	    public boolean onTouch(View v, MotionEvent event) {
 	    	if (maillot_rouge10.isClickable()) {
-	    		remplacementRouge(nom_rouge10, num_rouge10, 9);
+
 		        return true;
 	    	}
 	    	return true;
@@ -576,7 +572,7 @@ public class SaisieStatsActivity extends Activity {
 	private OnTouchListener touchListenerRouge11 = new View.OnTouchListener() {
 	    public boolean onTouch(View v, MotionEvent event) {
 	    	if (maillot_rouge11.isClickable()) {
-	    		remplacementRouge(nom_rouge11, num_rouge11, 10);
+
 		        return true;
 	    	}
 	    	return true;
@@ -587,7 +583,7 @@ public class SaisieStatsActivity extends Activity {
 	private OnTouchListener touchListenerRouge12 = new View.OnTouchListener() {
 	    public boolean onTouch(View v, MotionEvent event) {
 	    	if (maillot_rouge12.isClickable()) {
-	    		remplacementRouge(nom_rouge12, num_rouge12, 11);
+
 		        return true;
 	    	}
 	    	return true;
@@ -646,7 +642,7 @@ public class SaisieStatsActivity extends Activity {
 	private OnTouchListener touchListenerBleu7 = new View.OnTouchListener() {
 	    public boolean onTouch(View v, MotionEvent event) {
 	    	if (maillot_bleu7.isClickable()) {
-	    		remplacementBleu(nom_bleu7, num_bleu7, 18);
+
 		        return true;
 	    	}
 	    	return true;
@@ -657,7 +653,7 @@ public class SaisieStatsActivity extends Activity {
 	private OnTouchListener touchListenerBleu8 = new View.OnTouchListener() {
 	    public boolean onTouch(View v, MotionEvent event) {
 	    	if (maillot_bleu8.isClickable()) {
-	    		remplacementBleu(nom_bleu8, num_bleu8, 19);
+
 		        return true;
 	    	}
 	    	return true;
@@ -668,7 +664,7 @@ public class SaisieStatsActivity extends Activity {
 	private OnTouchListener touchListenerBleu9 = new View.OnTouchListener() {
 	    public boolean onTouch(View v, MotionEvent event) {
 	    	if (maillot_bleu9.isClickable()) {
-	    		remplacementBleu(nom_bleu9, num_bleu9, 20);
+
 		        return true;
 	    	}
 	    	return true;
@@ -679,7 +675,7 @@ public class SaisieStatsActivity extends Activity {
 	private OnTouchListener touchListenerBleu10 = new View.OnTouchListener() {
 	    public boolean onTouch(View v, MotionEvent event) {
 	    	if (maillot_bleu10.isClickable()) {
-	    		remplacementBleu(nom_bleu10, num_bleu10, 21);
+
 		        return true;
 	    	}
 	    	return true;
@@ -690,7 +686,7 @@ public class SaisieStatsActivity extends Activity {
 	private OnTouchListener touchListenerBleu11 = new View.OnTouchListener() {
 	    public boolean onTouch(View v, MotionEvent event) {
 	    	if (maillot_bleu11.isClickable()) {
-	    		remplacementBleu(nom_bleu11, num_bleu11, 22);
+
 		        return true;
 	    	}
 	    	return true;
@@ -701,7 +697,7 @@ public class SaisieStatsActivity extends Activity {
 	private OnTouchListener touchListenerBleu12 = new View.OnTouchListener() {
 	    public boolean onTouch(View v, MotionEvent event) {
 	    	if (maillot_bleu12.isClickable()) {
-	    		remplacementBleu(nom_bleu12, num_bleu12, 23);
+
 		        return true;
 	    	}
 	    	return true;
@@ -763,7 +759,7 @@ public class SaisieStatsActivity extends Activity {
 		    			System.out.println("Action " + joueurs_checked.get(0) + "  ====>  " + joueurs_checked.get(1));	    		
 		    			ctrl.soumettreAction(joueurs_checked.get(0), joueurs_checked.get(1), typeA, note);
 		    			
-		    			typeActionNonChecked();
+
 				    	typeActionNonEnabled();
 				    	// on decoche tout les boutons
 				    	
@@ -781,7 +777,7 @@ public class SaisieStatsActivity extends Activity {
 		    	}
 		    	cptTouch = 0;
 	    	}
-	    	cptTouch++;
+
 	    	
 	    }   
 	    
@@ -1144,10 +1140,10 @@ public class SaisieStatsActivity extends Activity {
 			ctrl.nouveauPoint();
 			
 			actionsPoss.add(bouton_service);
-			if (ctrl.getModele().getRotation())
+			if (ctrl.getModele().getRotation() != -1)
 			{
 				rotationEquipe(ctrl.getService());
-				ctrl.getModele().setRotation(false);
+				ctrl.getModele().setRotation(-1);
 			}
 			if (ctrl.getService() == 0)
 			{
@@ -1156,8 +1152,7 @@ public class SaisieStatsActivity extends Activity {
 				joueurs_checked.add(12);
 				joueurs_checked.add(5);
 				dernier_checked = maillot_rouge6;
-				bouton_service.setEnabled(true);
-				bouton_service.setChecked(true);
+				//bouton_service.setChecked(true);
 			}
 			else
 			{
@@ -1166,8 +1161,7 @@ public class SaisieStatsActivity extends Activity {
 				joueurs_checked.add(0);
 				joueurs_checked.add(17);
 				dernier_checked = maillot_bleu6;
-				bouton_service.setEnabled(true);
-				bouton_service.setChecked(true);
+				
 			}
 		}
 		else
@@ -1210,18 +1204,18 @@ public class SaisieStatsActivity extends Activity {
 				for (int k = 0;k<2;k++)
 				{
 					echange(matriceTextViewBleu[k][j],matriceTextViewBleu[k][j+1]);
-					ctrl.getModele().echangeBleu(j, j+1);
+					
 				}
 			}
 		}
-		else
+		else if (i == 1)
 		{
 			for (int j = 0;j<5;j++)
 			{
 				for (int k = 0;k<2;k++)
 				{
 					echange(matriceTextViewRouge[k][j],matriceTextViewRouge[k][j+1]);
-					ctrl.getModele().echangeRouge(j, j+1);
+					
 				}
 			}
 		}
