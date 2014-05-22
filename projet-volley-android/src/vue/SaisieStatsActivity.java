@@ -1163,6 +1163,7 @@ public class SaisieStatsActivity extends Activity {
 				dernier_checked = maillot_bleu6;
 				
 			}
+			typeActionEnabled();
 		}
 		else
 		{
