@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import modele.ActionJoueur;
+import modele.Statistique;
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 import android.content.*;
 
 
@@ -22,20 +24,20 @@ public class JoueurActionBdd extends BDD {
 	   */
 	  public void ajouter(ActionJoueur jA) {
 		  ContentValues value = new ContentValues();
-		  value.put("setJA", jA.getSet().getId());// A VERIFIEEEERRRR ET TESTER !
-		  value.put("actionJA", jA.getAction().getId());// A VERIFIEEEERRRR ET TESTER !
-		  value.put("joueurJA", jA.getJoueur().getId());// A VERIFIEEEERRRR ET TESTER !
+		  value.put("setJA", jA.getSet().getId());
+		  value.put("actionJA", jA.getAction().getNom());
+		  value.put("joueurJA", jA.getJoueur().getId());
 		  value.put("pointJA", jA.getNumPoint());
 		  value.put("noteJA", jA.getNote());
 		  value.put("posteJA", jA.getPoste());
-		  mDb.insert("JOUEURACTION", null, value);
+		  mDb.insert("JOUEUR_ACTION", null, value);
 	  }
 
 	  /**
 	   * @param id l'identifiant du joueur à supprimer
 	   */
 	  public void supprimer(int id) {
-		  mDb.delete("JOUEURACTION", "idJA = ?", new String[]{String.valueOf(id)});
+		  mDb.delete("JOUEUR_ACTION", "idJA = ?", new String[]{String.valueOf(id)});
 	  }
 
 	  /**
@@ -44,31 +46,41 @@ public class JoueurActionBdd extends BDD {
 	  public void modifier(ActionJoueur jA) {
 		  ContentValues value = new ContentValues();
 		  value.put("setJA", jA.getSet().getId());// A VERIFIEEEERRRR ET TESTER !
-		  value.put("actionJA", jA.getAction().getId());// A VERIFIEEEERRRR ET TESTER !
+		  value.put("actionJA", jA.getAction().getNom());// A VERIFIEEEERRRR ET TESTER !
 		  value.put("joueurJA", jA.getJoueur().getId());// A VERIFIEEEERRRR ET TESTER !
 		  value.put("pointJA", jA.getNumPoint());
 		  value.put("noteJA", jA.getNote());
 		  value.put("posteJA", jA.getPoste());
-		  mDb.update("JOUEURACTION", value, "idJA = ?", new String[] {String.valueOf(jA.getId())});
+		  mDb.update("JOUEUR_ACTION", value, "idJA = ?", new String[] {String.valueOf(jA.getId())});
 	  }
 
 	  /**
 	   * @param i l'identifiant du actionJoueur à récupérer
 	   */
-	  public ActionJoueur selectionner(int i){
-		  Cursor c = mDb.rawQuery("SELECT * FROM JOUEURACTION WHERE idJA = ?", new String[]{String.valueOf(i)});
+	  /*public ActionJoueur selectionner(int i){
+		  Cursor c = mDb.rawQuery("SELECT * FROM JOUEUR_ACTION ja, SETS s, ACTIONS a, JOUEUR j, MATCHS m, COMPETITIONS c WHERE  AND idJA = ?", new String[]{String.valueOf(i)});
 		  c.moveToFirst();
-		  return new ActionJoueur(c.getInt(0), set, action, joueur, c.getInt(4), c.getInt(5), c.getInt(6));
-	  }
+		  return new ActionJoueur(c.getInt(0), new Set(0, 0), new Action(0, "penis"), new Joueur(0, "chat", 0, 0, 0), c.getInt(4), c.getInt(5), c.getInt(6));
+		  return new ActionJoueur(null, null, null, null, null, null);
+	  }*/
 	  
-	  public List<ActionJoueur> selectionnerTout(){
-		Cursor c = mDb.rawQuery("SELECT * FROM JOUEURACTION", null);
+	  public void selectionnerTout(){
+		Cursor c = mDb.rawQuery("SELECT * FROM JOUEUR_ACTION", null);
 		c.moveToFirst();
 		List<ActionJoueur> joueurs = new ArrayList<ActionJoueur>();
 		while(c.moveToNext()){
-			joueurs.add(new ActionJoueur(c.getInt(0), set, action, joueur, c.getInt(4), c.getInt(5), c.getInt(6)));
+			Log.v("test", c.getString(2));
 		}
 		c.close();
-		return joueurs;
+	  }
+	  
+	  public Statistique getStats(int i){
+		  Statistique s = new Statistique();
+		  Cursor c = mDb.rawQuery("SELECT COUNT(*) as tot, AVG(noteJA) as moy, actionJA FROM JOUEUR_ACTION WHERE joueurJA = ? GROUP BY actionJA;", new String[]{String.valueOf(i)});
+		  while(c.moveToNext()){
+			  s.setStats(c.getString(2), c.getInt(0), c.getFloat(1));
+		  }
+		  c.close();
+		  return s;
 	  }
 	}

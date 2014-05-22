@@ -52,18 +52,34 @@ public class JoueurBdd extends BDD {
 	   */
 	  public Joueur selectionner(int i){
 		  Cursor c = mDb.rawQuery("SELECT * FROM JOUEURS WHERE idJ = ?", new String[]{String.valueOf(i)});
+		  if(c.getCount() == 0){
+			  c.close();
+			  return null;
+		  }
 		  c.moveToFirst();
-		  return new Joueur(c.getInt(0), c.getString(1), c.getInt(2), c.getInt(3), 0);
+		  Joueur joueur = new Joueur(c.getInt(0), c.getString(1), c.getInt(2), c.getInt(3), 0);
+		  c.close();
+		  return joueur;
 	  }
 	  
 	  public List<Joueur> selectionnerTout(){
 		Cursor c = mDb.rawQuery("SELECT * FROM JOUEURS", null);
-		c.moveToFirst();
 		List<Joueur> joueurs = new ArrayList<Joueur>();
 		while(c.moveToNext()){
 			joueurs.add(new Joueur(c.getInt(0), c.getString(1), c.getInt(2), c.getInt(3), 0));
 		}
 		c.close();
 		return joueurs;
+	  }
+	  
+	  //equipe
+	  public List<Joueur> joueurEquipe(int i){
+		  Cursor c = mDb.rawQuery("SELECT * FROM JOUEURS WHERE EXISTS(SELECT * FROM JOUEUR_EQUIPE WHERE equipeJE = ? AND joueurJE = idJ);", new String[]{String.valueOf(i)});
+		  List<Joueur> joueurs = new ArrayList<Joueur>();
+		  while(c.moveToNext()){
+			  joueurs.add(new Joueur(c.getInt(0), c.getString(1), c.getInt(2), c.getInt(3), 0));
+		  }
+		  c.close();
+		  return joueurs;
 	  }
 	}

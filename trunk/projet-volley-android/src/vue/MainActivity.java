@@ -55,8 +55,8 @@ public class MainActivity extends Activity{
 		setContentView(R.layout.accueil_activity);
 		
 		Controleur c = Controleur.getInstance();
-		/*c.initialiseBdd(this);
-		c.prout();*/
+		c.initialiseBdd(this);
+		c.testBdd();
 		
 		creationMatch = (Button) findViewById(R.id.creerMatch);
 		gestionJoueur = (Button) findViewById(R.id.creerJoueur);

@@ -55,7 +55,6 @@ public class EquipeBdd extends BDD {
 	  
 	  public List<Equipe> selectionnerTout(){
 		Cursor c = mDb.rawQuery("SELECT * FROM EQUIPES", null);
-		c.moveToFirst();
 		List<Equipe> equipes = new ArrayList<Equipe>();
 		while(c.moveToNext()){
 			equipes.add(new Equipe(c.getInt(0), c.getString(1), c.getString(2)));

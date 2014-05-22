@@ -51,8 +51,14 @@ public class CompetitionBdd extends BDD {
 	   */
 	  public Competition selectionner(int i){
 		  Cursor c = mDb.rawQuery("SELECT * FROM COMPETITIONS WHERE idC = ?", new String[]{String.valueOf(i)});
+		  if(c.getCount() == 0){
+			  c.close();
+			  return null;
+		  }
 		  c.moveToFirst();
-		  return new Competition(c.getInt(0), c.getInt(1), c.getString(2), c.getString(3));
+		  Competition comp = new Competition(c.getInt(0), c.getInt(1), c.getString(2), c.getString(3));
+		  c.close();
+		  return comp;
 	  }
 	  
 	  public List<Competition> selectionnerTout(){
