@@ -208,6 +208,7 @@ public class SaisieStatsActivity extends Activity {
 		for (RadioButton b : actionsPoss)
 		{
 			b.setEnabled(true);
+			if (actionsPoss.size() == 1){b.setChecked(true);}
 			
 		}
 	}
