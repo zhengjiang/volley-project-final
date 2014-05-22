@@ -4,7 +4,7 @@ import java.util.List;
 
 import android.content.Context;
 import android.util.Log;
-import basededonnees.*;
+//import basededonnees.*;
 import modele.*;
 
 /**
@@ -15,7 +15,7 @@ public class Controleur {
 	
 	private static Controleur instance;
 	private Modele modele;
-	private JoueurBdd jb;
+	//private JoueurBdd jb;
 	
 	public static void main(String[] args){
 		Controleur controleur = Controleur.getInstance();
@@ -32,21 +32,21 @@ public class Controleur {
 		return instance;
 	}
 	
-	public void initialiseBdd(Context c){
+	/*public void initialiseBdd(Context c){
 		this.jb = new JoueurBdd(c);
 	}
 	
 	public void prout(){
 		jb.open();
-		jb.ajouter(new Joueur(0, "penis", 0, 0, 0, 0));
-		jb.ajouter(new Joueur(0, "PENIS ENCULE", 0, 0, 0, 0));
+		//jb.ajouter(new Joueur(0, "penis", 0, 0, 0, 0));
+		//jb.ajouter(new Joueur(0, "PENIS ENCULE", 0, 0, 0, 0));
 		List<Joueur> j2 = jb.selectionnerTout();
 		jb.close();
 		for(int i = 0; i < j2.size(); i++)
 	    {
 	      Log.v("test", i+":"+j2.get(i).getNom());
 	    }
-	}
+	}*/
 	
 	// Methodes accès Modèle
 	public Modele getModele(){return modele;}
@@ -76,7 +76,7 @@ public class Controleur {
 		}else System.out.println("EQUIPE INVALIDE ECHANGEJ()");
 		
 	}
-	
+	// A MODIFIER POUR ID ET POSTE JOUEUR
 	public boolean soumettreAction(int j1, int j2, String type, int note)
 	{
 		int eq = 0;
@@ -84,7 +84,7 @@ public class Controleur {
 		
 		Action action = new Action(0, type);
 		System.out.println("Joueur " + modele.getJoueur(j1).getNom() + " effectue un " + type + " " + note + " sur le joueur " + modele.getJoueur(j2).getNom());
-		ActionJoueur act = new ActionJoueur(0, modele.getMatch(), action, modele.getJoueur(j1), modele.getNumPoint(), note);
+		ActionJoueur act = new ActionJoueur(0, modele.getSet(), action, modele.getJoueur(j1), modele.getNumPoint(), note, 0);
 		modele.ajouterAction(act);
 		modele.setJSuiv(j2);
 		
