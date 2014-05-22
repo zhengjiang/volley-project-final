@@ -53,6 +53,7 @@ public class MatchBdd extends BDD {
 	  /**
 	   * @param i l'identifiant du match à récupérer
 	   */
+	  /*
 	  public Match selectionner(int i){
 		  Cursor c = mDb.rawQuery("SELECT * FROM MATCHS WHERE idJ = ?", new String[]{String.valueOf(i)});
 		  c.moveToFirst();
@@ -68,5 +69,5 @@ public class MatchBdd extends BDD {
 		}
 		c.close();
 		return matchs;
-	  }
+	  }*/
 	}

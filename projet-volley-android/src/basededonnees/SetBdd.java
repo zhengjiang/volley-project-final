@@ -52,6 +52,7 @@ public class SetBdd extends BDD {
 	  /**
 	   * @param i l'identifiant du set à récupérer
 	   */
+	  /*
 	  public Set selectionner(int i){
 		  Cursor c = mDb.rawQuery("SELECT * FROM SETS WHERE idS = ?", new String[]{String.valueOf(i)});
 		  c.moveToFirst();
@@ -67,5 +68,5 @@ public class SetBdd extends BDD {
 		}
 		c.close();
 		return sets;
-	  }
+	  }*/
 	}

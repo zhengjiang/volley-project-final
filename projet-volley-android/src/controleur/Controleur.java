@@ -4,7 +4,7 @@ import java.util.List;
 
 import android.content.Context;
 import android.util.Log;
-//import basededonnees.*;
+import basededonnees.*;
 import modele.*;
 
 /**
@@ -15,7 +15,14 @@ public class Controleur {
 	
 	private static Controleur instance;
 	private Modele modele;
-	//private JoueurBdd jb;
+	public JoueurBdd jb;
+	public JoueurActionBdd jab;
+	public ActionBdd ab;
+	public EquipeBdd eb;
+	public JoueurEquipeBdd jeb;
+	public MatchBdd mb;
+	public CompetitionBdd cb;
+	public SetBdd sb;
 	
 	public static void main(String[] args){
 		Controleur controleur = Controleur.getInstance();
@@ -32,21 +39,26 @@ public class Controleur {
 		return instance;
 	}
 	
-	/*public void initialiseBdd(Context c){
+	public void initialiseBdd(Context c){
 		this.jb = new JoueurBdd(c);
+		this.jab = new JoueurActionBdd(c);
+		this.ab = new ActionBdd(c);
+		this.eb = new EquipeBdd(c);
+		this.jeb = new JoueurEquipeBdd(c);
+		this.mb = new MatchBdd(c);
+		this.cb = new CompetitionBdd(c);
+		this.sb = new SetBdd(c);
 	}
 	
-	public void prout(){
-		jb.open();
-		//jb.ajouter(new Joueur(0, "penis", 0, 0, 0, 0));
-		//jb.ajouter(new Joueur(0, "PENIS ENCULE", 0, 0, 0, 0));
-		List<Joueur> j2 = jb.selectionnerTout();
-		jb.close();
-		for(int i = 0; i < j2.size(); i++)
-	    {
-	      Log.v("test", i+":"+j2.get(i).getNom());
-	    }
-	}*/
+	public void testBdd(){
+		this.jb.open();
+		this.jb.ajouter(new Joueur(0, "Jacques", 0, 0, 0));
+		List<Joueur> j = this.jb.selectionnerTout();
+		for(int i = 0; i < j.size(); i++){
+			Log.v("test", j.get(0).getNom());
+		}
+		this.jb.close();
+	}
 	
 	// Methodes accès Modèle
 	public Modele getModele(){return modele;}

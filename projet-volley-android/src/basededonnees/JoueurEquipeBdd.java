@@ -22,18 +22,18 @@ public class JoueurEquipeBdd extends BDD {
 	   */
 	  public void ajouter(JoueurEquipe jE) {
 		  ContentValues value = new ContentValues();
-		  value.put("joueurJE", jE.getJoueur().getId());// A VERIFIEEEERRRR ET TESTER !
-		  value.put("EQUIPEje", jE.getEquipe().getId());// A VERIFIEEEERRRR ET TESTER !
+		  value.put("joueurJE", jE.getJoueur().getId());
+		  value.put("equipeJE", jE.getEquipe().getId());
 		  value.put("maillotJE", jE.getNumMaillot());
 		  value.put("coursJE", jE.isEnCours());
-		  mDb.insert("JOUEUREQUIPE", null, value);
+		  mDb.insert("JOUEUR_EQUIPE", null, value);
 	  }
 
 	  /**
 	   * @param id l'identifiant du joueur à supprimer
 	   */
 	  public void supprimer(int id) {
-		  mDb.delete("JOUEUREQUIPE", "idJE = ?", new String[]{String.valueOf(id)});
+		  mDb.delete("JOUEUR_EQUIPE", "idJE = ?", new String[]{String.valueOf(id)});
 	  }
 
 	  /**
@@ -42,15 +42,15 @@ public class JoueurEquipeBdd extends BDD {
 	  public void modifier(JoueurEquipe jE) {
 		  ContentValues value = new ContentValues();
 		  value.put("joueurJE", jE.getJoueur().getId());// A VERIFIEEEERRRR ET TESTER !
-		  value.put("EQUIPEje", jE.getEquipe().getId());// A VERIFIEEEERRRR ET TESTER !
+		  value.put("equipeJE", jE.getEquipe().getId());// A VERIFIEEEERRRR ET TESTER !
 		  value.put("maillotJE", jE.getNumMaillot());
 		  value.put("coursJE", jE.isEnCours());
-		  mDb.update("JOUEUREQUIPE", value, "idJE = ?", new String[] {String.valueOf(jE.getId())});
+		  mDb.update("JOUEUR_EQUIPE", value, "idJE = ?", new String[] {String.valueOf(jE.getId())});
 	  }
 
 	  /**
 	   * @param i l'identifiant du actionJoueur à récupérer
-	   */
+	   *//*
 	  public JoueurEquipe selectionner(int i){
 		  Cursor c = mDb.rawQuery("SELECT * FROM JOUEUREQUIPE WHERE idJE = ?", new String[]{String.valueOf(i)});
 		  c.moveToFirst();
@@ -66,5 +66,5 @@ public class JoueurEquipeBdd extends BDD {
 		}
 		c.close();
 		return joueurs;
-	  }
+	  }*/
 	}
