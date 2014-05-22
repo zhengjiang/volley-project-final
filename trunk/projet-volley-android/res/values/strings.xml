@@ -98,4 +98,20 @@
 	<string name="num_e2_n11">%1$d</string>
 	<string name="num_e2_n12">%1$d</string>
 	
+	<!-- AFFICHAGE STATISTIQUES JOUEUR -->
+	<string name="nomStatJoueur1">Stat 1 : </string>
+	<string name="nomStatJoueur2">Stat 2 : </string>
+	<string name="nomStatJoueur3">Stat 3 : </string>
+	<string name="nomStatJoueur4">Stat 4 : </string>
+	<string name="nomStatJoueur5">Stat 5 : </string>
+	<string name="nomStatJoueur6">Stat 6 : </string>
+	<string name="nomStatJoueur7">Stat 7 : </string>
+	<string name="nomStatJoueur8">Stat 8 : </string>
+	<string name="nomStatJoueur9">Stat 9 : </string>
+	<string name="nomStatJoueur10">Stat 10 : </string>
+	<string name="nomStatJoueur11">Stat 11 : </string>
+	<string name="nomStatJoueur12">Stat 12 : </string>
+	<string name="nomStatJoueur13">Stat 13 : </string>
+	<string name="nomStatJoueur14">Stat 14 : </string>
+	
 </resources>
