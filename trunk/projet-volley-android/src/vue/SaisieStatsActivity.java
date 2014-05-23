@@ -25,6 +25,8 @@ import android.view.View;
 import android.view.View.OnTouchListener;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
@@ -137,6 +139,9 @@ public class SaisieStatsActivity extends Activity {
 	RadioButton bouton_neutre = null;
 	RadioButton bouton_mauvais = null;
 	RadioButton bouton_catastrophique = null;
+	
+	// Initialisation du tableau de scores
+	TableLayout tableScore = null;
 	
 	ArrayList<Integer> joueurs_checked = new ArrayList<Integer>(2);
 	int cptTouch = 0;
@@ -864,6 +869,8 @@ public class SaisieStatsActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_saisie_stats);
 		
+		tableScore = (TableLayout) findViewById(R.id.tableau_score);
+		
 		matriceIdRouge[0][0] = R.string.num_e1_n1;
 		matriceIdRouge[0][1] = R.string.num_e1_n2;
 		matriceIdRouge[0][2] = R.string.num_e1_n3;
@@ -1160,14 +1167,22 @@ public class SaisieStatsActivity extends Activity {
 	
 	public void miseAJour()
 	{
+		
 		if (ctrl.estNouveauMatch())
 		{
-			
+			ctrl.getModele().setNouveauMatch(false);
+		}
+		else
+		{
+			modifierCelluleScore(1, ctrl.getModele().getTabSet().size(), new Integer(ctrl.getModele().getSet().getScoreEquipeDomicile()).toString());
+			modifierCelluleScore(2, ctrl.getModele().getTabSet().size(), new Integer(ctrl.getModele().getSet().getScoreEquipeExterieur()).toString());
 		}
 		if (ctrl.estNouveauSet())
 		{
 			ctrl.nouveauSet();
 			ctrl.getModele().setNouveauSet(false);
+			modifierCelluleScore(1, ctrl.getModele().getTabSet().size(), new Integer(ctrl.getModele().getSet().getScoreEquipeDomicile()).toString());
+			modifierCelluleScore(2, ctrl.getModele().getTabSet().size(), new Integer(ctrl.getModele().getSet().getScoreEquipeExterieur()).toString());
 		}
 		String etat = ctrl.getEtatAuto();
 		if (ctrl.estNouveauPoint())
@@ -1183,6 +1198,7 @@ public class SaisieStatsActivity extends Activity {
 			}
 			if (ctrl.getService() == 0)
 			{
+				//modifierCelluleScore(1, ctrl.getModele().getTabSet().size(), new Integer(ctrl.getModele().getSet().getScoreEquipeDomicile()).toString());
 				maillot_bleu1.setChecked(true);
 				maillot_rouge6.setChecked(true);
 				joueurs_checked.add(12);
@@ -1194,6 +1210,7 @@ public class SaisieStatsActivity extends Activity {
 			}
 			else
 			{
+				//modifierCelluleScore(2, ctrl.getModele().getTabSet().size(), new Integer(ctrl.getModele().getSet().getScoreEquipeExterieur()).toString());
 				maillot_rouge1.setChecked(true);
 				maillot_bleu6.setChecked(true);
 				joueurs_checked.add(0);
@@ -1270,6 +1287,12 @@ public class SaisieStatsActivity extends Activity {
 		}
 	}
 	
+	public void modifierCelluleScore(int li, int col, String s)
+	{
+		TableRow tablecol = (TableRow)tableScore.getChildAt(li);
+		TextView cell = (TextView)tablecol.getChildAt(col);
+		cell.setText(s);
+	}
 
 }
 
