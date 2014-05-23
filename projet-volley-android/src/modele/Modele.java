@@ -54,6 +54,8 @@ public class Modele {
 	public void setService(int i){service = i;}
 	public void setRotation(int b){rotation = b;}
 	public void setNouveauPoint(boolean bool){nouveauPoint = bool;}
+	public void setNouveauMatch(boolean bool){nouveauMatch = bool;}
+
 
 	public void setNouveauSet(boolean bool){nouveauSet = bool;}
 	public void setJSuiv(int i){jSuiv = i;}

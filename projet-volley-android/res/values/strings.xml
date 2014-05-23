@@ -14,16 +14,17 @@
 	<string name="set5">5</string>
 	<string name="equipe1">NomEquipe1</string>
 	<string name="equipe2">NomEquipe2</string>
-	<string name="score_e1_s1">25</string>
+	<string name="score_e1_s1">0</string>
 	<string name="score_e1_s2">20</string>
 	<string name="score_e1_s3">25</string>
 	<string name="score_e1_s4">21</string>
 	<string name="score_e1_s5">15</string>
-    <string name="score_e2_s1">19</string>
+    <string name="score_e2_s1">0</string>
 	<string name="score_e2_s2">25</string>
 	<string name="score_e2_s3">16</string>
 	<string name="score_e2_s4">25</string>
 	<string name="score_e2_s5">7</string>
+	<string name="vide">-</string>
 	
 	<!--NOM DE L'ACTION -->
 	<string name="service">Service</string>

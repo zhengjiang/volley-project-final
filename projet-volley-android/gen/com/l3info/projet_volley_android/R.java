@@ -1182,8 +1182,8 @@ containing a value of this type.
         public static final int nomEntraineur=0x7f0500c8;
         public static final int nomEquipe=0x7f0500c9;
         public static final int nomJoueur=0x7f0500cf;
-        public static final int nom_equipe1=0x7f050073;
-        public static final int nom_equipe2=0x7f050074;
+        public static final int nom_equipe1=0x7f050074;
+        public static final int nom_equipe2=0x7f050073;
         public static final int nom_joueur_e1_n1=0x7f050046;
         public static final int nom_joueur_e1_n10=0x7f050084;
         public static final int nom_joueur_e1_n11=0x7f050088;
@@ -1399,98 +1399,98 @@ containing a value of this type.
          */
         public static final int abc_shareactionprovider_share_with_application=0x7f0a000b;
         public static final int action_settings=0x7f0a000e;
-        public static final int annuler=0x7f0a002d;
+        public static final int annuler=0x7f0a002e;
         public static final int app_name=0x7f0a000d;
-        public static final int attaque=0x7f0a0025;
-        public static final int bien=0x7f0a0029;
-        public static final int bloc=0x7f0a0026;
-        public static final int catastrophique=0x7f0a002c;
-        public static final int defense=0x7f0a0023;
+        public static final int attaque=0x7f0a0026;
+        public static final int bien=0x7f0a002a;
+        public static final int bloc=0x7f0a0027;
+        public static final int catastrophique=0x7f0a002d;
+        public static final int defense=0x7f0a0024;
         public static final int equipe1=0x7f0a0016;
         public static final int equipe2=0x7f0a0017;
         /** QUALITE DE L'ACTION
          */
-        public static final int excellent=0x7f0a0028;
-        public static final int faute=0x7f0a0027;
+        public static final int excellent=0x7f0a0029;
+        public static final int faute=0x7f0a0028;
         public static final int hello_world=0x7f0a000f;
-        public static final int mauvais=0x7f0a002b;
-        public static final int neutre=0x7f0a002a;
+        public static final int mauvais=0x7f0a002c;
+        public static final int neutre=0x7f0a002b;
         /**  AFFICHAGE STATISTIQUES JOUEUR 
          */
-        public static final int nomStatJoueur1=0x7f0a005e;
-        public static final int nomStatJoueur10=0x7f0a0067;
-        public static final int nomStatJoueur11=0x7f0a0068;
-        public static final int nomStatJoueur12=0x7f0a0069;
-        public static final int nomStatJoueur13=0x7f0a006a;
-        public static final int nomStatJoueur14=0x7f0a006b;
-        public static final int nomStatJoueur2=0x7f0a005f;
-        public static final int nomStatJoueur3=0x7f0a0060;
-        public static final int nomStatJoueur4=0x7f0a0061;
-        public static final int nomStatJoueur5=0x7f0a0062;
-        public static final int nomStatJoueur6=0x7f0a0063;
-        public static final int nomStatJoueur7=0x7f0a0064;
-        public static final int nomStatJoueur8=0x7f0a0065;
-        public static final int nomStatJoueur9=0x7f0a0066;
+        public static final int nomStatJoueur1=0x7f0a005f;
+        public static final int nomStatJoueur10=0x7f0a0068;
+        public static final int nomStatJoueur11=0x7f0a0069;
+        public static final int nomStatJoueur12=0x7f0a006a;
+        public static final int nomStatJoueur13=0x7f0a006b;
+        public static final int nomStatJoueur14=0x7f0a006c;
+        public static final int nomStatJoueur2=0x7f0a0060;
+        public static final int nomStatJoueur3=0x7f0a0061;
+        public static final int nomStatJoueur4=0x7f0a0062;
+        public static final int nomStatJoueur5=0x7f0a0063;
+        public static final int nomStatJoueur6=0x7f0a0064;
+        public static final int nomStatJoueur7=0x7f0a0065;
+        public static final int nomStatJoueur8=0x7f0a0066;
+        public static final int nomStatJoueur9=0x7f0a0067;
         /** NOM DES JOUEURS DE L'EQUIPE ROUGE 
          */
-        public static final int nom_e1_n1=0x7f0a002e;
-        public static final int nom_e1_n10=0x7f0a0037;
-        public static final int nom_e1_n11=0x7f0a0038;
-        public static final int nom_e1_n12=0x7f0a0039;
-        public static final int nom_e1_n2=0x7f0a002f;
-        public static final int nom_e1_n3=0x7f0a0030;
-        public static final int nom_e1_n4=0x7f0a0031;
-        public static final int nom_e1_n5=0x7f0a0032;
-        public static final int nom_e1_n6=0x7f0a0033;
-        public static final int nom_e1_n7=0x7f0a0034;
-        public static final int nom_e1_n8=0x7f0a0035;
-        public static final int nom_e1_n9=0x7f0a0036;
+        public static final int nom_e1_n1=0x7f0a002f;
+        public static final int nom_e1_n10=0x7f0a0038;
+        public static final int nom_e1_n11=0x7f0a0039;
+        public static final int nom_e1_n12=0x7f0a003a;
+        public static final int nom_e1_n2=0x7f0a0030;
+        public static final int nom_e1_n3=0x7f0a0031;
+        public static final int nom_e1_n4=0x7f0a0032;
+        public static final int nom_e1_n5=0x7f0a0033;
+        public static final int nom_e1_n6=0x7f0a0034;
+        public static final int nom_e1_n7=0x7f0a0035;
+        public static final int nom_e1_n8=0x7f0a0036;
+        public static final int nom_e1_n9=0x7f0a0037;
         /** NOM DES JOUEURS DE L'EQUIPE BLEU 
          */
-        public static final int nom_e2_n1=0x7f0a0046;
-        public static final int nom_e2_n10=0x7f0a004f;
-        public static final int nom_e2_n11=0x7f0a0050;
-        public static final int nom_e2_n12=0x7f0a0051;
-        public static final int nom_e2_n2=0x7f0a0047;
-        public static final int nom_e2_n3=0x7f0a0048;
-        public static final int nom_e2_n4=0x7f0a0049;
-        public static final int nom_e2_n5=0x7f0a004a;
-        public static final int nom_e2_n6=0x7f0a004b;
-        public static final int nom_e2_n7=0x7f0a004c;
-        public static final int nom_e2_n8=0x7f0a004d;
-        public static final int nom_e2_n9=0x7f0a004e;
+        public static final int nom_e2_n1=0x7f0a0047;
+        public static final int nom_e2_n10=0x7f0a0050;
+        public static final int nom_e2_n11=0x7f0a0051;
+        public static final int nom_e2_n12=0x7f0a0052;
+        public static final int nom_e2_n2=0x7f0a0048;
+        public static final int nom_e2_n3=0x7f0a0049;
+        public static final int nom_e2_n4=0x7f0a004a;
+        public static final int nom_e2_n5=0x7f0a004b;
+        public static final int nom_e2_n6=0x7f0a004c;
+        public static final int nom_e2_n7=0x7f0a004d;
+        public static final int nom_e2_n8=0x7f0a004e;
+        public static final int nom_e2_n9=0x7f0a004f;
         /** NUMERO DES JOUEURS DE L'EQUIPE ROUGE 
          */
-        public static final int num_e1_n1=0x7f0a003a;
-        public static final int num_e1_n10=0x7f0a0043;
-        public static final int num_e1_n11=0x7f0a0044;
-        public static final int num_e1_n12=0x7f0a0045;
-        public static final int num_e1_n2=0x7f0a003b;
-        public static final int num_e1_n3=0x7f0a003c;
-        public static final int num_e1_n4=0x7f0a003d;
-        public static final int num_e1_n5=0x7f0a003e;
-        public static final int num_e1_n6=0x7f0a003f;
-        public static final int num_e1_n7=0x7f0a0040;
-        public static final int num_e1_n8=0x7f0a0041;
-        public static final int num_e1_n9=0x7f0a0042;
+        public static final int num_e1_n1=0x7f0a003b;
+        public static final int num_e1_n10=0x7f0a0044;
+        public static final int num_e1_n11=0x7f0a0045;
+        public static final int num_e1_n12=0x7f0a0046;
+        public static final int num_e1_n2=0x7f0a003c;
+        public static final int num_e1_n3=0x7f0a003d;
+        public static final int num_e1_n4=0x7f0a003e;
+        public static final int num_e1_n5=0x7f0a003f;
+        public static final int num_e1_n6=0x7f0a0040;
+        public static final int num_e1_n7=0x7f0a0041;
+        public static final int num_e1_n8=0x7f0a0042;
+        public static final int num_e1_n9=0x7f0a0043;
         /** NUMERO DES JOUEURS DE L'EQUIPE BLEUE 
          */
-        public static final int num_e2_n1=0x7f0a0052;
-        public static final int num_e2_n10=0x7f0a005b;
-        public static final int num_e2_n11=0x7f0a005c;
-        public static final int num_e2_n12=0x7f0a005d;
-        public static final int num_e2_n2=0x7f0a0053;
-        public static final int num_e2_n3=0x7f0a0054;
-        public static final int num_e2_n4=0x7f0a0055;
-        public static final int num_e2_n5=0x7f0a0056;
-        public static final int num_e2_n6=0x7f0a0057;
-        public static final int num_e2_n7=0x7f0a0058;
-        public static final int num_e2_n8=0x7f0a0059;
-        public static final int num_e2_n9=0x7f0a005a;
+        public static final int num_e2_n1=0x7f0a0053;
+        public static final int num_e2_n10=0x7f0a005c;
+        public static final int num_e2_n11=0x7f0a005d;
+        public static final int num_e2_n12=0x7f0a005e;
+        public static final int num_e2_n2=0x7f0a0054;
+        public static final int num_e2_n3=0x7f0a0055;
+        public static final int num_e2_n4=0x7f0a0056;
+        public static final int num_e2_n5=0x7f0a0057;
+        public static final int num_e2_n6=0x7f0a0058;
+        public static final int num_e2_n7=0x7f0a0059;
+        public static final int num_e2_n8=0x7f0a005a;
+        public static final int num_e2_n9=0x7f0a005b;
         /** TABLEAU DES SCORES
          */
         public static final int numero_set=0x7f0a0010;
-        public static final int passe=0x7f0a0024;
+        public static final int passe=0x7f0a0025;
         public static final int score_e1_s1=0x7f0a0018;
         public static final int score_e1_s2=0x7f0a0019;
         public static final int score_e1_s3=0x7f0a001a;
@@ -1503,12 +1503,13 @@ containing a value of this type.
         public static final int score_e2_s5=0x7f0a0021;
         /** NOM DE L'ACTION 
          */
-        public static final int service=0x7f0a0022;
+        public static final int service=0x7f0a0023;
         public static final int set1=0x7f0a0011;
         public static final int set2=0x7f0a0012;
         public static final int set3=0x7f0a0013;
         public static final int set4=0x7f0a0014;
         public static final int set5=0x7f0a0015;
+        public static final int vide=0x7f0a0022;
     }
     public static final class style {
         /** 
