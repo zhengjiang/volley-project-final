@@ -10,7 +10,6 @@ package modele;
 public class Joueur {
 	private int id;
 	private String nom;
-
 	private int taille;
 	private int age;
 	private int poste;
@@ -22,14 +21,6 @@ public class Joueur {
 		this.age = age;
 		this.poste = poste;
 	}
-	
-	public boolean nomValide(){
-		if(this.nom.length() != 0){
-			return true;
-		}
-		return false;
-	}
-
 	
 	//GETTERS SETTERS
 	public int getId() {
@@ -64,15 +55,34 @@ public class Joueur {
 		this.age = age;
 	}
 
-	public int getPoste() {
+	public int getPosteEnCours() {
 		return poste;
 	}
 
-	public void setPoste(int poste) {
+	public void setPosteEnCours(int poste) {
 		this.poste = poste;
 	}
 	
+	//Verification des attributs
+	public boolean nomEstValide()
+	{
+		return this.nom.trim().length()!=0;
+	}
 	
+	public boolean tailleEstValide()
+	{
+		return this.taille >= 0 && Integer.valueOf(this.taille).toString().length()==3;
+	}
+	
+	public boolean ageEstValide()
+	{
+		return this.age >= 0 && Integer.valueOf(this.age).toString().length()<=2;
+	}
+	
+	public boolean posteEstValide()
+	{
+		return (this.poste>=1 && this.poste<=6);
+	}
 }
 
 

@@ -1,0 +1,78 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ChoixEquipesMatch" >
+
+     <TextView
+        android:id="@+id/textTitre"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentLeft="true"
+        android:gravity="center_horizontal"
+        android:text="Création d'un match - Choix des équipes"
+        android:textSize="55sp" />
+     
+     <TextView
+        android:id="@+id/vs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="240dp"
+        android:gravity="center_horizontal"
+        android:text="VS"
+        android:textSize="120sp" />
+        
+        
+    <ListView
+        android:id="@+id/listEquipes1"
+        android:layout_width="400dp"
+        android:layout_height="300dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="150dp"
+        android:choiceMode="singleChoice" >
+    </ListView>
+    
+    <ListView
+        android:id="@+id/listEquipes2"
+        android:layout_width="400dp"
+        android:layout_height="300dp"
+        android:layout_alignTop="@id/listEquipes1"
+        android:choiceMode="singleChoice"
+        android:layout_marginLeft="800dp">
+    </ListView>
+    
+    
+  
+        
+    <DatePicker
+	  android:id="@+id/datePicker"
+	  android:calendarViewShown="false"
+	  android:layout_width="wrap_content"
+	  android:layout_height="900dp"
+	  android:layout_marginTop="500dp"
+	  android:layout_marginLeft="50dp"
+	  android:startYear="2012" />
+    
+    <EditText
+        android:id="@+id/lieuMatch"
+        android:layout_width="700dp"
+        android:layout_height="80dp"
+        android:layout_marginLeft="400dp"
+        android:layout_alignTop="@id/datePicker"
+        android:ems="10"
+        android:hint="Lieu du match"
+        android:textSize="50sp" />
+    
+    <Button
+        android:id="@+id/valider3"
+        android:layout_height="wrap_content"
+        android:layout_width="400dp"
+        android:layout_marginLeft="800dp"
+        android:layout_marginTop="620dp"
+        android:text="VALIDER" 
+        android:background="#6C3"
+        android:textSize="50sp" />
+    
+
+
+</RelativeLayout>

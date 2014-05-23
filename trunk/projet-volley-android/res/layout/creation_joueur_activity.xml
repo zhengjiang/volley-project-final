@@ -3,9 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content" >
 
+
     <Button
         android:id="@+id/Precedent"
-        android:layout_width="100dp"
+        android:layout_width="100dp" 
         android:layout_height="70dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
@@ -33,10 +34,12 @@
         android:text="Création d&apos;un joueur"
         android:textSize="55sp" />
 
+    <!--à ajouter à tous les champs sasie de type int-->
     <EditText
-        android:id="@+id/AgeJoueur"
+        android:id="@+id/AgeJoueur" 
+        android:inputType="number"
         android:layout_width="700dp"
-        android:layout_height="125dp"
+        android:layout_height="80dp"
         android:layout_alignLeft="@+id/nomJoueur"
         android:layout_below="@+id/nomJoueur"
         android:layout_marginTop="45dp"
@@ -46,19 +49,21 @@
 
     <EditText
         android:id="@+id/tailleJoueur"
+        android:inputType="number"
         android:layout_width="700dp"
-        android:layout_height="125dp"
+        android:layout_height="80dp"
         android:layout_alignLeft="@+id/AgeJoueur"
         android:layout_below="@+id/AgeJoueur"
         android:layout_marginTop="45dp"
         android:ems="10"
-        android:hint="Taille "
+        android:hint="Taille (en cm)"
         android:textSize="50sp" />
 
     <EditText
         android:id="@+id/Poste_en_courJoueur"
+        android:inputType="number"
         android:layout_width="700dp"
-        android:layout_height="125dp"
+        android:layout_height="80dp"
         android:layout_alignLeft="@+id/tailleJoueur"
         android:layout_below="@+id/tailleJoueur"
         android:layout_marginTop="45dp"
@@ -67,12 +72,24 @@
         android:textSize="50sp" />
 
     <EditText
+        android:id="@+id/numMaillot"
+        android:inputType="number"
+        android:layout_width="700dp"
+        android:layout_height="80dp"
+        android:layout_alignLeft="@+id/Poste_en_courJoueur"
+        android:layout_below="@+id/Poste_en_courJoueur"
+        android:layout_marginTop="45dp"
+        android:ems="10"
+        android:hint="N° maillot"
+        android:textSize="50sp" />
+    
+    <EditText
         android:id="@+id/nomJoueur"
         android:layout_width="700dp"
-        android:layout_height="125dp"
+        android:layout_height="80dp"
         android:layout_below="@+id/libCreationJoueur"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="30dp"
         android:ems="10"
         android:hint="Nom"
         android:textSize="50sp" >
@@ -84,10 +101,21 @@
         android:id="@+id/ValidationCreationJoueur"
         style="@style/styleBoutonFormulaire"
         android:layout_width="400dp"
-        android:layout_height="160dp"
+        android:layout_height="120dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="24dp"
         android:text="Valider" />
+
+    <ListView
+        android:id="@+id/listeEquipes"
+        android:layout_width="700dp"
+        android:layout_height="150dp"
+        android:layout_below="@+id/numMaillot"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:choiceMode="singleChoice"
+        android:textSize="70sp" >
+    </ListView>
 
 </RelativeLayout>

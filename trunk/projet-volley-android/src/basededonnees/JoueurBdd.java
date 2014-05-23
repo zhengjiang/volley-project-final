@@ -25,7 +25,7 @@ public class JoueurBdd extends BDD {
 		  value.put("nomJ", j.getNom());
 		  value.put("tailleJ", j.getTaille());
 		  value.put("ageJ", j.getAge());
-		  value.put("posteJ", j.getPoste());
+		  value.put("posteJ", j.getPosteEnCours());
 		  mDb.insert("JOUEURS", null, value);
 	  }
 

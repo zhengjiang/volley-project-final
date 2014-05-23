@@ -4,15 +4,6 @@
     android:layout_height="wrap_content" >
 
     <Button
-        android:id="@+id/Precedent"
-        android:layout_width="100dp"
-        android:layout_height="70dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="22dp"
-        android:background="@drawable/fleche_precedent" />
-
-    <Button
         android:id="@+id/RetourAccueil"
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -65,5 +56,14 @@
         android:ems="10"
         android:hint="Nom"
         android:textSize="50sp" />
+
+    <Button
+        android:id="@+id/Precedent"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+        android:layout_above="@+id/ModificationEquipe"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="27dp"
+        android:background="@drawable/fleche_precedent" />
 
 </RelativeLayout>

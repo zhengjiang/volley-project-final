@@ -65,4 +65,9 @@ public class JoueurEquipe {
 		this.enCours = enCours;
 	}
 	
+	//Verification des attributs
+	public boolean numMaillotEstValide()
+	{
+		return this.numMaillot > 0;
+	}
 }

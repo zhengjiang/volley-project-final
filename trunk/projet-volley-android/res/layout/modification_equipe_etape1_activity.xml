@@ -33,40 +33,19 @@
       android:layout_height="100dp"
       android:layout_alignParentLeft="true"
       android:layout_below="@+id/RetourAccueil"
-      android:layout_marginTop="29dp"
+      android:layout_marginTop="77dp"
       android:gravity="center_horizontal"
-      android:text="Modification d'une équipe"
+      android:text="Modification d&apos;une équipe"
       android:textSize="55sp" />
-
-  <Button
-      android:id="@+id/BtnModificationEquipe"
-      android:layout_width="300dp"
-      android:layout_height="175dp"
-      style="@style/styleBoutonFormulaire"
-      android:layout_alignParentBottom="true"
-      android:layout_centerHorizontal="true"
-      android:layout_marginBottom="38dp"
-      android:text="Modifier" />
 
   <ListView
       android:id="@+id/listView1"
+      android:choiceMode="singleChoice"
       android:layout_width="wrap_content"
-      android:layout_height="400dp"
-      android:layout_above="@+id/BtnModificationEquipe"
+      android:layout_height="650dp"
       android:layout_alignParentLeft="true"
-      android:layout_marginBottom="126dp" >
+      android:layout_below="@+id/libModificationEquipe"
+      android:layout_marginTop="67dp" >
   </ListView>
-
-  <TextView
-      android:id="@+id/libModificationEquipe"
-      android:layout_width="wrap_content"
-      android:layout_height="50dp"
-      android:layout_above="@+id/listView1"
-      android:layout_centerHorizontal="true"
-      android:layout_marginBottom="48dp"
-      android:gravity="center"
-      android:text="Choisir une  équipe "
-      android:textColor="#FF0000"
-      android:textSize="30sp" />
   
 </RelativeLayout>

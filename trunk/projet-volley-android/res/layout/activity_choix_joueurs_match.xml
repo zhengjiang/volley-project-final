@@ -1,0 +1,227 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ChoixJoueursMatch" >
+
+    
+    
+        <Button
+        android:id="@+id/valider4"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="670dp"
+        android:text="VALIDER" 
+        android:background="#FF9900"
+        android:textSize="40sp" />
+        
+     <Button
+        android:id="@+id/precedent2"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="20dp"
+        android:text="PRECEDENT" 
+        android:background="#FF9900"
+        android:textSize="40sp" />
+            
+     
+     <TextView
+        android:id="@+id/nomEquipe1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="100dp"
+        android:text="@string/nomEquipe1"
+        android:textSize="40sp" />
+     
+     
+    <TextView
+        android:id="@+id/nomEquipe2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="1000dp"
+        android:layout_marginTop="100dp"
+        android:text="@string/nomEquipe2"
+        android:textSize="40sp" />
+     
+     <TextView
+        android:id="@+id/textTitre"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentLeft="true"
+        android:gravity="center_horizontal"
+        android:text="Choix des joueurs"
+        android:textSize="55sp" />
+     
+    <TextView
+        android:id="@+id/textTitulaires"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="100dp"
+        android:gravity="center_horizontal"
+        android:text="Titulaires"
+        android:textSize="40sp" />
+    
+    <TextView
+        android:id="@+id/textRemplacants"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="400dp"
+        android:gravity="center_horizontal"
+        android:text="Remplacants"
+        android:textSize="40sp" />
+         
+    <ListView
+        android:id="@+id/listJoueursEquipe1"
+        android:layout_width="200dp"
+        android:layout_height="600dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="170dp"
+        android:choiceMode="multipleChoice" >
+    </ListView>
+    
+    <Button
+        android:id="@+id/titulaire1"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_alignRight="@id/listJoueursEquipe1"
+        android:layout_marginRight="-80dp"
+        android:layout_marginTop="200dp"
+        android:text="IN" 
+        android:background="#009900" />
+    
+    <Button
+        android:id="@+id/nonTitulaire1"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_alignLeft="@id/titulaire1"
+        android:layout_alignTop="@id/titulaire1"
+        android:layout_marginTop="80dp"
+        android:text="OUT" 
+        android:background="#FF0000" />
+    
+        <Button
+        android:id="@+id/remplacant1"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_alignRight="@id/listJoueursEquipe1"
+        android:layout_marginRight="-80dp"
+        android:layout_marginTop="500dp"
+        android:text="IN" 
+        android:background="#009900" />
+    
+    <Button
+        android:id="@+id/nonRemplacant1"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_alignLeft="@id/remplacant1"
+        android:layout_alignTop="@id/remplacant1"
+        android:layout_marginTop="80dp"
+        android:text="OUT" 
+        android:background="#FF0000" />
+    
+    <ListView
+        android:id="@+id/listJoueursTitulairesEquipe1"
+        android:layout_width="200dp"
+        android:layout_height="230dp"
+        android:layout_alignTop="@id/listJoueursEquipe1"
+        android:choiceMode="multipleChoice"
+        android:layout_marginLeft="350dp">
+    </ListView>
+    
+    <ListView
+        android:id="@+id/listJoueursRemplacantsEquipe1"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_alignLeft="@id/listJoueursTitulairesEquipe1"
+        android:choiceMode="multipleChoice"
+        android:layout_marginTop="450dp">
+    </ListView>
+    
+
+    
+
+        
+        
+    <ListView
+        android:id="@+id/listJoueursEquipe2"
+        android:layout_width="200dp"
+        android:layout_height="600dp"
+        android:layout_alignTop="@id/listJoueursEquipe1"
+        android:choiceMode="multipleChoice"
+        android:layout_marginLeft="1000dp"
+        >
+    </ListView>
+    
+    
+
+    
+    <ListView
+        android:id="@+id/listJoueursTitulairesEquipe2"
+        android:layout_width="200dp"
+        android:layout_height="230dp"
+        android:layout_alignTop="@id/listJoueursEquipe1"
+        android:choiceMode="multipleChoice"
+        android:layout_marginLeft="600dp">
+    </ListView>
+    
+    
+    <ListView
+        android:id="@+id/listJoueursRemplacantsEquipe2"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_alignLeft="@id/listJoueursTitulairesEquipe2"
+        android:choiceMode="multipleChoice"
+        android:layout_marginTop="450dp">
+    </ListView>
+    
+    <Button
+        android:id="@+id/titulaire2"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_alignLeft="@id/listJoueursEquipe2"
+        android:layout_alignTop="@id/titulaire1"
+        android:layout_marginLeft="-100dp"
+        android:text="IN" 
+        android:background="#009900" />
+    
+    <Button
+        android:id="@+id/nonTitulaire2"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_alignLeft="@id/titulaire2"
+        android:layout_alignTop="@id/titulaire2"
+        android:layout_marginTop="80dp"
+        android:text="OUT" 
+        android:background="#FF0000" />
+    
+        <Button
+        android:id="@+id/remplacant2"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_alignLeft="@id/listJoueursEquipe2"
+        android:layout_alignTop="@id/remplacant1"
+        android:layout_marginLeft="-100dp"
+        android:text="IN" 
+        android:background="#009900" />
+    
+    <Button
+        android:id="@+id/nonRemplacant2"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_alignLeft="@id/remplacant2"
+        android:layout_alignTop="@id/remplacant2"
+        android:layout_marginTop="80dp"
+        android:text="OUT" 
+        android:background="#FF0000" />
+    
+
+
+    
+	
+
+</RelativeLayout>

@@ -3,23 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content" >
 
-    <Button
-        android:id="@+id/Precedent"
-        android:layout_width="100dp"
-        android:layout_height="70dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="22dp"
-        android:background="@drawable/fleche_precedent" />
-
-    <Button
-        android:id="@+id/RetourAccueil"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:background="@drawable/accueil" />
-
     <TextView
         android:id="@+id/libModificationJoueur"
         android:layout_width="match_parent"
@@ -32,8 +15,9 @@
 
     <EditText
         android:id="@+id/AgeJoueur"
+        android:inputType="number"
         android:layout_width="700dp"
-        android:layout_height="125dp"
+        android:layout_height="80dp"
         android:layout_alignLeft="@+id/nomJoueur"
         android:layout_below="@+id/nomJoueur"
         android:layout_marginTop="45dp"
@@ -43,8 +27,9 @@
 
     <EditText
         android:id="@+id/tailleJoueur"
+        android:inputType="number"
         android:layout_width="700dp"
-        android:layout_height="125dp"
+        android:layout_height="80dp"
         android:layout_alignLeft="@+id/AgeJoueur"
         android:layout_below="@+id/AgeJoueur"
         android:layout_marginTop="45dp"
@@ -54,20 +39,33 @@
 
     <EditText
         android:id="@+id/Poste_en_courJoueur"
+        android:inputType="number"
         android:layout_width="700dp"
-        android:layout_height="125dp"
+        android:layout_height="80dp"
         android:layout_alignLeft="@+id/tailleJoueur"
         android:layout_below="@+id/tailleJoueur"
         android:layout_marginTop="45dp"
         android:ems="10"
         android:hint="Poste en cours"
         android:textSize="50sp" />
+    
+     <EditText
+        android:id="@+id/numMaillot"
+        android:inputType="number"
+        android:layout_width="700dp"
+        android:layout_height="80dp"
+        android:layout_alignLeft="@+id/Poste_en_courJoueur"
+        android:layout_below="@+id/Poste_en_courJoueur"
+        android:layout_marginTop="45dp"
+        android:ems="10"
+        android:hint="N° maillot"
+        android:textSize="50sp" />
 
     <Button
         android:id="@+id/ValidationModifieJoueur"
         style="@style/styleBoutonFormulaire"
         android:layout_width="400dp"
-        android:layout_height="160dp"
+        android:layout_height="120dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="24dp"
@@ -76,12 +74,44 @@
     <EditText
         android:id="@+id/nomJoueur"
         android:layout_width="700dp"
-        android:layout_height="125dp"
+        android:layout_height="80dp"
         android:layout_below="@+id/libModificationJoueur"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="30dp"
         android:ems="10"
         android:hint="Nom"
         android:textSize="50sp" />
 
+    <ListView
+        android:id="@+id/listeEquipes"
+        android:layout_width="700dp"
+        android:layout_height="150dp"
+        android:layout_below="@+id/numMaillot"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:choiceMode="singleChoice"
+        android:textSize="70sp" >
+    </ListView>
+
+    <Button
+        android:id="@+id/RetourAccueil"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/accueil" />
+
+    <Button
+        android:id="@+id/Precedent"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/RetourAccueil"
+        android:layout_marginLeft="26dp"
+        android:background="@drawable/fleche_precedent" />
+
 </RelativeLayout>
+
+

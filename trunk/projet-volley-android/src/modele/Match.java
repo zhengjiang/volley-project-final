@@ -111,7 +111,7 @@ public class Match
 
 	/*
 	* Verifie si la date est valide
-	* @return : retourne vrai si la date a bien Ã©tÃ© entrÃ© correctement et qu'elle est bien supÃ©rieur ou Ã©gale Ã  la date du jour
+	* @return : retourne vrai si la date a bien été entré correctement et qu'elle est bien supérieur ou égale à la date du jour
 	*/
 	public boolean dateEstValide()
 	{
@@ -119,7 +119,7 @@ public class Match
 		{
 			if (this.date.getDate()>=1) // si le jour est >= 1
 			{
-				if (this.date.getMonth() == 1) // si c'est le mois de fÃ©vrier
+				if (this.date.getMonth() == 1) // si c'est le mois de février
 				{
 					int monAnnee = (this.date.getYear()+1900); 
 
@@ -139,7 +139,7 @@ public class Match
 					{
 						if (this.date.getDate()<=28)
 						{
-							// on regarde ensuite si la date est supÃ©rieur ou bien egale Ã  la date du jour
+							// on regarde ensuite si la date est supérieur ou bien egale à la date du jour
 							Date dateDuJour = new Date();
 							return ( this.date.after(dateDuJour) || this.date.equals(dateDuJour) );	
 						}
@@ -153,7 +153,7 @@ public class Match
 				{
 					if (this.date.getDate()<=30) // le nombre de jours doit etre <= 30
 					{
-						// on regarde ensuite si la date est supÃ©rieur ou bien egale Ã  la date du jour
+						// on regarde ensuite si la date est supérieur ou bien egale à la date du jour
 						Date dateDuJour = new Date();
 						return ( this.date.after(dateDuJour) || ( this.date.getDate()==dateDuJour.getDate() && this.date.getMonth()==dateDuJour.getMonth() && this.date.getYear()==dateDuJour.getYear() ) );
 					}
@@ -166,7 +166,7 @@ public class Match
 				{
 					if (this.date.getDate()<=31) // le nombre de jours doit etre <= 30
 					{
-						// on regarde ensuite si la date est supÃ©rieur ou bien egale Ã  la date du jour
+						// on regarde ensuite si la date est supérieur ou bien egale à la date du jour
 						Date dateDuJour = new Date();
 						return ( this.date.after(dateDuJour) || ( this.date.getDate()==dateDuJour.getDate() && this.date.getMonth()==dateDuJour.getMonth() && this.date.getYear()==dateDuJour.getYear() ) );
 					}
@@ -197,7 +197,7 @@ public class Match
 	}
 	
 	/*
-	* Verifie si les Ã©quipes sont valide
+	* Verifie si les équipes sont valide
 	* @return : retourne vrai si les equipes ne sont pas egales
 	*/
 	public boolean equipesValide()
@@ -212,7 +212,7 @@ public class Match
 	{
 		SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yyyy");
 
-		return "nÂ° Match : "+this.id+"\n"+"date Match : "+formater.format(this.date)+"\n"+"lieu : "+this.lieu+"\n\n"+"equipe domicile Match : \n"+this.equipe1.toString()+"\n"+"equipe exterieur Match : \n"+this.equipe2.toString()+"\n"+"competition Match : \n"+this.competition.toString()+"\n";
+		return "n° Match : "+this.id+"\n"+"date Match : "+formater.format(this.date)+"\n"+"lieu : "+this.lieu+"\n\n"+"equipe domicile Match : \n"+this.equipe1.toString()+"\n"+"equipe exterieur Match : \n"+this.equipe2.toString()+"\n"+"competition Match : \n"+this.competition.toString()+"\n";
 	} 
 
 }
