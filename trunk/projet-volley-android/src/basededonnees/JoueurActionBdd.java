@@ -22,7 +22,7 @@ public class JoueurActionBdd extends BDD {
 	  /**
 	   * @param ja le joueurAction à ajouter à la base
 	   */
-	  public void ajouter(ActionJoueur jA) {
+	  public long ajouter(ActionJoueur jA) {
 		  ContentValues value = new ContentValues();
 		  value.put("setJA", jA.getSet().getId());
 		  value.put("actionJA", jA.getAction().getNom());
@@ -30,7 +30,7 @@ public class JoueurActionBdd extends BDD {
 		  value.put("pointJA", jA.getNumPoint());
 		  value.put("noteJA", jA.getNote());
 		  value.put("posteJA", jA.getPoste());
-		  mDb.insert("JOUEUR_ACTION", null, value);
+		  return mDb.insert("JOUEUR_ACTION", null, value);
 	  }
 
 	  /**

@@ -20,13 +20,14 @@ public class JoueurBdd extends BDD {
 	  /**
 	   * @param j le joueur à ajouter à la base
 	   */
-	  public void ajouter(Joueur j) {
+	  public long ajouter(Joueur j) {
 		  ContentValues value = new ContentValues();
 		  value.put("nomJ", j.getNom());
 		  value.put("tailleJ", j.getTaille());
 		  value.put("ageJ", j.getAge());
 		  value.put("posteJ", j.getPosteEnCours());
-		  mDb.insert("JOUEURS", null, value);
+		  long id = mDb.insert("JOUEURS", null, value);
+		  return id;
 	  }
 
 	  /**
