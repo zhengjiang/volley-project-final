@@ -1,5 +1,7 @@
 package vue;
 import com.l3info.projet_volley_android.R;
+
+import controleur.Controleur;
 import android.os.Bundle;
 import android.view.View.OnClickListener;
 import android.view.View;
@@ -51,6 +53,10 @@ public class MainActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.accueil_activity);
+		
+		Controleur c = Controleur.getInstance();
+		c.initialiseBdd(this);
+		c.testBdd();
 		
 		creationMatch = (Button) findViewById(R.id.creerMatch);
 		gestionJoueur = (Button) findViewById(R.id.creerJoueur);

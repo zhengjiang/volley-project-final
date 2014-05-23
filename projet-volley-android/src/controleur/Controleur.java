@@ -51,13 +51,12 @@ public class Controleur {
 	}
 	
 	public void testBdd(){
-		this.jb.open();
-		this.jb.ajouter(new Joueur(0, "Jacques", 0, 0, 0));
-		List<Joueur> j = this.jb.selectionnerTout();
-		for(int i = 0; i < j.size(); i++){
-			Log.v("test", j.get(0).getNom());
-		}
-		this.jb.close();
+		/*this.sb.open();
+		this.sb.modifier(new Set(1, 2, 35, 4, new Match(1, "", "", null, null, null)));
+		this.sb.close();*/
+		/*for(int i = 0; i < j.size(); i++){
+			Log.v("test", j.get(i).getEquipe().getNom()+" "+j.get(i).getJoueur().getNom()+" "+j.get(i).getNumMaillot());
+		}*/
 	}
 	
 	// Methodes accès Modèle

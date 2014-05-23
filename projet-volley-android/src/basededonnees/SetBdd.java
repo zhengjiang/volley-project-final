@@ -3,6 +3,7 @@ package basededonnees;
 import java.util.ArrayList;
 import java.util.List;
 
+import controleur.Controleur;
 import modele.Match;
 import modele.Set;
 import android.content.Context;
@@ -21,13 +22,13 @@ public class SetBdd extends BDD {
 	  /**
 	   * @param s le set à ajouter à la base
 	   */
-	  public void ajouter(Set s) {
+	  public long ajouter(Set s) {
 		  ContentValues value = new ContentValues();
 		  value.put("numS", s.getNumSet());
 		  value.put("scoreEquipe1S", s.getScoreEquipeDomicile());
 		  value.put("scoreEquipe2S", s.getScoreEquipeExterieur());
-		  value.put("matchS", s.getMatch().getId());// A VERIFIEEEERRRR ET TESTER !
-		  mDb.insert("SETS", null, value);
+		  value.put("matchS", s.getMatch().getId());
+		  return mDb.insert("SETS", null, value);
 	  }
 
 	  /**
@@ -45,7 +46,7 @@ public class SetBdd extends BDD {
 		  value.put("numS", s.getNumSet());
 		  value.put("scoreEquipe1S", s.getScoreEquipeDomicile());
 		  value.put("scoreEquipe2S", s.getScoreEquipeExterieur());
-		  value.put("matchS", s.getMatch().getId());// A VERIFIEEEERRRR ET TESTER !
+		  value.put("matchS", s.getMatch().getId());
 		  mDb.update("SETS", value, "idS = ?", new String[] {String.valueOf(s.getId())});
 	  }
 
@@ -57,16 +58,16 @@ public class SetBdd extends BDD {
 		  Cursor c = mDb.rawQuery("SELECT * FROM SETS WHERE idS = ?", new String[]{String.valueOf(i)});
 		  c.moveToFirst();
 		  return new Set(c.getInt(0), c.getInt(1), c.getInt(2), c.getInt(3), leMatch);
-	  }
+	  }*/
 	  
 	  public List<Set> selectionnerTout(){
 		Cursor c = mDb.rawQuery("SELECT * FROM SETS", null);
-		c.moveToFirst();
 		List<Set> sets = new ArrayList<Set>();
+		Controleur ca = Controleur.getInstance();
 		while(c.moveToNext()){
-			sets.add(new Set(c.getInt(0), c.getInt(1), c.getInt(2), c.getInt(3), leMatch));
+			sets.add(new Set(c.getInt(0), c.getInt(1), c.getInt(2), c.getInt(3), ca.mb.selectionner(c.getInt(4))));
 		}
 		c.close();
 		return sets;
-	  }*/
+	  }
 	}

@@ -3,6 +3,8 @@ package basededonnees;
 import java.util.ArrayList;
 import java.util.List;
 
+import modele.Equipe;
+import modele.Joueur;
 import modele.JoueurEquipe;
 import android.content.Context;
 import android.database.Cursor;
@@ -20,13 +22,13 @@ public class JoueurEquipeBdd extends BDD {
 	  /**
 	   * @param ja le joueurAction à ajouter à la base
 	   */
-	  public void ajouter(JoueurEquipe jE) {
+	  public long ajouter(JoueurEquipe jE) {
 		  ContentValues value = new ContentValues();
 		  value.put("joueurJE", jE.getJoueur().getId());
 		  value.put("equipeJE", jE.getEquipe().getId());
 		  value.put("maillotJE", jE.getNumMaillot());
 		  value.put("coursJE", jE.isEnCours());
-		  mDb.insert("JOUEUR_EQUIPE", null, value);
+		  return mDb.insert("JOUEUR_EQUIPE", null, value);
 	  }
 
 	  /**
@@ -55,16 +57,25 @@ public class JoueurEquipeBdd extends BDD {
 		  Cursor c = mDb.rawQuery("SELECT * FROM JOUEUREQUIPE WHERE idJE = ?", new String[]{String.valueOf(i)});
 		  c.moveToFirst();
 		  return new JoueurEquipe(c.getInt(0), joueur, equipe, c.getInt(3), c.getInt(4));
-	  }
+	  }*/
 	  
 	  public List<JoueurEquipe> selectionnerTout(){
-		Cursor c = mDb.rawQuery("SELECT * FROM JOUEUREQUIPE", null);
-		c.moveToFirst();
+		Cursor c = mDb.rawQuery("SELECT idJE, maillotJE, coursJE, idJ, nomJ, tailleJ, ageJ, idE, nomE, entraineurE FROM JOUEUR_EQUIPE je, EQUIPES e, JOUEURS j WHERE je.joueurJE = j.idJ AND je.equipeJE = e.idE", null);
 		List<JoueurEquipe> joueurs = new ArrayList<JoueurEquipe>();
 		while(c.moveToNext()){
-			joueurs.add(new JoueurEquipe(c.getInt(0), joueur, equipe, c.getInt(3), c.getInt(4)));
+			joueurs.add(new JoueurEquipe(c.getInt(0), new Joueur(c.getInt(3), c.getString(4), c.getInt(5), c.getInt(6), 0), new Equipe(c.getInt(7), c.getString(8), c.getString(9)), c.getInt(1), c.getInt(2) == 1));
 		}
 		c.close();
 		return joueurs;
-	  }*/
+	  }
+	  
+	  public List<JoueurEquipe> selectionnerJoueursEquipes(int i){
+			Cursor c = mDb.rawQuery("SELECT idJE, maillotJE, coursJE, idJ, nomJ, tailleJ, ageJ, idE, nomE, entraineurE FROM JOUEUR_EQUIPE je, EQUIPES e, JOUEURS j WHERE je.joueurJE = j.idJ AND je.equipeJE = e.idE AND e.idE = ?", new String[]{String.valueOf(i)});
+			List<JoueurEquipe> joueurs = new ArrayList<JoueurEquipe>();
+			while(c.moveToNext()){
+				joueurs.add(new JoueurEquipe(c.getInt(0), new Joueur(c.getInt(3), c.getString(4), c.getInt(5), c.getInt(6), 0), new Equipe(c.getInt(7), c.getString(8), c.getString(9)), c.getInt(1), c.getInt(2) == 1));
+			}
+			c.close();
+			return joueurs;
+		  }
 	}

@@ -20,11 +20,11 @@ public class EquipeBdd extends BDD {
 	  /**
 	   * @param e l'équipe à ajouter à la base
 	   */
-	  public void ajouter(Equipe e) {
+	  public long ajouter(Equipe e) {
 		  ContentValues value = new ContentValues();
 		  value.put("nomE", e.getNom());
 		  value.put("entraineurE", e.getEntraineur());
-		  mDb.insert("EQUIPES", null, value);
+		  return mDb.insert("EQUIPES", null, value);
 	  }
 
 	  /**
