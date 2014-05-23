@@ -15,7 +15,7 @@ public class Competition
 	protected String type;
 
 
-	/*
+	/**
 	* @constructor
 	*/
 	public Competition(int idCompetition, int anneCompetition, String nomCompetition, String typeCompetition)
@@ -26,7 +26,7 @@ public class Competition
 		this.type=typeCompetition;
 	}
 
-	/*
+	/**
 	* @getter
 	* @setter
 	*/
@@ -71,7 +71,7 @@ public class Competition
 	}
 
 
-	/*
+	/**
 	* Verifie si l'année est valide
 	* @return : retourne vrai si l'année est supérieur ou égale à l'année en cours 
 	*/
@@ -82,25 +82,25 @@ public class Competition
 		return ( this.annee >= (dateDuJour.getYear()+1900) );
 	}
 	
-	/*
+	/**
 	* Verifie si le nom de la compétition est valide
 	* @return : retourne vrai si le nom n'est pas vide
 	*/
 	public boolean nomEstValide()
 	{
-		return (this.nom.length()!=0);
+		return (this.nom.trim().length()!=0);
 	}
 	
-	/*
+	/**
 	* Verifie si le type de la compétition est valide
 	* @return : retourne vrai si le type n'est pas vide
 	*/
 	public boolean typeEstValide()
 	{
-		return (this.type.length()!=0);
+		return (this.type.trim().length()!=0);
 	}
 	
-	/*
+	/**
 	* toString() : pour affichage en console de l'instance
 	*/
 	public String toString()

@@ -84,7 +84,7 @@ public class Set
 	
 
 	/*
-	* Augmente de 1 le score de l'equipe Ã  domicile
+	* Augmente de 1 le score de l'equipe à domicile
 	*/
 	public void scoreEquipe1Plus()
 	{
@@ -92,7 +92,7 @@ public class Set
 	}
 
 	/*
-	* Augmente de 1 le score de l'equipe Ã  extÃ©rieur
+	* Augmente de 1 le score de l'equipe à extérieur
 	*/
 	public void scoreEquipe2Plus()
 	{
@@ -100,7 +100,7 @@ public class Set
 	}
 
 	/*
-	* Diminue de 1 le score de l'equipe Ã  domicile
+	* Diminue de 1 le score de l'equipe à domicile
 	*/
 	public void scoreEquipe1Moins()
 	{
@@ -108,7 +108,7 @@ public class Set
 	}
 
 	/*
-	* Diminue de 1 le score de l'equipe Ã  extÃ©rieur
+	* Diminue de 1 le score de l'equipe à extérieur
 	*/
 	public void scoreEquipe2Moins()
 	{
@@ -117,13 +117,13 @@ public class Set
 	
 	/*
 	* Verifie si le set est gagnant
-	* @return : retourne l'id de l'equipe si le set a Ã©tÃ© remportÃ© par l'Ã©quipe sinon renvoie -1 si le set n'a pas Ã©tÃ© pas gagner
+	* @return : retourne l'id de l'equipe si le set a été remporté par l'équipe sinon renvoie -1 si le set n'a pas été pas gagner
 	*/
 	public int setEstGagnant()
 	{
 		if (this.numSet==5)// si il s'agit du cinquieme set
 		{
-			// si le score d'une des 2 Ã©quipes a atteind 15 points ou bien plus et que la diffÃ©rence entre les deux scores est de 2 points minimum alors on renvoie l'id de l'equipe sinon on renvoie -1
+			// si le score d'une des 2 équipes a atteind 15 points ou bien plus et que la différence entre les deux scores est de 2 points minimum alors on renvoie l'id de l'equipe sinon on renvoie -1
 			if ( (this.scoreEquipe1>=15) && ((this.scoreEquipe1-this.scoreEquipe2)>=2) )
 			{
 				return this.match.getEquipeDomicile().getId();
@@ -139,7 +139,7 @@ public class Set
 		}
 		else // sinon
 		{
-			// si le score d'une des 2 Ã©quipes a atteind 25 points ou bien plus et que la diffÃ©rence entre les deux scores est de 2 points minimum alors on renvoie l'id de l'equipe sinon on renvoie -1
+			// si le score d'une des 2 équipes a atteind 25 points ou bien plus et que la différence entre les deux scores est de 2 points minimum alors on renvoie l'id de l'equipe sinon on renvoie -1
 			if ( (this.scoreEquipe1>=25) && ((this.scoreEquipe1-this.scoreEquipe2)>=2) ) 
 			{
 				return this.match.getEquipeDomicile().getId();
@@ -156,16 +156,16 @@ public class Set
 	}
 	
 	/*
-	* Verifie si le match est gagnÃ© 
+	* Verifie si le match est gagné 
 	* @param : une liste de Set 
-	* @return : retourne vrai si le match est terminÃ©
+	* @return : retourne vrai si le match est terminé
 	*/		 
 	public boolean matchEstGagnant(ArrayList<Set> setMatch)
 	{
 		int nbSetGagnantEquipeDomicile = 0;
 		int nbSetGagnantEquipeExterieur = 0;
 
-		// compte le nombre de set gagner par Ã©quipe
+		// compte le nombre de set gagner par équipe
 		for (int i=0;i<setMatch.size();i++)
 		{
 			int idEquipeSetGagnant = setMatch.get(i).setEstGagnant();
@@ -180,7 +180,7 @@ public class Set
 			}
 		}
 	
-		return ( (nbSetGagnantEquipeDomicile==3) || (nbSetGagnantEquipeExterieur==3) ); // renvoie vrai si une des deux Ã©quipes Ã  3 set gagnant et donc a remportÃ© le match
+		return ( (nbSetGagnantEquipeDomicile==3) || (nbSetGagnantEquipeExterieur==3) ); // renvoie vrai si une des deux équipes à 3 set gagnant et donc a remporté le match
 	}
 
 	/*
@@ -188,7 +188,7 @@ public class Set
 	*/
 	public String toString()
 	{
-		return "id Set : "+this.id+"\n"+"nÂ° Set : "+this.numSet+"\n"+"Score : "+this.scoreEquipe1+" - "+this.scoreEquipe2+"\n\n"+this.match.toString();
+		return "id Set : "+this.id+"\n"+"n° Set : "+this.numSet+"\n"+"Score : "+this.scoreEquipe1+" - "+this.scoreEquipe2+"\n\n"+this.match.toString();
 	}	
 
 }

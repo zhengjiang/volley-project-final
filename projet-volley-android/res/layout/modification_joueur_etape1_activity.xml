@@ -1,97 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" 
- >
+    android:layout_height="match_parent" >
 
-  <Button
-      android:id="@+id/RetourAccueil"
-      android:layout_width="100dp"
-      android:layout_height="100dp"
-      android:layout_alignParentRight="true"
-      android:layout_alignParentTop="true"
-      android:layout_marginRight="25dp"
-      android:layout_marginTop="25dp"
-      android:background="@drawable/accueil" />
+    <Button
+        android:id="@+id/RetourAccueil"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/accueil" />
 
-      <requestFocus />
+    <requestFocus />
 
-  <Button
-      android:id="@+id/Precedent"
-      android:layout_width="100dp"
-      android:layout_height="70dp"
-      android:layout_alignBaseline="@+id/RetourAccueil"
-      android:layout_alignBottom="@+id/RetourAccueil"
-      android:layout_alignParentLeft="true"
-      android:layout_marginLeft="25dp"
-      android:layout_marginTop="25dp"
-      android:background="@drawable/fleche_precedent" />
-<!-- android:textColor="#0431B4" -->
+    <Button
+        android:id="@+id/Precedent"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+        android:layout_alignBaseline="@+id/RetourAccueil"
+        android:layout_alignBottom="@+id/RetourAccueil"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/fleche_precedent" />
+    <!-- android:textColor="#0431B4" -->
 
-  <Button
-      android:id="@+id/BtnModificationJoeur"
-      android:layout_width="300dp"
-      android:layout_height="175dp"
-      style="@style/styleBoutonFormulaire"
-      android:layout_alignParentBottom="true"
-      android:layout_centerHorizontal="true"
-      android:layout_marginBottom="38dp"
-      android:text="Modifier" />
+    <ListView
+        android:id="@+id/listeEquipes"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/libChoixEquipe"
+        android:layout_marginTop="64dp"
+        android:choiceMode="singleChoice"
+        android:textSize="50sp" >
+    </ListView>
 
-  <ListView
-      android:id="@+id/listeEquipes"
-      android:layout_width="match_parent"
-      android:layout_height="220dp"
-      android:layout_alignParentLeft="true"
-      android:layout_alignTop="@+id/libChoixEquipe"
-      android:layout_marginTop="64dp"
-      android:choiceMode="singleChoice"
-      android:textSize="50sp" >
-  </ListView>
+    <TextView
+        android:id="@+id/libModificationJoueur"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/RetourAccueil"
+        android:gravity="center_horizontal"
+        android:text="Modification d&apos;un joueur"
+        android:textSize="55sp" />
 
-  <TextView
-      android:id="@+id/libChoisirJoueur"
-      android:layout_width="wrap_content"
-      android:layout_height="70dp"
-      android:layout_alignLeft="@+id/BtnModificationJoeur"
-      android:layout_below="@+id/RetourAccueil"
-      android:layout_marginTop="83dp"
-      android:gravity="center"
-      android:text="Choisir d'une équipe"
-      android:textColor="#FF0000"
-      android:textSize="30sp" />
+    <TextView
+        android:id="@+id/libChoixEquipe"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:layout_below="@+id/libModificationJoueur"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="44dp"
+        android:ems="10"
+        android:gravity="center"
+        android:text="Choisir d&apos;une équipe"
+        android:textColor="#FF0000"
+        android:textSize="30sp" />
 
-  <ListView
-      android:id="@+id/listeJoueurs"
-      android:layout_width="match_parent"
-      android:layout_height="220dp"
-      android:layout_alignParentLeft="true"
-      android:layout_below="@+id/libChoisirJoueur"
-      android:layout_marginTop="28dp"
-      android:choiceMode="singleChoice" >
-  </ListView>
+    <TextView
+        android:id="@+id/libChoisirJoueur"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:layout_above="@+id/listeJoueurs"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="Choisir un joueur"
+        android:textColor="#FF0000"
+        android:textSize="30sp" />
 
-  <TextView
-      android:id="@+id/libChoixEquipe"
-      android:layout_width="wrap_content"
-      android:layout_height="70dp"
-      android:layout_below="@+id/listeJoueurs"
-      android:layout_centerHorizontal="true"
-      android:layout_marginTop="70dp"
-      android:ems="10"
-      android:gravity="center"
-      android:text="Choisir un joueur"
-      android:textColor="#FF0000"
-      android:textSize="30sp" />
-
-  <TextView
-      android:id="@+id/libModificationJoueur"
-      android:layout_width="match_parent"
-      android:layout_height="100dp"
-      android:layout_alignParentLeft="true"
-      android:layout_below="@+id/RetourAccueil"
-      android:gravity="center_horizontal"
-      android:text="Modification d&apos;un joueur"
-      android:textSize="55sp" />
+    <ListView
+        android:id="@+id/listeJoueurs"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="81dp"
+        android:choiceMode="singleChoice" >
+    </ListView>
 
 </RelativeLayout>

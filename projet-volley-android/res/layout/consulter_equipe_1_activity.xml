@@ -39,23 +39,23 @@
      android:textSize="40sp" />
 
  <TextView
-     android:id="@+id/libNonEquipe"
-     android:layout_width="600dp"
-     android:layout_height="100dp"
-     android:layout_below="@+id/libConsultationEquipe"
-     android:layout_marginTop="149dp"
-     android:layout_toRightOf="@+id/Precedent"
-     android:text="Nom:"
-     android:textSize="40sp" />
-
- <TextView
      android:id="@+id/libNonEntrainneurEquipe"
      android:layout_width="600dp"
      android:layout_height="100dp"
      android:layout_alignLeft="@+id/libNonEquipe"
      android:layout_below="@+id/libNonEquipe"
      android:layout_marginTop="119dp"
-     android:text="Nom  de l&apos;entraineur :"
+     android:text="Nom de l&apos;entraineur :"
+     android:textSize="40sp" />
+
+ <TextView
+     android:id="@+id/libNonEquipe"
+     android:layout_width="600dp"
+     android:layout_height="100dp"
+     android:layout_alignLeft="@+id/Precedent"
+     android:layout_below="@+id/libConsultationEquipe"
+     android:layout_marginTop="149dp"
+     android:text="Nom:"
      android:textSize="40sp" />
 
 </RelativeLayout>

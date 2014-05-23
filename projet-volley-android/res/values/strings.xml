@@ -99,6 +99,9 @@
 	<string name="num_e2_n11">%1$d</string>
 	<string name="num_e2_n12">%1$d</string>
 	
+	<string name="nomEquipe1">%s</string>
+    <string name="nomEquipe2">%s</string>
+	
 	<!-- AFFICHAGE STATISTIQUES JOUEUR -->
 	<string name="nomStatJoueur1">Stat 1 : </string>
 	<string name="nomStatJoueur2">Stat 2 : </string>
