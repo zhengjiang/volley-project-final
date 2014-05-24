@@ -1,8 +1,12 @@
 package vue;
 
 import modele.*;
+
 import java.util.ArrayList;
 import java.util.Calendar;
+
+import com.l3info.projet_volley_android.R;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -80,7 +84,7 @@ public class ChoixEquipesMatch extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.choix_equipes_match, menu);
+		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
 

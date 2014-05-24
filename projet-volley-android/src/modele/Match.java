@@ -1,5 +1,5 @@
 
-package vue;
+package modele;
 
 import java.util.Date;
 import java.text.*;
@@ -13,12 +13,12 @@ public class Match implements Parcelable {
 	protected String lieu;
 	protected Equipe equipe1;
 	protected Equipe equipe2;
-	//protected Competition competition;
+	protected Competition competition;
 
 	/**
 	* @constructor
 	*/
-	public Match(int idMatch, String dateMatch, String lieuMatch, Equipe equipe1Match, Equipe equipe2Match)
+	public Match(int idMatch, String dateMatch, String lieuMatch, Equipe equipe1Match, Equipe equipe2Match, Competition competition)
 	{
 		this.id=idMatch;
 	
@@ -61,6 +61,7 @@ public class Match implements Parcelable {
 		SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yyyy");
 		return formater.format(this.date);
 	}
+	public Competition getCompetition(){return competition;}
 	
 	public void setDate(Date date)
 	{

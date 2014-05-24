@@ -68,7 +68,7 @@ public class Modele {
 		Equipe eq2 = new Equipe(2, "Arsouilles", "Zlatan");
 		Competition compet = new Competition(1, 2014, "test", "test");
 
-		match = new Match(1, "01/01/2014", "Grosville", eq1, eq2, compet);
+		match = new Match(1, "01/01/2014", "Grosville", eq1, eq2, new Competition(0, 2014, "Championnat", "Championnat"));
 		service = 0;
 		gagne = -1;
 		rotation = -1;

@@ -407,7 +407,7 @@
     <!--noms des équipes-->
     <TextView
         android:id="@+id/nom_equipe1"
-        style="@style/nom_equipe_rouge"
+        style="@style/nom_equipe_bleue"
         android:layout_alignLeft="@id/layout_terrain"
     	android:layout_marginTop="13dp"
     	android:layout_marginLeft="35dp"
@@ -415,7 +415,7 @@
         
     <TextView
         android:id="@+id/nom_equipe2"
-        style="@style/nom_equipe_bleue"
+        style="@style/nom_equipe_rouge"
         android:layout_marginLeft="530dp"
         android:layout_marginTop="652dp"
         android:text="@string/equipe2" />
@@ -586,7 +586,7 @@
         
         
         
-        <!--layout du joueur rouge au poste 12 (remplacant)-->>    
+        <!--layout du joueur rouge au poste 12 (remplacant)-->   
         <RelativeLayout
             android:id="@+id/layout_e1_n12"
             android:layout_width="wrap_content"
@@ -849,76 +849,76 @@
         <TableRow>
             <TextView
                 style="@style/texte_score"
-                android:background="@drawable/border_fond_rouge"
+                android:background="@drawable/border_fond_bleu"
                 android:text="@string/equipe1"
                 android:minHeight="40dp" />
 
             <TextView
                 style="@style/texte_score"
                 android:background="@drawable/border_white"
-                android:text="@string/score_e1_s1"
+                android:text="@string/vide"
                 android:minHeight="40dp"/>
 
             <TextView
                 style="@style/texte_score"
                 android:background="@drawable/border_white"
-                android:text="@string/score_e1_s2" 
+                android:text="@string/vide" 
                 android:minHeight="40dp"/>
 
             <TextView
                 style="@style/texte_score"
                 android:background="@drawable/border_white"
-                android:text="@string/score_e1_s3"
+                android:text="@string/vide"
                 android:minHeight="40dp" />
 
             <TextView
                 style="@style/texte_score"
                 android:background="@drawable/border_white"
-                android:text="@string/score_e1_s4"
+                android:text="@string/vide"
                 android:minHeight="40dp" />
 
             <TextView
                 style="@style/texte_score"
                 android:background="@drawable/border_white"
-                android:text="@string/score_e1_s5"
+                android:text="@string/vide"
                 android:minHeight="40dp" />
         </TableRow>
 
         <TableRow>
             <TextView
                 style="@style/texte_score"
-                android:background="@drawable/border_fond_bleu"
+                android:background="@drawable/border_fond_rouge"
                 android:text="@string/equipe2"
                 android:minHeight="40dp" />
 
             <TextView
                 style="@style/texte_score"
                 android:background="@drawable/border_white"
-                android:text="@string/score_e2_s1"
+                android:text="@string/vide"
                 android:minHeight="40dp" />
 
             <TextView
                 style="@style/texte_score"
                 android:background="@drawable/border_white"
-                android:text="@string/score_e2_s2"
+                android:text="@string/vide"
                 android:minHeight="40dp" />
 
             <TextView
                 style="@style/texte_score"
                 android:background="@drawable/border_white"
-                android:text="@string/score_e2_s3"
+                android:text="@string/vide"
                 android:minHeight="40dp" />
 
             <TextView
                 style="@style/texte_score"
                 android:background="@drawable/border_white"
-                android:text="@string/score_e2_s4"
+                android:text="@string/vide"
                 android:minHeight="40dp" />
 
             <TextView
                 style="@style/texte_score"
                 android:background="@drawable/border_white"
-                android:text="@string/score_e2_s5"
+                android:text="@string/vide"
                 android:minHeight="40dp" />             
         </TableRow>
     </TableLayout> 
