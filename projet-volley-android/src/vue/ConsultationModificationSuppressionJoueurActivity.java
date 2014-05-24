@@ -13,18 +13,20 @@ import android.widget.*;
 import android.widget.AdapterView.OnItemClickListener;
 
 import java.util.*;
+import controleur.*;
 
 public class ConsultationModificationSuppressionJoueurActivity extends Activity{
 	
+	private Controleur ctl = Controleur.getInstance(); //acces à la BD
 	
 	//initialisation de "equipes" et "joueurs" avec la BD
-	private ArrayList<Equipe> equipes = InitialisationModele.initEquipes(); // permet de sauvegarder les ï¿½quipes de la BD 
-	private ArrayList<JoueurEquipe> joueurEquipe = InitialisationModele.initJoueurEquipe(); // permet de sauvegarder les ï¿½quipes de la BD 
-	private ArrayList<Joueur> joueurs; // liste des joueurs d'une equipe
-	private ArrayList<Integer> numMaillotJoueurs; // Liste des numeros de maillot des joueurs d'une ï¿½quipe
+	private List<Equipe> equipes; // permet de sauvegarder les ?quipes de la BD 
+	private List<JoueurEquipe> joueurEquipe;  // permet de sauvegarder d'obtenir les infos des joueurs en fonction de l'équipe (numMaillot)
+	private List<Joueur> joueurs; // liste des joueurs d'une equipe
+	private ArrayList<Integer> numMaillotJoueurs; // Liste des numeros de maillot des joueurs d'une ?quipe
 	
-	private ArrayList<String> listeNomJoueur; // Liste des noms des joueurs Ã  sauvegarder dans le array Adapter de la listeView
-	private ArrayAdapter<String> listeJoueurAdapter; // array Adapter servant de support de donnÃ©es Ã  la listView des noms des joueurs
+	private ArrayList<String> listeNomJoueur; // Liste des noms des joueurs à sauvegarder dans le array Adapter de la listeView
+	private ArrayAdapter<String> listeJoueurAdapter; // array Adapter servant de support de données à la listView des noms des joueurs
 	
 	private OnClickListener clikSurBouton = new View.OnClickListener() {
 
@@ -54,38 +56,33 @@ public class ConsultationModificationSuppressionJoueurActivity extends Activity{
 			// TODO Auto-generated method stub
 			
 			
-			if (parent.getId()==R.id.listeEquipes) // clique sur un item de la liste des ï¿½quipes			
+			if (parent.getId()==R.id.listeEquipes) // clique sur un item de la liste des ?quipes			
 			{
 				
-				// initialisation du contenu de la liste des joueurs en fonction de l'ï¿½quipe selectionnï¿½
-				joueurs = new ArrayList<Joueur>();
-				numMaillotJoueurs = new ArrayList<Integer>();
-				for (int i=0; i<joueurEquipe.size();i++)
+				// initialisation du contenu de la liste des joueurs en fonction de l'?quipe selectionn?
+				ctl.jb.open();
+				joueurs = ctl.jb.joueurEquipe(equipes.get(position).getId());
+				ctl.jb.close();
+				
+				ctl.jeb.open();
+				if (equipes.get(position).getId()!=-1)
 				{
-					if (equipes.get(position)!=null)
-					{
-						if ( (equipes.get(position).getId()==joueurEquipe.get(i).getEquipe().getId()) && joueurEquipe.get(i).isEnCours() )
-						{
-							joueurs.add(joueurEquipe.get(i).getJoueur());
-							numMaillotJoueurs.add(joueurEquipe.get(i).getNumMaillot());
-						}
-					}
-					else
-					{
-						if ( (equipes.get(position)==joueurEquipe.get(i).getEquipe()) )
-						{
-							joueurs.add(joueurEquipe.get(i).getJoueur());
-							numMaillotJoueurs.add(joueurEquipe.get(i).getNumMaillot());
-						}
-					}
+					joueurEquipe = ctl.jeb.selectionnerJoueursEquipes(equipes.get(position).getId());
+				}
+				else
+				{
+					joueurEquipe = ctl.jeb.selectionnerJoueursSansEquipe(equipes.get(position).getId());
 				}
 				
-				// initialisation du contenu de chaque item prï¿½sent dans la liste
+				ctl.jeb.close();
+				
+				
+				// initialisation du contenu de chaque item pr?sent dans la liste
 				listeNomJoueur = new ArrayList<String>();
 				
 				for (int i=0; i<joueurs.size();i++)
 				{
-					listeNomJoueur.add(joueurs.get(i).getNom()+" - n° maillot : "+numMaillotJoueurs.get(i));
+					listeNomJoueur.add(joueurs.get(i).getNom()+" - n° maillot : "+joueurEquipe.get(i).getNumMaillot());
 				}
 				
 				// creation et initialisation de la liste des joueurs
@@ -104,32 +101,25 @@ public class ConsultationModificationSuppressionJoueurActivity extends Activity{
 				intent.putExtra("age",joueurs.get(listeJoueur.getCheckedItemPosition()).getAge());
 				intent.putExtra("taille",joueurs.get(listeJoueur.getCheckedItemPosition()).getTaille());
 				intent.putExtra("poste",joueurs.get(listeJoueur.getCheckedItemPosition()).getPosteEnCours());
-				intent.putExtra("numMaillot",numMaillotJoueurs.get(listeJoueur.getCheckedItemPosition()).intValue());
+				intent.putExtra("numMaillot",joueurEquipe.get(listeJoueur.getCheckedItemPosition()).getNumMaillot());
 				
-				if (equipes.get(listeEquipe.getCheckedItemPosition())!=null)
-				{
-					intent.putExtra("idEquipe",equipes.get(listeEquipe.getCheckedItemPosition()).getId());
-					intent.putExtra("nomEquipe",equipes.get(listeEquipe.getCheckedItemPosition()).getNom());
-				}
-				else
-				{
-					// cas d'un joueur sans équipe
-					intent.putExtra("idEquipe",-1);
-					intent.putExtra("nomEquipe","Sans club");
-				}
+				intent.putExtra("idJoueurEquipe",joueurEquipe.get(listeJoueur.getCheckedItemPosition()).getId());
 				
+				intent.putExtra("idEquipe",equipes.get(listeEquipe.getCheckedItemPosition()).getId());
+				intent.putExtra("nomEquipe",equipes.get(listeEquipe.getCheckedItemPosition()).getNom());
 				
-				
-				
+
 				if (monIntent.getStringExtra("mode").equals("consultation"))
 				{
 					intent.putExtra("mode","consultation");	
 					startActivity(intent);
+					finish();
 				}
 				else if (monIntent.getStringExtra("mode").equals("modification"))
 				{
 					intent.putExtra("mode","modification");
 					startActivity(intent);
+					finish();
 				}
 				else
 				{
@@ -138,12 +128,21 @@ public class ConsultationModificationSuppressionJoueurActivity extends Activity{
 					messConfirmation.setMessage("Voulez-vous vraiment supprimer ce joueur ?");
 					messConfirmation.setPositiveButton("Ok",new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog,int id) {
+							
+							ctl.jb.open();
+							ctl.jb.supprimer(joueurs.get(listeJoueur.getCheckedItemPosition()).getId());
+							ctl.jb.close();
+							
+							ctl.jeb.open();
+							ctl.jeb.supprimer(joueurs.get(listeJoueur.getCheckedItemPosition()).getId());
+							ctl.jeb.close();
+							
 							listeNomJoueur.remove(listeJoueur.getCheckedItemPosition());
 							listeJoueurAdapter.notifyDataSetChanged();
 							dialog.cancel();
 						}
 					});
-					messConfirmation.setPositiveButton("Annuler",new DialogInterface.OnClickListener() {
+					messConfirmation.setNegativeButton("Annuler",new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog,int id) {
 							dialog.cancel();
 						}
@@ -173,6 +172,14 @@ public class ConsultationModificationSuppressionJoueurActivity extends Activity{
 	
 	public void onCreate(Bundle savedInstanceState)
 	{
+		ctl.initialiseBdd(ConsultationModificationSuppressionJoueurActivity.this);
+		
+		ctl.eb.open();
+		
+		equipes = ctl.eb.selectionnerTout();
+		
+		ctl.eb.close();
+		
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.modification_joueur_etape1_activity);
@@ -184,7 +191,7 @@ public class ConsultationModificationSuppressionJoueurActivity extends Activity{
 		listeJoueur = (ListView) findViewById(R.id.listeJoueurs);
 		
 		Intent monIntent = getIntent();
-		if (monIntent.getStringExtra("mode").equals("consultation"))//changement des intitulï¿½s des boutons en fonction du mode
+		if (monIntent.getStringExtra("mode").equals("consultation"))//changement des intitul?s des boutons en fonction du mode
 		{
 			titre.setText("Consultation d'un joueur");
 			
@@ -200,17 +207,17 @@ public class ConsultationModificationSuppressionJoueurActivity extends Activity{
 		}
 		
 		
-		// initialisation du contenu de chaque item prï¿½sent dans la liste
+		// initialisation du contenu de chaque item pr?sent dans la liste
 		ArrayList<String> listeNomEquipe = new ArrayList<String>();
 		
 		for (int i=0; i<equipes.size();i++)
 		{
 			listeNomEquipe.add(equipes.get(i).getNom());
 		}
-		equipes.add(null);
-		listeNomEquipe.add("Aucune");
+		equipes.add(new Equipe(-1,"Sans club",""));
+		listeNomEquipe.add("Sans club");
 		
-		// creation et initialisation de la liste des ï¿½quipes 
+		// creation et initialisation de la liste des ?quipes 
 		listeEquipe.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_single_choice,listeNomEquipe));
 		
 		

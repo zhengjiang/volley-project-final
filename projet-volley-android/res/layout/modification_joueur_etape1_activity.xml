@@ -57,7 +57,7 @@
         android:layout_marginTop="44dp"
         android:ems="10"
         android:gravity="center"
-        android:text="Choisir d&apos;une équipe"
+        android:text="Choisir une équipe"
         android:textColor="#FF0000"
         android:textSize="30sp" />
 

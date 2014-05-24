@@ -13,7 +13,7 @@ import android.content.Intent;
 import android.widget.*;
 
 import java.util.*;
-
+import controleur.*;
 
 public class CreationEquipeActivity  extends Activity{
 	
@@ -51,7 +51,13 @@ public class CreationEquipeActivity  extends Activity{
 					{
 						if(monEquipe.nomEntraineurEstValide())
 						{
-												// l'ajoute de l'equipe  a  la  base  
+							Controleur ctl = Controleur.getInstance();
+							ctl.initialiseBdd(CreationEquipeActivity.this);
+							
+							ctl.eb.open();
+							ctl.eb.ajouter(monEquipe);
+							ctl.eb.close();
+							
 							messConfirmation.setTitle("");
 							messConfirmation.setMessage("Equipe ajouté");
 							AlertDialog alertErreur = messConfirmation.create();

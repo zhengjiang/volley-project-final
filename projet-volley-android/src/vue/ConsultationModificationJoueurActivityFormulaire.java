@@ -1,5 +1,6 @@
 package vue;
 import java.util.ArrayList;
+import java.util.List;
 
 import modele.Equipe;
 import modele.InitialisationModele;
@@ -17,10 +18,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.widget.*;
 import android.widget.AdapterView.OnItemClickListener;
+import controleur.*;
 
 public class ConsultationModificationJoueurActivityFormulaire extends Activity{
 	
-	private ArrayList<Equipe> equipes=InitialisationModele.initEquipes(); // permet de sauvegarder les équipes de la BD 
+	private Controleur ctl = Controleur.getInstance(); //acces à la BD
+	
+	private List<Equipe> equipes; // permet de sauvegarder les ?quipes de la BD 
 	
 	private OnClickListener clikSurBouton = new View.OnClickListener() {
 		
@@ -40,6 +44,10 @@ public class ConsultationModificationJoueurActivityFormulaire extends Activity{
 			messConfirmation.setTitle("");
 			messConfirmation.setNeutralButton("Ok",new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog,int id) {
+					Intent intent = new Intent(ConsultationModificationJoueurActivityFormulaire.this, ConsultationModificationSuppressionJoueurActivity.class);
+					intent.putExtra("mode","modification");	
+					startActivity(intent);
+					finish();
 					ConsultationModificationJoueurActivityFormulaire.this.finish();
 					dialog.cancel();
 				}
@@ -47,13 +55,23 @@ public class ConsultationModificationJoueurActivityFormulaire extends Activity{
 			
 			if (v.getId()==R.id.ValidationModifieJoueur)// bouton modifier
 			{
-				if ( (tailleEnModification.getText().toString().length()>0) && (numMaillotEnModification.getText().toString().length()>0) && (ageEnModification.getText().toString().length()>0) && (posteEnModification.getText().toString().length()>0) ) //traitement pour les champs numeriques
+				if ( (tailleEnModification.getText().toString().length()>0) && (ageEnModification.getText().toString().length()>0) && (posteEnModification.getText().toString().length()>0) ) //traitement pour les champs numeriques
 				{
 					Intent monIntent = getIntent();
 					
 					Joueur monJoueur = new Joueur(monIntent.getIntExtra("id",0),nomEnModification.getText().toString(),Integer.parseInt(tailleEnModification.getText().toString()),Integer.parseInt(ageEnModification.getText().toString()),Integer.parseInt(posteEnModification.getText().toString()));
-					JoueurEquipe monJoueurEquipe = new JoueurEquipe(0,monJoueur,null,Integer.parseInt(numMaillotEnModification.getText().toString()),true);
+					JoueurEquipe monJoueurEquipe;
 				
+					if (numMaillotEnModification.getText().toString().length()>0)
+					{
+						monJoueurEquipe = new JoueurEquipe(monIntent.getIntExtra("idJoueurEquipe",0),monJoueur,equipes.get(listeEquipe.getCheckedItemPosition()),Integer.parseInt(numMaillotEnModification.getText().toString()),true);
+
+					}
+					else
+					{
+						monJoueurEquipe = new JoueurEquipe(monIntent.getIntExtra("idJoueurEquipe",0),monJoueur,equipes.get(listeEquipe.getCheckedItemPosition()),-1,true);
+
+					}
 					if (monJoueur.nomEstValide())
 					{
 						if(monJoueur.ageEstValide())
@@ -62,14 +80,18 @@ public class ConsultationModificationJoueurActivityFormulaire extends Activity{
 							{
 								if(monJoueur.posteEstValide())
 								{
-									if (equipes.get(listeEquipe.getCheckedItemPosition())!=null)
+									if (equipes.get(listeEquipe.getCheckedItemPosition()).getId()!=-1)
 									{
 										if(monJoueurEquipe.numMaillotEstValide())
 										{
-						
-											//ListView listeEquipe = (ListView) findViewById(R.id.listeEquipes);
-											monJoueurEquipe.setEquipe(equipes.get(listeEquipe.getCheckedItemPosition()));
-		
+											ctl.jb.open();
+											ctl.jb.modifier(monJoueur);
+											ctl.jb.close();
+											
+											ctl.jeb.open();
+											ctl.jeb.modifier(monJoueurEquipe);
+											ctl.jeb.close();
+											
 											messConfirmation.setTitle("");
 											messConfirmation.setMessage("Joueur modifié");
 											AlertDialog alertErreur = messConfirmation.create();
@@ -86,8 +108,14 @@ public class ConsultationModificationJoueurActivityFormulaire extends Activity{
 									}
 									else
 									{
-										//ListView listeEquipe = (ListView) findViewById(R.id.listeEquipes);
-										monJoueurEquipe.setEquipe(equipes.get(listeEquipe.getCheckedItemPosition()));
+										ctl.jb.open();
+										ctl.jb.modifier(monJoueur);
+										ctl.jb.close();
+										
+										
+										ctl.jeb.open();
+										ctl.jeb.modifier(monJoueurEquipe);
+										ctl.jeb.close();
 	
 										messConfirmation.setTitle("");
 										messConfirmation.setMessage("Joueur modifié");
@@ -137,7 +165,20 @@ public class ConsultationModificationJoueurActivityFormulaire extends Activity{
 			}
 			else if (v.getId()==R.id.Precedent)// bouton precedent
 			{
-				ConsultationModificationJoueurActivityFormulaire.this.finish();
+				Intent intent = new Intent(ConsultationModificationJoueurActivityFormulaire.this, ConsultationModificationSuppressionJoueurActivity.class);
+				
+				if (monIntent.getStringExtra("mode").equals("consultation"))
+				{
+					intent.putExtra("mode","consultation");	
+				}
+				else if (monIntent.getStringExtra("mode").equals("modification"))
+				{
+					intent.putExtra("mode","modification");
+				}
+				
+				startActivity(intent);
+				finish();
+				
 			}
 			else 
 			{
@@ -157,9 +198,9 @@ public class ConsultationModificationJoueurActivityFormulaire extends Activity{
 			// TODO Auto-generated method stub
 			
 			
-			if (parent.getId()==R.id.listeEquipes) // clique sur un item de la liste des ï¿½quipes			
+			if (parent.getId()==R.id.listeEquipes) // clique sur un item de la liste des ?quipes			
 			{
-				if (equipes.get(listeEquipe.getCheckedItemPosition())!=null)
+				if (equipes.get(listeEquipe.getCheckedItemPosition()).getId()!=-1)
 				{
 					numMaillotEnModification.setVisibility(View.VISIBLE);
 				}
@@ -194,13 +235,22 @@ public class ConsultationModificationJoueurActivityFormulaire extends Activity{
 	EditText posteEnModification=null;
 	EditText numMaillotEnModification=null;
 	
+	Intent monIntent;
 	
 	public void onCreate(Bundle savedInstanceState)
 	{
+		ctl.initialiseBdd(ConsultationModificationJoueurActivityFormulaire.this);
+		
+		ctl.eb.open();
+		
+		equipes = ctl.eb.selectionnerTout();
+		
+		ctl.eb.close();
+		
 		super.onCreate(savedInstanceState);
 		
 		
-		Intent monIntent = getIntent();
+		monIntent = getIntent();
 		
 		if (monIntent.getStringExtra("mode").equals("consultation"))//chargement des elements de la fenetre en fonction du mode
 		{
@@ -243,7 +293,7 @@ public class ConsultationModificationJoueurActivityFormulaire extends Activity{
 			nomEnModification.setText(monIntent.getStringExtra("nom"));
 			ageEnModification.setText(""+monIntent.getIntExtra("age",0));
 			tailleEnModification.setText(""+monIntent.getIntExtra("taille",0));
-			posteEnModification.setText(""+monIntent.getIntExtra("poste",0));
+			posteEnModification.setText(""+monIntent.getIntExtra("poste",-1));
 			numMaillotEnModification.setText(""+monIntent.getIntExtra("numMaillot",0));
 			
 			
@@ -252,37 +302,39 @@ public class ConsultationModificationJoueurActivityFormulaire extends Activity{
 				numMaillotEnModification.setVisibility(View.INVISIBLE);
 			}
 			
-			// initialisation du contenu de chaque item présent dans la liste
+			// initialisation du contenu de chaque item pr?sent dans la liste
 			ArrayList<String> listeNomEquipe = new ArrayList<String>();
 
-			int IndClubJoueur = -1; // indice du club dans lequelle le joueur appartient
+			
+			
+			equipes.add(new Equipe(monIntent.getIntExtra("idEquipe",0),monIntent.getStringExtra("nomEquipe"),""));
+			listeNomEquipe.add(monIntent.getStringExtra("nomEquipe"));
+			
 			for (int i=0; i<equipes.size();i++)
 			{
-				listeNomEquipe.add(equipes.get(i).getNom());
-				if (equipes.get(i).getId()==monIntent.getIntExtra("idEquipe",0))
+				if (equipes.get(i).getId()!=monIntent.getIntExtra("idEquipe",0))
 				{
-					IndClubJoueur=i;
+					listeNomEquipe.add(equipes.get(i).getNom());
 				}
 			}
 			
-			equipes.add(null);
-			listeNomEquipe.add("Aucune");
+			if (monIntent.getIntExtra("idEquipe",0)==-1)
+			{
+				listeNomEquipe.add(monIntent.getStringExtra("nomEquipe"));
+			}
 			
-			// creation et initialisation de la liste des équipes 
+			
+			// creation et initialisation de la liste des ?quipes 
 			listeEquipe.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_single_choice,listeNomEquipe));
 			
-			// selection de l'équipe en fonction de IndClubJoueur
+			// selection de l'?quipe en fonction de IndClubJoueur
 			
-			if (IndClubJoueur!=-1)
-			{
-				listeEquipe.setItemChecked(0,true);
-			}
-			else
-			{
-				listeEquipe.setItemChecked(listeNomEquipe.size()-1,true);
-			}
+			
+			listeEquipe.setItemChecked(0,true);
+			
 			
 			modifier.setOnClickListener(clikSurBouton);
+			listeEquipe.setOnItemClickListener(clickSurItemListe);
 		}
 		
 		precedent = (Button) findViewById(R.id.Precedent);
@@ -291,7 +343,7 @@ public class ConsultationModificationJoueurActivityFormulaire extends Activity{
 		//gestion des actions issue du clique en fonction des boutons 
 		precedent.setOnClickListener(clikSurBouton);
 		accueil.setOnClickListener(clikSurBouton);
-		listeEquipe.setOnItemClickListener(clickSurItemListe);
+		
 	}
 
 

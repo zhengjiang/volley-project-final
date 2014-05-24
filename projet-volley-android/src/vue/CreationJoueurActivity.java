@@ -14,13 +14,16 @@ import android.widget.*;
 import android.widget.AdapterView.OnItemClickListener;
 
 import java.util.*;
+import controleur.*;
 
 public class CreationJoueurActivity extends Activity{
 	
+	private Controleur ctl = Controleur.getInstance(); //acces à la BD
+	
 	//initialisation de "equipes" avec la BD
-	private ArrayList<Equipe> equipes=InitialisationModele.initEquipes(); // permet de sauvegarder les ï¿½quipes de la BD 
+	private List<Equipe> equipes; // permet de sauvegarder les ?quipes de la BD 
 
-	private ArrayList<String> listeNomEquipe; // liste des noms équipes
+	private ArrayList<String> listeNomEquipe; // liste des noms ?quipes
 	
 	private OnClickListener clikSurBouton = new View.OnClickListener() {
 		
@@ -55,10 +58,22 @@ public class CreationJoueurActivity extends Activity{
 				//Verif + Ajout du joueur dans la BD
 				
 				// verification des attributs
-				if ( (tailleJoueur.getText().toString().length()>0) && (numMaillotJoueur.getText().toString().length()>0) && (ageJoueur.getText().toString().length()>0) && (posteEnCoursJoueur.getText().toString().length()>0) )
+				if ( (tailleJoueur.getText().toString().length()>0) && (ageJoueur.getText().toString().length()>0) && (posteEnCoursJoueur.getText().toString().length()>0) )
 				{
 					Joueur monJoueur = new Joueur(0,nomJoueur.getText().toString(),Integer.parseInt(tailleJoueur.getText().toString()),Integer.parseInt(ageJoueur.getText().toString()),Integer.parseInt(posteEnCoursJoueur.getText().toString()));
-					JoueurEquipe monJoueurEquipe = new JoueurEquipe(0,monJoueur,null,Integer.parseInt(numMaillotJoueur.getText().toString()),true);
+					
+					JoueurEquipe monJoueurEquipe;
+					
+					if (numMaillotJoueur.getText().toString().length()>0)
+					{
+						monJoueurEquipe = new JoueurEquipe(0,monJoueur,equipes.get(listeEquipe.getCheckedItemPosition()),Integer.parseInt(numMaillotJoueur.getText().toString()),true);
+
+					}
+					else
+					{
+						monJoueurEquipe = new JoueurEquipe(0,monJoueur,equipes.get(listeEquipe.getCheckedItemPosition()),-1,true);
+
+					}
 				
 					if (monJoueur.nomEstValide())
 					{
@@ -68,11 +83,19 @@ public class CreationJoueurActivity extends Activity{
 							{
 								if(monJoueur.posteEstValide())
 								{
-									if (equipes.get(listeEquipe.getCheckedItemPosition())!=null)
+									if (equipes.get(listeEquipe.getCheckedItemPosition()).getId()!=-1)
 									{
+										
 										if(monJoueurEquipe.numMaillotEstValide())
 										{
-											monJoueurEquipe.setEquipe(equipes.get(listeEquipe.getCheckedItemPosition()));
+											ctl.jb.open();
+											long idJoueur = ctl.jb.ajouter(monJoueur);
+											ctl.jb.close();
+											
+											ctl.jeb.open();
+											monJoueurEquipe.getJoueur().setId((int)idJoueur);
+											ctl.jeb.ajouter(monJoueurEquipe);
+											ctl.jeb.close();
 		
 											messConfirmation.setMessage("Joueur ajouté");
 											AlertDialog alertConfirmation = messConfirmation.create();
@@ -89,7 +112,14 @@ public class CreationJoueurActivity extends Activity{
 									}
 									else
 									{
-										monJoueurEquipe.setEquipe(equipes.get(listeEquipe.getCheckedItemPosition()));
+										ctl.jb.open();
+										long idJoueur = ctl.jb.ajouter(monJoueur);
+										ctl.jb.close();
+										
+										ctl.jeb.open();
+										monJoueurEquipe.getJoueur().setId((int)idJoueur);
+										ctl.jeb.ajouter(monJoueurEquipe);
+										ctl.jeb.close();
 										
 										messConfirmation.setMessage("Joueur ajouté");
 										AlertDialog alertConfirmation = messConfirmation.create();
@@ -158,9 +188,9 @@ public class CreationJoueurActivity extends Activity{
 			// TODO Auto-generated method stub
 			
 			
-			if (parent.getId()==R.id.listeEquipes) // clique sur un item de la liste des ï¿½quipes			
+			if (parent.getId()==R.id.listeEquipes) // clique sur un item de la liste des ?quipes			
 			{
-				if (equipes.get(listeEquipe.getCheckedItemPosition())!=null)
+				if (equipes.get(listeEquipe.getCheckedItemPosition()).getId()!=-1)
 				{
 					numMaillotJoueur.setVisibility(View.VISIBLE);
 				}
@@ -182,6 +212,14 @@ public class CreationJoueurActivity extends Activity{
 	
 	public void onCreate(Bundle savedInstanceState)
 	{
+		ctl.initialiseBdd(CreationJoueurActivity.this);
+		
+		ctl.eb.open();
+		
+		equipes = ctl.eb.selectionnerTout();
+		
+		ctl.eb.close();
+		
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.creation_joueur_activity);
@@ -193,19 +231,20 @@ public class CreationJoueurActivity extends Activity{
 		listeEquipe = (ListView) findViewById(R.id.listeEquipes);
 		numMaillotJoueur = (EditText) findViewById(R.id.numMaillot);
 		
-		// initialisation du contenu de chaque item prï¿½sent dans la liste
-		ArrayList<String> listeNomEquipe = new ArrayList<String>();
+		// initialisation du contenu de chaque item pr?sent dans la liste
+		listeNomEquipe = new ArrayList<String>();
 		
-		equipes.add(0,null);
-		listeNomEquipe.add("Aucune");
+		
+		listeNomEquipe.add("Sans club");
 		for (int i=0; i<equipes.size();i++)
 		{
 			listeNomEquipe.add(equipes.get(i).getNom());
 		}
+		equipes.add(0,new Equipe(-1,"Sans club",""));
 		
 		numMaillotJoueur.setVisibility(View.INVISIBLE);
 		
-		// creation et initialisation de la liste des ï¿½quipes 
+		// creation et initialisation de la liste des ?quipes 
 		listeEquipe.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_single_choice,listeNomEquipe));
 		// selection du premier element
 		listeEquipe.setItemChecked(0,true);
