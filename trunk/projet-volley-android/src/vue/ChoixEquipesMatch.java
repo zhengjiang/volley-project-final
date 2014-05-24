@@ -90,11 +90,11 @@ public class ChoixEquipesMatch extends Activity {
 		boutonValider = (Button) findViewById(R.id.valider3);
 		lieu = (EditText) findViewById(R.id.lieuMatch);
 		date = (DatePicker) findViewById(R.id.datePicker);		
-		precedent = (Button) findViewById(R.id.Precedent34);
+		//precedent = (Button) findViewById(R.id.Precedent34);
 		boutonAcceuil = (Button) findViewById(R.id.RetourAccueil);
 		
 		boutonValider.setOnTouchListener(touchListenerValider);
-		precedent.setOnTouchListener(touchListenerPrecedent);
+		//precedent.setOnTouchListener(touchListenerPrecedent);
 		boutonAcceuil.setOnTouchListener(touchListenerAccueil);
 
 		

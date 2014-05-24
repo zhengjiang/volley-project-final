@@ -24,7 +24,7 @@ public class ConsultationModificationJoueurActivityFormulaire extends Activity{
 	
 	private Controleur ctl = Controleur.getInstance(); //acces à la BD
 	
-	private List<Equipe> equipes; // permet de sauvegarder les ?quipes de la BD 
+	private List<Equipe> equipes=new ArrayList<Equipe>(); // permet de sauvegarder les ?quipes de la BD 
 	
 	private OnClickListener clikSurBouton = new View.OnClickListener() {
 		
@@ -72,6 +72,7 @@ public class ConsultationModificationJoueurActivityFormulaire extends Activity{
 						monJoueurEquipe = new JoueurEquipe(monIntent.getIntExtra("idJoueurEquipe",0),monJoueur,equipes.get(listeEquipe.getCheckedItemPosition()),-1,true);
 
 					}
+					
 					if (monJoueur.nomEstValide())
 					{
 						if(monJoueur.ageEstValide())
@@ -200,6 +201,25 @@ public class ConsultationModificationJoueurActivityFormulaire extends Activity{
 			
 			if (parent.getId()==R.id.listeEquipes) // clique sur un item de la liste des ?quipes			
 			{
+				
+				if (equipes.get(listeEquipe.getCheckedItemPosition()).getId()!=monIntent.getIntExtra("idEquipe",0))
+				{
+					numMaillotEnModification.setText("");
+				}
+				else
+				{
+					if (equipes.get(listeEquipe.getCheckedItemPosition()).getId()!=-1)
+					{
+						numMaillotEnModification.setText(monIntent.getIntExtra("numMaillot",0));
+					}
+					else
+					{
+						numMaillotEnModification.setText("");
+					}
+					
+				}
+				
+				// gestion de la visibilité du champ
 				if (equipes.get(listeEquipe.getCheckedItemPosition()).getId()!=-1)
 				{
 					numMaillotEnModification.setVisibility(View.VISIBLE);
@@ -239,11 +259,13 @@ public class ConsultationModificationJoueurActivityFormulaire extends Activity{
 	
 	public void onCreate(Bundle savedInstanceState)
 	{
+		List<Equipe> equipesBD;
+		
 		ctl.initialiseBdd(ConsultationModificationJoueurActivityFormulaire.this);
 		
 		ctl.eb.open();
 		
-		equipes = ctl.eb.selectionnerTout();
+		equipesBD = ctl.eb.selectionnerTout();
 		
 		ctl.eb.close();
 		
@@ -272,7 +294,10 @@ public class ConsultationModificationJoueurActivityFormulaire extends Activity{
 			numMaillotEnConsultation.setText(numMaillotEnConsultation.getText()+"   "+monIntent.getIntExtra("numMaillot",0));
 			equipeEnConsultation.setText(equipeEnConsultation.getText()+"   "+monIntent.getStringExtra("nomEquipe"));
 			
-			
+			if (monIntent.getIntExtra("idEquipe",0)==-1)
+			{
+				numMaillotEnConsultation.setVisibility(View.INVISIBLE);
+			}
 			
 		}
 		else
@@ -306,21 +331,24 @@ public class ConsultationModificationJoueurActivityFormulaire extends Activity{
 			ArrayList<String> listeNomEquipe = new ArrayList<String>();
 
 			
-			
+			// premier element qui sera coché à l'initialisation et qui correspond au club du joueur
 			equipes.add(new Equipe(monIntent.getIntExtra("idEquipe",0),monIntent.getStringExtra("nomEquipe"),""));
 			listeNomEquipe.add(monIntent.getStringExtra("nomEquipe"));
 			
-			for (int i=0; i<equipes.size();i++)
+			for (int i=0; i<equipesBD.size();i++)
 			{
-				if (equipes.get(i).getId()!=monIntent.getIntExtra("idEquipe",0))
+				if (equipesBD.get(i).getId()!=monIntent.getIntExtra("idEquipe",0))
 				{
-					listeNomEquipe.add(equipes.get(i).getNom());
+					equipes.add(equipesBD.get(i));
+					listeNomEquipe.add(equipesBD.get(i).getNom());
 				}
 			}
 			
-			if (monIntent.getIntExtra("idEquipe",0)==-1)
+			// si il possede un club, il faut ajouter "sans club" à la listView
+			if (monIntent.getIntExtra("idEquipe",0)!=-1)
 			{
-				listeNomEquipe.add(monIntent.getStringExtra("nomEquipe"));
+				listeNomEquipe.add("Sans club");
+				equipes.add(new Equipe(-1,"Sans club",""));
 			}
 			
 			

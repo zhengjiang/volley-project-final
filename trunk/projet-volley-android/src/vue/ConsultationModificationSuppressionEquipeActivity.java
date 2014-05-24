@@ -1,4 +1,5 @@
 package vue;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -91,9 +92,7 @@ public class ConsultationModificationSuppressionEquipeActivity extends Activity 
 					messConfirmation.setPositiveButton("Ok",new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog,int id) {
 							
-							ctl.eb.open();
-							ctl.eb.supprimer(equipes.get(listeEquipe.getCheckedItemPosition()).getId());
-							ctl.eb.close();
+							
 							
 							ctl.jeb.open();
 							List<JoueurEquipe> joueursEquipe = ctl.jeb.selectionnerJoueursEquipes(equipes.get(listeEquipe.getCheckedItemPosition()).getId());
@@ -108,6 +107,10 @@ public class ConsultationModificationSuppressionEquipeActivity extends Activity 
 							
 							
 							ctl.jeb.close();
+							
+							ctl.eb.open();
+							ctl.eb.supprimer(equipes.get(listeEquipe.getCheckedItemPosition()).getId());
+							ctl.eb.close();
 							
 							listeNomEquipe.remove(listeEquipe.getCheckedItemPosition());
 							listeEquipeAdapter.notifyDataSetChanged();

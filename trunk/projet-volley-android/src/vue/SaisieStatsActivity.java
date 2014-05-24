@@ -11,6 +11,9 @@ package vue;
 
 import java.util.ArrayList;
 
+import modele.Joueur;
+import modele.JoueurEquipe;
+
 import com.l3info.projet_volley_android.R;
 
 import controleur.Controleur;
@@ -18,6 +21,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.view.Menu;
 import android.view.MotionEvent;
@@ -144,6 +148,7 @@ public class SaisieStatsActivity extends Activity {
 	TableLayout tableScore = null;
 	
 	ArrayList<Integer> joueurs_checked = new ArrayList<Integer>(2);
+	ArrayList<Joueur> toCtrl = new ArrayList<Joueur>();
 	int cptTouch = 0;
 	int note;
 	ArrayList<RadioButton> actionsPoss;
@@ -868,6 +873,48 @@ public class SaisieStatsActivity extends Activity {
 	
 	public void onCreate(Bundle savedInstanceState) {super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_saisie_stats);
+		ctrl = Controleur.getInstance();
+		Intent intent = getIntent();
+		ArrayList<JoueurEquipe> titulairesEquipe1 =intent.getParcelableArrayListExtra("titulairesEquipe1");
+		ArrayList<JoueurEquipe> titulairesEquipe2 = intent.getParcelableArrayListExtra("titulairesEquipe2");
+		ArrayList<JoueurEquipe> remplacantsEquipe1 = intent.getParcelableArrayListExtra("remplacantsEquipe1");
+		ArrayList<JoueurEquipe> remplacantsEquipe2 = intent.getParcelableArrayListExtra("remplacantsEquipe2");
+		System.out.println("======================================");
+		
+		titulairesEquipe1.size();
+		for (JoueurEquipe je : titulairesEquipe1)
+		{
+			System.out.print(je.getJoueur().getNom() + " - ");
+			toCtrl.add(je.getJoueur());
+		}
+		ctrl.getModele().setEquipe1(toCtrl);
+		toCtrl.clear();
+		System.out.println("======================================");
+		for (JoueurEquipe je : titulairesEquipe2)
+		{
+			System.out.print(je.getJoueur().getNom() + " - ");
+			toCtrl.add(je.getJoueur());
+		}
+		ctrl.getModele().setEquipe2(toCtrl);
+		toCtrl.clear();
+		System.out.println("======================================");
+
+		for (JoueurEquipe je : remplacantsEquipe1)
+		{
+			System.out.print(je.getJoueur().getNom() + " - ");
+			toCtrl.add(je.getJoueur());
+		}
+		ctrl.getModele().setEquipe1(toCtrl);
+		toCtrl.clear();
+		System.out.println("======================================");
+
+		for (JoueurEquipe je : remplacantsEquipe2)
+		{
+			System.out.print(je.getJoueur().getNom() + " - ");
+			toCtrl.add(je.getJoueur());
+		}
+		ctrl.getModele().setEquipe2(toCtrl);
+		toCtrl.clear();
 		
 		tableScore = (TableLayout) findViewById(R.id.tableau_score);
 		
@@ -1093,6 +1140,13 @@ public class SaisieStatsActivity extends Activity {
 		initialiseBleu(10, 11, "Joueur211");
 		initialiseBleu(11, 12, "Joueur212");
 		
+		int cpt = 0;
+		for (JoueurEquipe je : titulairesEquipe1)
+		{
+			initialiseBleu(cpt, je.getNumMaillot(), je.getJoueur().getNom());
+			cpt++;
+		}
+		
 		//bouton_fantome = (RadioButton) findViewById(R.id.button_service);
 		//bouton_fantome.setEnabled(true);
 		//bouton_fantome.setChecked(false);
@@ -1152,7 +1206,7 @@ public class SaisieStatsActivity extends Activity {
 		// le type et la qualité d'une action ne sont pas cliquable au lancement
 		typeActionNonEnabled();
 		// Initialisations...
-		ctrl = Controleur.getInstance();
+		
 		note = -4;
 		actionsPoss = new ArrayList<RadioButton>();
 		miseAJour();

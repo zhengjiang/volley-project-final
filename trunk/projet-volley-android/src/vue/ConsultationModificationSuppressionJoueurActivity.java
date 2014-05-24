@@ -71,7 +71,7 @@ public class ConsultationModificationSuppressionJoueurActivity extends Activity{
 				}
 				else
 				{
-					joueurEquipe = ctl.jeb.selectionnerJoueursSansEquipe(equipes.get(position).getId());
+				 	joueurEquipe = ctl.jeb.selectionnerJoueursSansEquipe(equipes.get(position).getId());
 				}
 				
 				ctl.jeb.close();
@@ -80,9 +80,17 @@ public class ConsultationModificationSuppressionJoueurActivity extends Activity{
 				// initialisation du contenu de chaque item pr?sent dans la liste
 				listeNomJoueur = new ArrayList<String>();
 				
-				for (int i=0; i<joueurs.size();i++)
+				for (int i=0; i<joueurEquipe.size();i++)
 				{
-					listeNomJoueur.add(joueurs.get(i).getNom()+" - n° maillot : "+joueurEquipe.get(i).getNumMaillot());
+					if (joueurEquipe.get(i).getEquipe().getId()!=-1)
+					{
+						listeNomJoueur.add(joueurEquipe.get(i).getJoueur().getNom()+" - n° maillot : "+joueurEquipe.get(i).getNumMaillot());
+					}
+					else
+					{
+						listeNomJoueur.add(joueurEquipe.get(i).getJoueur().getNom());
+					}
+					
 				}
 				
 				// creation et initialisation de la liste des joueurs
@@ -96,13 +104,12 @@ public class ConsultationModificationSuppressionJoueurActivity extends Activity{
 				
 				Intent intent = new Intent(ConsultationModificationSuppressionJoueurActivity.this, ConsultationModificationJoueurActivityFormulaire.class);
 				
-				intent.putExtra("id",joueurs.get(listeJoueur.getCheckedItemPosition()).getId());
-				intent.putExtra("nom",joueurs.get(listeJoueur.getCheckedItemPosition()).getNom());
-				intent.putExtra("age",joueurs.get(listeJoueur.getCheckedItemPosition()).getAge());
-				intent.putExtra("taille",joueurs.get(listeJoueur.getCheckedItemPosition()).getTaille());
-				intent.putExtra("poste",joueurs.get(listeJoueur.getCheckedItemPosition()).getPosteEnCours());
+				intent.putExtra("id",joueurEquipe.get(listeJoueur.getCheckedItemPosition()).getJoueur().getId());
+				intent.putExtra("nom",joueurEquipe.get(listeJoueur.getCheckedItemPosition()).getJoueur().getNom());
+				intent.putExtra("age",joueurEquipe.get(listeJoueur.getCheckedItemPosition()).getJoueur().getAge());
+				intent.putExtra("taille",joueurEquipe.get(listeJoueur.getCheckedItemPosition()).getJoueur().getTaille());
+				intent.putExtra("poste",joueurEquipe.get(listeJoueur.getCheckedItemPosition()).getJoueur().getPosteEnCours());
 				intent.putExtra("numMaillot",joueurEquipe.get(listeJoueur.getCheckedItemPosition()).getNumMaillot());
-				
 				intent.putExtra("idJoueurEquipe",joueurEquipe.get(listeJoueur.getCheckedItemPosition()).getId());
 				
 				intent.putExtra("idEquipe",equipes.get(listeEquipe.getCheckedItemPosition()).getId());
@@ -172,6 +179,10 @@ public class ConsultationModificationSuppressionJoueurActivity extends Activity{
 	
 	public void onCreate(Bundle savedInstanceState)
 	{
+		super.onCreate(savedInstanceState);
+		
+		setContentView(R.layout.modification_joueur_etape1_activity);
+		
 		ctl.initialiseBdd(ConsultationModificationSuppressionJoueurActivity.this);
 		
 		ctl.eb.open();
@@ -180,9 +191,7 @@ public class ConsultationModificationSuppressionJoueurActivity extends Activity{
 		
 		ctl.eb.close();
 		
-		super.onCreate(savedInstanceState);
 		
-		setContentView(R.layout.modification_joueur_etape1_activity);
 		
 		titre = (TextView) findViewById(R.id.libModificationJoueur);
 		boutonPrecedent = (Button) findViewById(R.id.Precedent);
