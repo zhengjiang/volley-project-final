@@ -37,13 +37,13 @@ public class GestionJoueursEquipesActivity extends Activity{
 					if (monIntent.getStringExtra("entite").equals("joueur"))
 					{
 						Intent intent = new Intent(GestionJoueursEquipesActivity.this, ConsultationModificationSuppressionJoueurActivity.class);
-						intent.putExtra("mode","modification"); // transfert du type d'entite pour obtenir la fenetre correspondante ï¿½ au mode
+						intent.putExtra("mode","modification"); // transfert du type d'entite pour obtenir la fenetre correspondante ? au mode
 						startActivity(intent);
 					}
 					else
 					{
 						Intent intent = new Intent(GestionJoueursEquipesActivity.this, ConsultationModificationSuppressionEquipeActivity.class);
-						intent.putExtra("mode","modification"); // transfert du type d'entite pour obtenir la fenetre correspondante ï¿½ au mode
+						intent.putExtra("mode","modification"); // transfert du type d'entite pour obtenir la fenetre correspondante ? au mode
 						startActivity(intent);
 					}
 				}
@@ -52,13 +52,13 @@ public class GestionJoueursEquipesActivity extends Activity{
 					if (monIntent.getStringExtra("entite").equals("joueur"))
 					{
 						Intent intent = new Intent(GestionJoueursEquipesActivity.this, ConsultationModificationSuppressionJoueurActivity.class);
-						intent.putExtra("mode","suppression"); // transfert du type d'entite pour obtenir la fenetre correspondante ï¿½ au mode
+						intent.putExtra("mode","suppression"); // transfert du type d'entite pour obtenir la fenetre correspondante ? au mode
 						startActivity(intent);
 					}
 					else
 					{
 						Intent intent = new Intent(GestionJoueursEquipesActivity.this, ConsultationModificationSuppressionEquipeActivity.class);
-						intent.putExtra("mode","suppression"); // transfert du type d'entite pour obtenir la fenetre correspondante ï¿½ au mode
+						intent.putExtra("mode","suppression"); // transfert du type d'entite pour obtenir la fenetre correspondante ? au mode
 						startActivity(intent);
 					}
 				}
@@ -67,13 +67,13 @@ public class GestionJoueursEquipesActivity extends Activity{
 					if (monIntent.getStringExtra("entite").equals("joueur"))
 					{
 						Intent intent = new Intent(GestionJoueursEquipesActivity.this, ConsultationModificationSuppressionJoueurActivity.class);
-						intent.putExtra("mode","consultation"); // transfert du type d'entite pour obtenir la fenetre correspondante ï¿½ au mode
+						intent.putExtra("mode","consultation"); // transfert du type d'entite pour obtenir la fenetre correspondante ? au mode
 						startActivity(intent);
 					}
 					else
 					{
 						Intent intent = new Intent(GestionJoueursEquipesActivity.this, ConsultationModificationSuppressionEquipeActivity.class);
-						intent.putExtra("mode","consultation"); // transfert du type d'entite pour obtenir la fenetre correspondante ï¿½ au mode
+						intent.putExtra("mode","consultation"); // transfert du type d'entite pour obtenir la fenetre correspondante ? au mode
 						startActivity(intent);
 					}
 				}
@@ -114,7 +114,7 @@ public class GestionJoueursEquipesActivity extends Activity{
 		
 		Intent monIntent = getIntent();
 		
-		if (monIntent.getStringExtra("entite").equals("joueur"))//changement des intitulés des boutons en fonction de l'entitï¿½
+		if (monIntent.getStringExtra("entite").equals("joueur"))//changement des intitul?s des boutons en fonction de l'entit?
 		{
 			//System.out.println("joueur");
 			titre.setText("Gestion des joueurs");

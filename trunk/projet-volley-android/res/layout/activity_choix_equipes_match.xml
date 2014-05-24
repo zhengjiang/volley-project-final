@@ -72,6 +72,27 @@
         android:text="VALIDER" 
         android:background="#6C3"
         android:textSize="50sp" />
+		
+	
+    <Button
+        android:id="@+id/RetourAccueil"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+         android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/accueil" />
+		
+     <Button
+        android:id="@+id/Precedent"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+        android:layout_alignBaseline="@+id/textTitre"
+        android:layout_alignBottom="@+id/textTitre"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/fleche_precedent" />
     
 
 

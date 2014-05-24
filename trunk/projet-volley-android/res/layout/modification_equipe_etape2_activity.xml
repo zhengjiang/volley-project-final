@@ -4,14 +4,6 @@
     android:layout_height="wrap_content" >
 
     <Button
-        android:id="@+id/RetourAccueil"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:background="@drawable/accueil" />
-
-    <Button
         android:id="@+id/ValidationModifieEquipe"
         style="@style/styleBoutonFormulaire"
         android:layout_width="400dp"
@@ -65,5 +57,15 @@
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="27dp"
         android:background="@drawable/fleche_precedent" />
+
+    <Button
+        android:id="@+id/RetourAccueil"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="28dp"
+        android:layout_marginTop="21dp"
+        android:background="@drawable/accueil" />
 
 </RelativeLayout>

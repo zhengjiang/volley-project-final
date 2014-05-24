@@ -45,6 +45,7 @@ public class ChoixJoueursMatch extends Activity {
 	private Button nonRemplacant2 = null;
 	private Button precedent;
 	private Button valider;
+	private Button boutonAcceuil;
 	private TextView nomEquipe1;
 	private TextView nomEquipe2;
 	
@@ -246,6 +247,15 @@ public class ChoixJoueursMatch extends Activity {
 	    }
 	};
 	
+	// listener sur le bouton accueil
+	private OnTouchListener touchListenerAccueil = new View.OnTouchListener() {
+	    public boolean onTouch(View v, MotionEvent event) {
+	    	Intent intent = new Intent(ChoixJoueursMatch.this, MainActivity.class);
+			startActivity(intent);
+	    	return true;
+	    }
+	};
+	
 	private OnTouchListener touchListenerValider = new View.OnTouchListener() {
 	    public boolean onTouch(View v, MotionEvent event) {
 	    	
@@ -291,9 +301,9 @@ public class ChoixJoueursMatch extends Activity {
 		remplacant2 = (Button) findViewById(R.id.remplacant2);
 		nonTitulaire2 = (Button) findViewById(R.id.nonTitulaire2);
 		nonRemplacant2 = (Button) findViewById(R.id.nonRemplacant2);
-		precedent = (Button) findViewById(R.id.precedent2);
+		precedent = (Button) findViewById(R.id.precedent35);
 		valider = (Button) findViewById(R.id.valider4);
-		
+		boutonAcceuil = (Button) findViewById(R.id.RetourAccueil);
 		
 		Intent intent = getIntent();
 		Resources res = getResources();
@@ -362,6 +372,7 @@ public class ChoixJoueursMatch extends Activity {
 		nonRemplacant2.setOnTouchListener(touchListenerNonRemplacant2);
 		precedent.setOnTouchListener(touchListenerPrecedent);
 		valider.setOnTouchListener(touchListenerValider);
+		boutonAcceuil.setOnTouchListener(touchListenerAccueil);
 	}
 
 	@Override

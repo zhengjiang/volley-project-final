@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -17,27 +18,6 @@
         <requestFocus />
     </EditText>
 
-    <EditText
-        android:id="@+id/nomEquipe"
-        android:layout_width="700dp"
-        android:layout_height="150dp"
-        android:layout_alignLeft="@+id/ValidationCreationEquipe"
-        android:layout_below="@+id/libCreationEquipe"
-        android:layout_marginTop="104dp"
-        android:ems="10"
-        android:hint="Nom "
-        android:textSize="50sp" />
-
-    <Button
-        android:id="@+id/ValidationAvecAjoutJoueur"
-        style="@style/styleBoutonFormulaire"
-        android:layout_width="300dp"
-        android:layout_height="175dp"
-        android:layout_alignRight="@+id/nomEntraineur"
-        android:layout_alignTop="@+id/ValidationCreationEquipe"
-        android:layout_marginRight="23dp"
-        android:text="Ajouter des joueurs" />
-
     <TextView
         android:id="@+id/libCreationEquipe"
         android:layout_width="match_parent"
@@ -48,17 +28,6 @@
         android:gravity="center_horizontal"
         android:text="Création d&apos;une equipe"
         android:textSize="55sp" />
-
-    <Button
-        android:id="@+id/ValidationCreationEquipe"
-        style="@style/styleBoutonFormulaire"
-        android:layout_width="300dp"
-        android:layout_height="175dp"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/nomEntraineur"
-        android:layout_marginLeft="49dp"
-        android:layout_marginTop="115dp"
-        android:text="Valider" />
 
     <Button
         android:id="@+id/RetourAccueil"
@@ -79,5 +48,26 @@
         android:layout_marginLeft="25dp"
         android:layout_marginTop="25dp"
         android:background="@drawable/fleche_precedent" />
+
+    <EditText
+        android:id="@+id/nomEquipe"
+        android:layout_width="700dp"
+        android:layout_height="150dp"
+        android:layout_below="@+id/libCreationEquipe"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="105dp"
+        android:ems="10"
+        android:hint="Nom "
+        android:textSize="50sp" />
+
+    <Button
+        android:id="@+id/ValidationCreationEquipe"
+        style="@style/styleBoutonFormulaire"
+        android:layout_width="300dp"
+        android:layout_height="175dp"
+        android:layout_below="@+id/nomEntraineur"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="98dp"
+        android:text="Valider" />
 
 </RelativeLayout>

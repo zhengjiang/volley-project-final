@@ -8,6 +8,8 @@ import modele.Joueur;
 import modele.JoueurEquipe;
 
 import com.l3info.projet_volley_android.R;
+
+import controleur.Controleur;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View.OnClickListener;
@@ -38,6 +40,9 @@ private OnClickListener clikSurBouton = new View.OnClickListener() {
 			messConfirmation.setTitle("");
 			messConfirmation.setNeutralButton("Ok",new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog,int id) {
+					Intent intent = new Intent(ConsultationModificationEquipeActivityFormulaire.this, ConsultationModificationSuppressionEquipeActivity.class);
+					intent.putExtra("mode","modification");
+					startActivity(intent);
 					ConsultationModificationEquipeActivityFormulaire.this.finish();
 					dialog.cancel();
 				}
@@ -45,18 +50,22 @@ private OnClickListener clikSurBouton = new View.OnClickListener() {
 			
 			if(v.getId()==R.id.ValidationModifieEquipe)//  button  modifier   equipe  
 			{
-				EditText nomEquipe = (EditText) findViewById(R.id.nomEquipe);
-				EditText nomEntraineur = (EditText) findViewById(R.id.nomEntraineur);
 							
-			    if ( (nomEquipe.getText().toString().length()>0) && (nomEntraineur.getText().toString().length()>0) )
+			    if ( (nomEquipeEnModification.getText().toString().length()>0) && (nomEntraineurEnModification.getText().toString().length()>0) )
 				{
-					Equipe monEquipe=new Equipe(0,nomEquipe.getText().toString(),nomEntraineur.getText().toString());
+					Equipe monEquipe=new Equipe(monIntent.getIntExtra("idEquipe",-1),nomEquipeEnModification.getText().toString(),nomEntraineurEnModification.getText().toString());
 				
 					if(monEquipe.nomEstValide())
 					{
 						if(monEquipe.nomEntraineurEstValide())
 						{
-							// modif de l'equipe  a  la  base  
+							Controleur ctl = Controleur.getInstance();
+							ctl.initialiseBdd(ConsultationModificationEquipeActivityFormulaire.this);
+							
+							ctl.eb.open();
+							ctl.eb.modifier(monEquipe);
+							ctl.eb.close();
+							
 							messConfirmation.setTitle("");
 							messConfirmation.setMessage("Equipe modifié");
 							AlertDialog alertErreur = messConfirmation.create();
@@ -69,7 +78,7 @@ private OnClickListener clikSurBouton = new View.OnClickListener() {
 							messErreur.setMessage("nom de l'entraineur est invalide");
 							AlertDialog alertErreur = messErreur.create();
 							alertErreur.show();
-							nomEntraineur.setText("");
+							nomEntraineurEnModification.setText("");
 						}
 																	
 					}	
@@ -78,7 +87,7 @@ private OnClickListener clikSurBouton = new View.OnClickListener() {
 						messErreur.setMessage("nom est invalide");
 						AlertDialog alertErreur = messErreur.create();
 						alertErreur.show();
-						nomEquipe.setText("");
+						nomEquipeEnModification.setText("");
 					}
 				}
 			    else
@@ -90,6 +99,17 @@ private OnClickListener clikSurBouton = new View.OnClickListener() {
 			}
 			else if (v.getId()==R.id.Precedent)// bouton precedent
 			{
+				
+				Intent intent = new Intent(ConsultationModificationEquipeActivityFormulaire.this, ConsultationModificationSuppressionEquipeActivity.class);
+				if (monIntent.getStringExtra("mode").equals("consultation"))
+				{
+					intent.putExtra("mode","consultation");	
+				}
+				else if (monIntent.getStringExtra("mode").equals("modification"))
+				{
+					intent.putExtra("mode","modification");
+				}
+				startActivity(intent);
 				ConsultationModificationEquipeActivityFormulaire.this.finish();
 			}
 			else 
@@ -107,21 +127,22 @@ private OnClickListener clikSurBouton = new View.OnClickListener() {
 	Button precedent = null;
 	Button accueil = null;
 	
-	// coté modification
+	// cot? modification
 	EditText nomEquipeEnModification=null;
 	EditText nomEntraineurEnModification=null;
 	Button modifier = null;
 	
-	// coté consultation
+	// cot? consultation
 	TextView nomEquipeConsultation = null;
 	TextView nomEntraineurConsultation = null;
+	Intent monIntent;
 	
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		
 		
-		Intent monIntent = getIntent();
+		monIntent = getIntent();
 		
 		if (monIntent.getStringExtra("mode").equals("consultation"))//chargement des elements de la fenetre en fonction du mode
 		{
