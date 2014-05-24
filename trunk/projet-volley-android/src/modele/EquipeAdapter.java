@@ -1,4 +1,4 @@
-package com.example.creationmatchs;
+package modele;
 
 import java.util.ArrayList;
 
