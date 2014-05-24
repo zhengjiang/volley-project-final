@@ -34,6 +34,10 @@ public class MainActivity extends Activity{
 				intent.putExtra("entite","equipe"); // transfert du type d'entite pour obtenir la fenetre correspondante à l'entite
 				startActivity(intent);
 			}
+			else if(v.getId()==R.id.statsJoueurs){
+				Intent intent = new Intent(MainActivity.this, StatsJoueurs.class);
+				startActivity(intent);
+			}
 			else // bouton liste des matchs
 			{
 				//affichage de la vue pour lister les matchs
@@ -47,6 +51,7 @@ public class MainActivity extends Activity{
 	Button gestionJoueur = null;
 	Button gestionEquipe = null;
 	Button listeMatch = null;
+	Button statsJoueurs = null;
 	
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -62,11 +67,13 @@ public class MainActivity extends Activity{
 		gestionJoueur = (Button) findViewById(R.id.creerJoueur);
 		gestionEquipe = (Button) findViewById(R.id.creerEquipe);
 		listeMatch = (Button) findViewById(R.id.listeMatchs);
+		statsJoueurs = (Button) findViewById(R.id.statsJoueurs);
 		
 		creationMatch.setOnClickListener(clikSurBouton);
 		gestionJoueur.setOnClickListener(clikSurBouton);
 		gestionEquipe.setOnClickListener(clikSurBouton);
 		listeMatch.setOnClickListener(clikSurBouton);
+		statsJoueurs.setOnClickListener(clikSurBouton);
 	}
 
 }

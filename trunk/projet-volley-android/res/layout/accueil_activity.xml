@@ -11,9 +11,9 @@
         android:id="@+id/creerMatch"
         style="@style/styleBouton"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginBottom="25dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:text="Créer un match" />
 	</TableRow>
    
@@ -23,9 +23,9 @@
         android:id="@+id/creerJoueur"
         style="@style/styleBouton"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginBottom="25dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:text="Gestion des joueurs" />
 	</TableRow>
    
@@ -36,9 +36,9 @@
         android:id="@+id/creerEquipe"
         style="@style/styleBouton"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginBottom="25dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:text="Gestion des équipes" />
 	</TableRow>
     
@@ -49,11 +49,25 @@
         android:id="@+id/listeMatchs"
         style="@style/styleBouton"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginBottom="25dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:text="Liste des matchs" />
 	</TableRow>
+	
+	<TableRow >
+	    <Button
+	    android:layout_column="1"
+        android:id="@+id/statsJoueurs"
+        style="@style/styleBouton"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="Statistiques des joueurs" />
+	</TableRow>
+	
+	
     
     
 
