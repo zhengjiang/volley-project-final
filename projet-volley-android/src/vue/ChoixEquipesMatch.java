@@ -3,9 +3,6 @@ package vue;
 import modele.*;
 import java.util.ArrayList;
 import java.util.Calendar;
-
-import com.l3info.projet_volley_android.R;
-
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -26,35 +23,36 @@ public class ChoixEquipesMatch extends Activity {
 	private ListView listeEquipes2;
 	private Button boutonValider;
 	private DatePicker date;
-
 	private EditText lieu;
 	private ArrayList<Equipe> equipes=InitialisationModele.initEquipes(); 
+	private EquipeAdapter equipe1Adapter;
+	private EquipeAdapter equipe2Adapter;
 	
 	private OnTouchListener touchListenerValider = new View.OnTouchListener() {
 	    public boolean onTouch(View v, MotionEvent event) {
-	    	if (equipes.get(listeEquipes1.getCheckedItemPosition()).getId() !=
-	    			equipes.get(listeEquipes2.getCheckedItemPosition()).getId()) {
+	    	/*if (equipes.get(listeEquipes1.getCheckedItemPosition()).getId() !=
+	    			equipes.get(listeEquipes2.getCheckedItemPosition()).getId()) {*/
 	    			if (lieu.getText().toString().trim().length() != 0) {
 				    	Intent intent = new Intent(ChoixEquipesMatch.this, ChoixJoueursMatch.class);
-				    	intent.putExtra("idEquipe1", equipes.get(listeEquipes1.getCheckedItemPosition()).getId());
-				    	intent.putExtra("idEquipe2", equipes.get(listeEquipes2.getCheckedItemPosition()).getId());
-				    	intent.putExtra("nomEquipe1", equipes.get(listeEquipes1.getCheckedItemPosition()).getNom());
-				    	intent.putExtra("nomEquipe2", equipes.get(listeEquipes2.getCheckedItemPosition()).getNom());
-				    	intent.putExtra("lieuMatch", lieu.getText());
+				    	intent.putExtra("equipe1", equipes.get(listeEquipes1.getCheckedItemPosition()));
+				    	intent.putExtra("equipe2", equipes.get(listeEquipes2.getCheckedItemPosition()));
+				    	intent.putExtra("lieuMatch", lieu.getText().toString());
 				    	
 				    	Calendar dateMatch = Calendar.getInstance();
 				    	dateMatch.set(date.getYear(), date.getMonth(), date.getDayOfMonth());
 				    	Calendar dateCourante = Calendar.getInstance();
 				    	
 				    	if (!dateMatch.after(dateCourante)) {
-				    		intent.putExtra("dateMatch", dateMatch.getTime());
+				    		intent.putExtra("jourDate", date.getDayOfMonth());
+				    		intent.putExtra("moisDate", date.getMonth());
+				    		intent.putExtra("anneeDate", date.getYear());
 					    	startActivity(intent);
 				    	}
 				    	
 				    }
 	    			return true;
-	    	}
-	    	else return true;
+	    	//}
+	    	//else return true;
 	    }
 	};
 		
@@ -67,27 +65,22 @@ public class ChoixEquipesMatch extends Activity {
 		listeEquipes2 = (ListView) findViewById(R.id.listEquipes2);
 		boutonValider = (Button) findViewById(R.id.valider3);
 		lieu = (EditText) findViewById(R.id.lieuMatch);
-		date = (DatePicker) findViewById(R.id.datePicker);
-		
-		ArrayList<String> listeNomEquipe = new ArrayList<String>();
-		for (int i=0; i<equipes.size();i++)
-		{
-			listeNomEquipe.add(equipes.get(i).getNom());
-		}
-		
-		listeEquipes1.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_single_choice,
-				listeNomEquipe));		
-		listeEquipes2.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_single_choice,
-				listeNomEquipe));
-		
+		date = (DatePicker) findViewById(R.id.datePicker);		
 		boutonValider.setOnTouchListener(touchListenerValider);
 
+		
+		equipe1Adapter = new EquipeAdapter(this, android.R.layout.simple_list_item_single_choice, equipes);
+	    listeEquipes1.setAdapter(equipe1Adapter);
+	    
+		equipe2Adapter = new EquipeAdapter(this, android.R.layout.simple_list_item_single_choice, equipes);
+	    listeEquipes2.setAdapter(equipe1Adapter);
+	    
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
+		getMenuInflater().inflate(R.menu.choix_equipes_match, menu);
 		return true;
 	}
 

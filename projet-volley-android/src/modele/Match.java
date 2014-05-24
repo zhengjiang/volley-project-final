@@ -1,26 +1,24 @@
-/**
-* @author : Depret Axel
-* Classe Match
-*/
 
-package modele;
+package vue;
 
 import java.util.Date;
 import java.text.*;
 
-public class Match 
-{
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Match implements Parcelable {
 	protected int id;
 	protected Date date;
 	protected String lieu;
 	protected Equipe equipe1;
 	protected Equipe equipe2;
-	protected Competition competition;
+	//protected Competition competition;
 
-	/*
+	/**
 	* @constructor
 	*/
-	public Match(int idMatch, String dateMatch, String lieuMatch, Equipe equipe1Match, Equipe equipe2Match, Competition competitionMatch)
+	public Match(int idMatch, String dateMatch, String lieuMatch, Equipe equipe1Match, Equipe equipe2Match)
 	{
 		this.id=idMatch;
 	
@@ -41,10 +39,10 @@ public class Match
 		this.lieu=lieuMatch;
 		this.equipe1=equipe1Match;
 		this.equipe2=equipe2Match;
-		this.competition=competitionMatch;
+		//this.competition=competitionMatch;
 	}
 
-	/*
+	/**
 	* @getter
 	* @setter
 	*/
@@ -98,18 +96,8 @@ public class Match
 	{
 		this.equipe2=equipe;
 	}
-	
-	public Competition getCompetition()
-	{
-		return this.competition;
-	}
-	
-	public void setCompetition(Competition compet)
-	{
-		this.competition=compet;
-	}
 
-	/*
+	/**
 	* Verifie si la date est valide
 	* @return : retourne vrai si la date a bien été entré correctement et qu'elle est bien supérieur ou égale à la date du jour
 	*/
@@ -187,16 +175,16 @@ public class Match
 		}
 	}
 	
-	/*
+	/**
 	* Verifie si le lieu est valide
 	* @return : retourne vrai si le nom du lieu n'est pas vide
 	*/
 	public boolean lieuEstValide()
 	{
-		return (this.lieu.length()!=0);
+		return (this.lieu.trim().length()!=0);
 	}
 	
-	/*
+	/**
 	* Verifie si les équipes sont valide
 	* @return : retourne vrai si les equipes ne sont pas egales
 	*/
@@ -205,14 +193,45 @@ public class Match
 		return (!this.equipe1.equipeEgale(this.equipe2));
 	}
 	
-	/*
+	/**
 	* toString() : pour affichage en console de l'instance
 	*/	
 	public String toString()
 	{
 		SimpleDateFormat formater = new SimpleDateFormat("dd/MM/yyyy");
 
-		return "n° Match : "+this.id+"\n"+"date Match : "+formater.format(this.date)+"\n"+"lieu : "+this.lieu+"\n\n"+"equipe domicile Match : \n"+this.equipe1.toString()+"\n"+"equipe exterieur Match : \n"+this.equipe2.toString()+"\n"+"competition Match : \n"+this.competition.toString()+"\n";
-	} 
+		return "n° Match : "+this.id+"\n"+"date Match : "+formater.format(this.date)+"\n"+"lieu : "+this.lieu+"\n\n"+"equipe domicile Match : \n"+this.equipe1.toString()+"\n"+"equipe exterieur Match : \n"+this.equipe2.toString()+"\n"+"competition Match : \n";
+	}
+
+	@Override
+	public int describeContents() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel out, int flags) {
+		out.writeInt(id);
+		out.writeString(lieu);
+		out.writeParcelable(equipe1, flags);
+		out.writeParcelable(equipe2, flags);
+	}
+	
+    public static final Parcelable.Creator<Match> CREATOR = new Parcelable.Creator<Match>() {
+        public Match createFromParcel(Parcel in) {
+            return new Match(in);
+        }
+
+        public Match[] newArray(int size) {
+            return new Match[size];
+        }
+    };
+
+    private Match(Parcel in) {
+        id = in.readInt();
+        lieu = in.readString();
+        equipe1 = in.readParcelable(getClass().getClassLoader());
+        equipe2 = in.readParcelable(getClass().getClassLoader());
+    }
 
 }
