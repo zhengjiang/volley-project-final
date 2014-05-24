@@ -1,14 +1,10 @@
-/**
-* @author : Bazia
-*/
-/**
- * @author IKBAL
- */
-
-
 package modele;
 
-public class JoueurEquipe {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+
+public class JoueurEquipe implements Parcelable {
 	private int id;
 	private Joueur joueur;
 	private Equipe equipe;
@@ -70,4 +66,38 @@ public class JoueurEquipe {
 	{
 		return this.numMaillot > 0;
 	}
+	
+	public int describeContents() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel out, int flags) {
+		out.writeInt(id);
+		out.writeParcelable(joueur, flags);
+		out.writeParcelable(equipe, flags);
+		out.writeInt(numMaillot);
+		out.writeByte((byte) (enCours ? 1 : 0)); 
+	}
+	
+    public static final Parcelable.Creator<JoueurEquipe> CREATOR = new Parcelable.Creator<JoueurEquipe>() {
+        public JoueurEquipe createFromParcel(Parcel in) {
+            return new JoueurEquipe(in);
+        }
+
+        public JoueurEquipe[] newArray(int size) {
+            return new JoueurEquipe[size];
+        }
+    };
+
+    private JoueurEquipe(Parcel in) {
+        id = in.readInt();
+        joueur = in.readParcelable(getClass().getClassLoader());
+        equipe = in.readParcelable(getClass().getClassLoader());
+        numMaillot = in.readInt();
+        enCours = in.readByte() != 0; 
+    }
+	
+	
 }

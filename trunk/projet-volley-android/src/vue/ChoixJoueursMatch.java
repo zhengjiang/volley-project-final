@@ -1,14 +1,14 @@
 package vue;
 
 import modele.*;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
-import com.l3info.projet_volley_android.R;
-
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -45,33 +45,30 @@ public class ChoixJoueursMatch extends Activity {
 	private TextView nomEquipe1;
 	private TextView nomEquipe2;
 	
-	// on initialise un tableau de JoueurEquipe avec tous les JoueursEquipe de notre modèle
-	ArrayList<JoueurEquipe> arrayListJoueurs1=InitialisationModele.initJoueurEquipe();
-	// on déclare un tableau qui va contenir les noms des joueurs de l'équipe 1...
-	ArrayList<String> listeNomJoueurs1;
-	// ...et un adaptateur sur ce tableau
-	ArrayAdapter<String> adapterJoueurs1;
-
-	// on fait pareil pour les joueurs titulaires, les joueurs remplaçcants et pour l'équipe 2
-	ArrayList<JoueurEquipe> arrayListTitulaires1;
-	ArrayAdapter<String> adapterTitulaires1;
-	ArrayList<String> listeNomTitulaires1;
+	ArrayList<JoueurEquipe> arrayListTousJoueurs=InitialisationModele.initJoueurEquipe();
 	
-	ArrayList<JoueurEquipe> arrayListRemplacants1;
-	ArrayAdapter<String> adapterRemplacants1;
-	ArrayList<String> listeNomRemplacants1;
+	ArrayList<JoueurEquipe> arrayListJoueurs1 = new ArrayList<JoueurEquipe>();
+	JoueurEquipeAdapter joueurEquipeAdapter1;
 	
-	ArrayList<JoueurEquipe> arrayListJoueurs2=InitialisationModele.initJoueurEquipe();
-	ArrayAdapter<String> adapterJoueurs2;
-	ArrayList<String> listeNomJoueurs2;
+	ArrayList<JoueurEquipe> arrayListJoueursTitulaires1 = new ArrayList<JoueurEquipe>();
+	JoueurEquipeAdapter joueurEquipeAdapterTitulaires1;
 	
-	ArrayList<JoueurEquipe> arrayListTitulaires2;
-	ArrayAdapter<String> adapterTitulaires2;
-	ArrayList<String> listeNomTitulaires2;
+	ArrayList<JoueurEquipe> arrayListJoueursRemplacants1 = new ArrayList<JoueurEquipe>();
+	JoueurEquipeAdapter joueurEquipeAdapterRemplacants1;
 	
-	ArrayList<JoueurEquipe> arrayListRemplacants2;
-	ArrayAdapter<String> adapterRemplacants2;
-	ArrayList<String> listeNomRemplacants2;
+	ArrayList<JoueurEquipe> arrayListJoueurs2 = new ArrayList<JoueurEquipe>();
+	JoueurEquipeAdapter joueurEquipeAdapter2;
+	
+	ArrayList<JoueurEquipe> arrayListJoueursTitulaires2 = new ArrayList<JoueurEquipe>();
+	JoueurEquipeAdapter joueurEquipeAdapterTitulaires2;
+	
+	ArrayList<JoueurEquipe> arrayListJoueursRemplacants2 = new ArrayList<JoueurEquipe>();
+	JoueurEquipeAdapter joueurEquipeAdapterRemplacants2;
+	
+	String dateMatch;
+	String lieuMatch;
+	Equipe equipe1;
+	Equipe equipe2;
 	
     // listener sur le bouton qui permet de mettre des joueurs de l'équipe 1 comme titulaires	
 	private OnTouchListener touchListenerTitulaire1 = new View.OnTouchListener() {
@@ -80,17 +77,15 @@ public class ChoixJoueursMatch extends Activity {
 	    	for (int i=0 ; i<listViewJoueurs1.getCount() ; i++) {
 	    		if (listViewJoueurs1.getCheckedItemPositions().get(i)) {
 	    			listViewJoueurs1.setItemChecked(i, false);
-	    			// on ajoute le joueur à la liste des titulaires
-	    			listeNomTitulaires1.add(listViewJoueurs1.getItemAtPosition(i).toString());
-	    			adapterTitulaires1.notifyDataSetChanged();
-	    			
-	    			// on a jouter le joueur sélectionner a un tableau pour le supprimer à la fin
+	    			arrayListJoueursTitulaires1.add((JoueurEquipe) listViewJoueurs1.getItemAtPosition(i));
+	    			joueurEquipeAdapterTitulaires1.notifyDataSetChanged();
+	  
 	    			supprimer[i] = listViewJoueurs1.getItemAtPosition(i);
 	    		}
 	    	}
 	    	for (int i=0 ; i<supprimer.length ; i++) {
-	    		listeNomJoueurs1.remove(supprimer[i]);
-	    		adapterJoueurs1.notifyDataSetChanged();
+	    		arrayListJoueurs1.remove(supprimer[i]);
+	    		joueurEquipeAdapter1.notifyDataSetChanged();
 	    	}
 	    	return true;
 	    }
@@ -104,14 +99,14 @@ public class ChoixJoueursMatch extends Activity {
 	    		if (listViewTitulaires1.getCheckedItemPositions().get(i)) {
 	    			listViewTitulaires1.setItemChecked(i, false);
 	    			// on ajoute le joueur à la liste des remplacants
-	    			listeNomJoueurs1.add(listViewTitulaires1.getItemAtPosition(i).toString());
-	    			adapterJoueurs1.notifyDataSetChanged();
+	    			arrayListJoueurs1.add((JoueurEquipe) listViewTitulaires1.getItemAtPosition(i));
+	    			joueurEquipeAdapter1.notifyDataSetChanged();
 	    			supprimer[i] = listViewTitulaires1.getItemAtPosition(i);
 	    		}
 	    	}
 	    	for (int i=0 ; i<supprimer.length ; i++) {
-	    		listeNomTitulaires1.remove(supprimer[i]);
-	    		adapterTitulaires1.notifyDataSetChanged();
+	    		arrayListJoueursTitulaires1.remove(supprimer[i]);
+	    		joueurEquipeAdapterTitulaires1.notifyDataSetChanged();
 	    	}
 	    	return true;
 	    }
@@ -124,14 +119,14 @@ public class ChoixJoueursMatch extends Activity {
 	    	for (int i=0 ; i<listViewJoueurs1.getCount() ; i++) {
 	    		if (listViewJoueurs1.getCheckedItemPositions().get(i)) {
 	    			listViewJoueurs1.setItemChecked(i, false);
-	    			listeNomRemplacants1.add(listViewJoueurs1.getItemAtPosition(i).toString());
-	    			adapterRemplacants1.notifyDataSetChanged();
+	    			arrayListJoueursRemplacants1.add((JoueurEquipe) listViewJoueurs1.getItemAtPosition(i));
+	    			joueurEquipeAdapterRemplacants1.notifyDataSetChanged();
 	    			supprimer[i] = listViewJoueurs1.getItemAtPosition(i);
 	    		}
 	    	}
 	    	for (int i=0 ; i<supprimer.length ; i++) {
-	    		listeNomJoueurs1.remove(supprimer[i]);
-	    		adapterJoueurs1.notifyDataSetChanged();
+	    		arrayListJoueurs1.remove(supprimer[i]);
+	    		joueurEquipeAdapter1.notifyDataSetChanged();
 	    	}
 	    	return true;
 	    }
@@ -144,34 +139,35 @@ public class ChoixJoueursMatch extends Activity {
 	    	for (int i=0 ; i<listViewRemplacants1.getCount() ; i++) {
 	    		if (listViewRemplacants1.getCheckedItemPositions().get(i)) {
 	    			listViewRemplacants1.setItemChecked(i, false);
-	    			listeNomJoueurs1.add(listViewRemplacants1.getItemAtPosition(i).toString());
-	    			adapterJoueurs1.notifyDataSetChanged();
+	    			arrayListJoueurs1.add((JoueurEquipe) listViewRemplacants1.getItemAtPosition(i));
+	    			joueurEquipeAdapter1.notifyDataSetChanged();
 	    			supprimer[i] = listViewRemplacants1.getItemAtPosition(i);
 	    		}
 	    	}
 	    	for (int i=0 ; i<supprimer.length ; i++) {
-	    		listeNomRemplacants1.remove(supprimer[i]);
-	    		adapterRemplacants1.notifyDataSetChanged();
+	    		arrayListJoueursRemplacants1.remove(supprimer[i]);
+	    		joueurEquipeAdapterRemplacants1.notifyDataSetChanged();
 	    	}
 	    	return true;
 	    }
 	};
-	
-	   // listener sur le bouton qui permet de mettre des joueurs de l'équipe 2 comme titulaires	
+
+    // listener sur le bouton qui permet de mettre des joueurs de l'équipe 2 comme titulaires	
 	private OnTouchListener touchListenerTitulaire2 = new View.OnTouchListener() {
 	    public boolean onTouch(View v, MotionEvent event) {
 	    	Object[] supprimer = new Object[listViewJoueurs2.getCount()];
 	    	for (int i=0 ; i<listViewJoueurs2.getCount() ; i++) {
 	    		if (listViewJoueurs2.getCheckedItemPositions().get(i)) {
 	    			listViewJoueurs2.setItemChecked(i, false);
-	    			listeNomTitulaires2.add(listViewJoueurs2.getItemAtPosition(i).toString());
-	    			adapterTitulaires2.notifyDataSetChanged();
+	    			arrayListJoueursTitulaires2.add((JoueurEquipe) listViewJoueurs2.getItemAtPosition(i));
+	    			joueurEquipeAdapterTitulaires2.notifyDataSetChanged();
+	  
 	    			supprimer[i] = listViewJoueurs2.getItemAtPosition(i);
 	    		}
 	    	}
 	    	for (int i=0 ; i<supprimer.length ; i++) {
-	    		listeNomJoueurs2.remove(supprimer[i]);
-	    		adapterJoueurs2.notifyDataSetChanged();
+	    		arrayListJoueurs2.remove(supprimer[i]);
+	    		joueurEquipeAdapter2.notifyDataSetChanged();
 	    	}
 	    	return true;
 	    }
@@ -184,14 +180,15 @@ public class ChoixJoueursMatch extends Activity {
 	    	for (int i=0 ; i<listViewTitulaires2.getCount() ; i++) {
 	    		if (listViewTitulaires2.getCheckedItemPositions().get(i)) {
 	    			listViewTitulaires2.setItemChecked(i, false);
-	    			listeNomJoueurs2.add(listViewTitulaires2.getItemAtPosition(i).toString());
-	    			adapterJoueurs2.notifyDataSetChanged();
+	    			// on ajoute le joueur à la liste des remplacants
+	    			arrayListJoueurs2.add((JoueurEquipe) listViewTitulaires2.getItemAtPosition(i));
+	    			joueurEquipeAdapter2.notifyDataSetChanged();
 	    			supprimer[i] = listViewTitulaires2.getItemAtPosition(i);
 	    		}
 	    	}
 	    	for (int i=0 ; i<supprimer.length ; i++) {
-	    		listeNomTitulaires2.remove(supprimer[i]);
-	    		adapterTitulaires2.notifyDataSetChanged();
+	    		arrayListJoueursTitulaires2.remove(supprimer[i]);
+	    		joueurEquipeAdapterTitulaires2.notifyDataSetChanged();
 	    	}
 	    	return true;
 	    }
@@ -204,38 +201,39 @@ public class ChoixJoueursMatch extends Activity {
 	    	for (int i=0 ; i<listViewJoueurs2.getCount() ; i++) {
 	    		if (listViewJoueurs2.getCheckedItemPositions().get(i)) {
 	    			listViewJoueurs2.setItemChecked(i, false);
-	    			listeNomRemplacants2.add(listViewJoueurs2.getItemAtPosition(i).toString());
-	    			adapterRemplacants2.notifyDataSetChanged();
+	    			arrayListJoueursRemplacants2.add((JoueurEquipe) listViewJoueurs2.getItemAtPosition(i));
+	    			joueurEquipeAdapterRemplacants2.notifyDataSetChanged();
 	    			supprimer[i] = listViewJoueurs2.getItemAtPosition(i);
 	    		}
 	    	}
 	    	for (int i=0 ; i<supprimer.length ; i++) {
-	    		listeNomJoueurs2.remove(supprimer[i]);
-	    		adapterJoueurs2.notifyDataSetChanged();
+	    		arrayListJoueurs2.remove(supprimer[i]);
+	    		joueurEquipeAdapter2.notifyDataSetChanged();
 	    	}
 	    	return true;
 	    }
 	};
 	
-    // listener sur le bouton qui permet de sortir des joueurs de l'équipe 1 de la liste des remplacants
+    // listener sur le bouton qui permet de sortir des joueurs de l'équipe 2 de la liste des remplacants	
 	private OnTouchListener touchListenerNonRemplacant2 = new View.OnTouchListener() {
 	    public boolean onTouch(View v, MotionEvent event) {
 	    	Object[] supprimer = new Object[listViewRemplacants2.getCount()];
 	    	for (int i=0 ; i<listViewRemplacants2.getCount() ; i++) {
 	    		if (listViewRemplacants2.getCheckedItemPositions().get(i)) {
 	    			listViewRemplacants2.setItemChecked(i, false);
-	    			listeNomJoueurs2.add(listViewRemplacants2.getItemAtPosition(i).toString());
-	    			adapterJoueurs2.notifyDataSetChanged();
+	    			arrayListJoueurs2.add((JoueurEquipe) listViewRemplacants2.getItemAtPosition(i));
+	    			joueurEquipeAdapter2.notifyDataSetChanged();
 	    			supprimer[i] = listViewRemplacants2.getItemAtPosition(i);
 	    		}
 	    	}
 	    	for (int i=0 ; i<supprimer.length ; i++) {
-	    		listeNomRemplacants2.remove(supprimer[i]);
-	    		adapterRemplacants2.notifyDataSetChanged();
+	    		arrayListJoueursRemplacants2.remove(supprimer[i]);
+	    		joueurEquipeAdapterRemplacants2.notifyDataSetChanged();
 	    	}
 	    	return true;
 	    }
 	};
+
 	
 	// listener sur le bouton précédent
 	private OnTouchListener touchListenerPrecedent = new View.OnTouchListener() {
@@ -248,17 +246,19 @@ public class ChoixJoueursMatch extends Activity {
 	private OnTouchListener touchListenerValider = new View.OnTouchListener() {
 	    public boolean onTouch(View v, MotionEvent event) {
 	    	
-	    	/*System.out.println(listViewTitulaires1.getCount());
-	    	System.out.println(listViewTitulaires2.getCount());
-	    	System.out.println(listViewRemplacants2.getCount());
-	    	System.out.println(listViewRemplacants2.getCount());
-	    	*/
-	    	
 	    	if (listViewTitulaires1.getCount() == 6) {
 	    		if (listViewTitulaires2.getCount() == 6) {
 	    			if (listViewRemplacants1.getCount() <= 6) {
 	    				if (listViewRemplacants2.getCount() <= 6) {
-	    					System.out.println("OK"); //Intent intent = new Intent(ChoixJoueursMatch.this, SaisieStatsActivity.class);
+	    					Intent intent = new Intent(ChoixJoueursMatch.this, SaisieStatsActivity.class);
+	    					Match match = new Match(0, dateMatch, lieuMatch, equipe1, equipe2);
+	    					//System.out.println(match.getDate()); => NE FONCTIONNE PAS
+	    					intent.putExtra("match", match);
+	    					intent.putParcelableArrayListExtra("titulairesEquipe1", arrayListJoueursTitulaires1);
+	    					intent.putParcelableArrayListExtra("remplacantsEquipe1", arrayListJoueursTitulaires1);
+	    					intent.putParcelableArrayListExtra("titulairesEquipe2", arrayListJoueursTitulaires1);
+	    					intent.putParcelableArrayListExtra("remplacantsEquipe2", arrayListJoueursTitulaires1);
+	    					startActivity(intent);
 	    				}
 	    			}
 	    		}
@@ -294,68 +294,59 @@ public class ChoixJoueursMatch extends Activity {
 		
 		Intent intent = getIntent();
 		Resources res = getResources();
+		
+		equipe1 = (Equipe) intent.getParcelableExtra("equipe1");
+		equipe2 = (Equipe) intent.getParcelableExtra("equipe2");
+		
+		int jourDate = intent.getIntExtra("jourDate", -1);
+		int moisDate = intent.getIntExtra("moisDate", -1);
+		int anneeDate = intent.getIntExtra("anneeDate", -1);
+		dateMatch = Integer.toString(jourDate) + "/" + Integer.toString(moisDate) + "/" + Integer.toString(anneeDate);
+		
+		lieuMatch = intent.getStringExtra("lieuMatch");
+		
+		
+		
 	    String stringNomEquipe1 = String.format(res.getString(R.string.nomEquipe1),
-	    		intent.getStringExtra("nomEquipe1"));
+	    		equipe1.getNom());
 	    nomEquipe1 = (TextView) findViewById(R.id.nomEquipe1);
 	    nomEquipe1.setText(stringNomEquipe1);
 	    
 	    String stringNomEquipe2 = String.format(res.getString(R.string.nomEquipe2),
-	    		intent.getStringExtra("nomEquipe2"));
+	    		equipe2.getNom());
 	    nomEquipe2 = (TextView) findViewById(R.id.nomEquipe2);
 	    nomEquipe2.setText(stringNomEquipe2);
-	 
-		
-		/* on génère dans la liste, le noms des joueurs de l'équipe qui a été sélectionné dans
-		   l'activité précédente */
-		listeNomJoueurs1 = new ArrayList<String>();
-		for (int i=0; i<arrayListJoueurs1.size();i++)
+	    
+		for (int i=0; i<arrayListTousJoueurs.size();i++)
 		{
-			if (intent.getIntExtra("idEquipe1", -1) == arrayListJoueurs1.get(i).getEquipe().getId()) {
-				listeNomJoueurs1.add(arrayListJoueurs1.get(i).getJoueur().getNom());
+			if (equipe1.getId() == arrayListTousJoueurs.get(i).getEquipe().getId()) {
+			    arrayListJoueurs1.add(arrayListTousJoueurs.get(i));
 			}
 		}
+		joueurEquipeAdapter1 = new JoueurEquipeAdapter(this, android.R.layout.simple_list_item_single_choice, arrayListJoueurs1);
+	    listViewJoueurs1.setAdapter(joueurEquipeAdapter1);
 		
-		// on initialise l'adaptateur et on le lie a la ListView des joueurs de l'équipe1
-		adapterJoueurs1 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice,
-				listeNomJoueurs1);
-		listViewJoueurs1.setAdapter(adapterJoueurs1);
+	    joueurEquipeAdapterTitulaires1 = new JoueurEquipeAdapter(this, android.R.layout.simple_list_item_single_choice, arrayListJoueursTitulaires1);
+	    listViewTitulaires1.setAdapter(joueurEquipeAdapterTitulaires1);
 		
-		arrayListTitulaires1 = new ArrayList<JoueurEquipe>();
-		listeNomTitulaires1 = new ArrayList<String>();
-		adapterTitulaires1 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice,
-				listeNomTitulaires1);
-		listViewTitulaires1.setAdapter(adapterTitulaires1);
+	    joueurEquipeAdapterRemplacants1 = new JoueurEquipeAdapter(this, android.R.layout.simple_list_item_single_choice, arrayListJoueursRemplacants1);
+	    listViewRemplacants1.setAdapter(joueurEquipeAdapterRemplacants1);
 		
-		arrayListRemplacants1 = new ArrayList<JoueurEquipe>();
-		listeNomRemplacants1 = new ArrayList<String>();
-		adapterRemplacants1 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice,
-				listeNomRemplacants1);
-		listViewRemplacants1.setAdapter(adapterRemplacants1);
-		
-		
-		listeNomJoueurs2 = new ArrayList<String>();
-		for (int i=0; i<arrayListJoueurs2.size();i++)
+	    
+		for (int i=0; i<arrayListTousJoueurs.size();i++)
 		{
-			if (intent.getIntExtra("idEquipe2", -1) == arrayListJoueurs2.get(i).getEquipe().getId()) {
-				listeNomJoueurs2.add(arrayListJoueurs2.get(i).getJoueur().getNom());
+			if (equipe2.getId() == arrayListTousJoueurs.get(i).getEquipe().getId()) {
+			    arrayListJoueurs2.add(arrayListTousJoueurs.get(i));
 			}
 		}
+		joueurEquipeAdapter2 = new JoueurEquipeAdapter(this, android.R.layout.simple_list_item_single_choice, arrayListJoueurs2);
+	    listViewJoueurs2.setAdapter(joueurEquipeAdapter2);
 		
-		adapterJoueurs2 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice,
-				listeNomJoueurs2);
-		listViewJoueurs2.setAdapter(adapterJoueurs2);
+	    joueurEquipeAdapterTitulaires2 = new JoueurEquipeAdapter(this, android.R.layout.simple_list_item_single_choice, arrayListJoueursTitulaires2);
+	    listViewTitulaires2.setAdapter(joueurEquipeAdapterTitulaires2);
 		
-		arrayListTitulaires2 = new ArrayList<JoueurEquipe>();
-		listeNomTitulaires2 = new ArrayList<String>();
-		adapterTitulaires2 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice,
-				listeNomTitulaires2);
-		listViewTitulaires2.setAdapter(adapterTitulaires2);
-		
-		arrayListRemplacants2 = new ArrayList<JoueurEquipe>();
-		listeNomRemplacants2 = new ArrayList<String>();
-		adapterRemplacants2 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice,
-				listeNomRemplacants2);
-		listViewRemplacants2.setAdapter(adapterRemplacants2);
+	    joueurEquipeAdapterRemplacants2 = new JoueurEquipeAdapter(this, android.R.layout.simple_list_item_single_choice, arrayListJoueursRemplacants2);
+	    listViewRemplacants2.setAdapter(joueurEquipeAdapterRemplacants2);
 		
 		// on associe chaque boutons a son listener
 		titulaire1.setOnTouchListener(touchListenerTitulaire1);
@@ -373,7 +364,7 @@ public class ChoixJoueursMatch extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
+		getMenuInflater().inflate(R.menu.creation_matchs, menu);
 		return true;
 	}
 

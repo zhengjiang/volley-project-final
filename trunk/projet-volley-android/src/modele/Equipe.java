@@ -5,7 +5,11 @@
 
 package modele;
 
-public class Equipe 
+
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Equipe implements Parcelable
 {
 	protected int id;
 	protected String nom;
@@ -83,5 +87,34 @@ public class Equipe
 	{
 		return "n° Equipe : "+this.id+"\n"+"nom Equipe : "+this.nom+"\n"+"nom Entraineur Equipe : "+this.entraineur+"\n";
 	}
+
+	@Override
+	public int describeContents() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel out, int flags) {
+		out.writeInt(id);
+		out.writeString(nom);
+		out.writeString(entraineur);
+	}
+	
+    public static final Parcelable.Creator<Equipe> CREATOR = new Parcelable.Creator<Equipe>() {
+        public Equipe createFromParcel(Parcel in) {
+            return new Equipe(in);
+        }
+
+        public Equipe[] newArray(int size) {
+            return new Equipe[size];
+        }
+    };
+
+    private Equipe(Parcel in) {
+        id = in.readInt();
+        nom = in.readString();
+        entraineur = in.readString();
+    }
 		
 }

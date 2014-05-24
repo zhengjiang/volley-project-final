@@ -1,13 +1,10 @@
-/**
-* @author : Bazia
-*/
-/**
- * @author IKBAL
- */
-
 package modele;
 
-public class Joueur {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+
+public class Joueur implements Parcelable {
 	private int id;
 	private String nom;
 	private int taille;
@@ -83,6 +80,38 @@ public class Joueur {
 	{
 		return (this.poste>=1 && this.poste<=6);
 	}
+	
+	public int describeContents() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel out, int flags) {
+		out.writeInt(id);
+		out.writeString(nom);
+		out.writeInt(taille);
+		out.writeInt(age);
+		out.writeInt(poste);
+	}
+	
+    public static final Parcelable.Creator<Joueur> CREATOR = new Parcelable.Creator<Joueur>() {
+        public Joueur createFromParcel(Parcel in) {
+            return new Joueur(in);
+        }
+
+        public Joueur[] newArray(int size) {
+            return new Joueur[size];
+        }
+    };
+
+    private Joueur(Parcel in) {
+        id = in.readInt();
+        nom = in.readString();
+        taille = in.readInt();
+        age = in.readInt();
+        poste = in.readInt();
+    }
 }
 
 
