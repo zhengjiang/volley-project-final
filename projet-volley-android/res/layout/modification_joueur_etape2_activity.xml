@@ -48,6 +48,18 @@
         android:ems="10"
         android:hint="Poste en cours"
         android:textSize="50sp" />
+    
+     <EditText
+        android:id="@+id/numMaillot"
+        android:inputType="number"
+        android:layout_width="700dp"
+        android:layout_height="80dp"
+        android:layout_alignLeft="@+id/Poste_en_courJoueur"
+        android:layout_below="@+id/Poste_en_courJoueur"
+        android:layout_marginTop="45dp"
+        android:ems="10"
+        android:hint="N° maillot"
+        android:textSize="50sp" />
 
     <Button
         android:id="@+id/ValidationModifieJoueur"
@@ -68,9 +80,18 @@
         android:layout_marginTop="30dp"
         android:ems="10"
         android:hint="Nom"
-        android:textSize="50sp" >
-    <requestFocus />
-    </EditText>
+        android:textSize="50sp" />
+
+    <ListView
+        android:id="@+id/listeEquipes"
+        android:layout_width="700dp"
+        android:layout_height="150dp"
+        android:layout_below="@+id/numMaillot"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:choiceMode="singleChoice"
+        android:textSize="70sp" >
+    </ListView>
 
     <Button
         android:id="@+id/RetourAccueil"
@@ -91,31 +112,4 @@
         android:layout_marginLeft="26dp"
         android:background="@drawable/fleche_precedent" />
 
-    <ListView
-        android:id="@+id/listeEquipes"
-        android:layout_width="700dp"
-        android:layout_height="150dp"
-        android:layout_alignLeft="@+id/Poste_en_courJoueur"
-        android:layout_below="@+id/Poste_en_courJoueur"
-        android:layout_marginTop="22dp"
-        android:choiceMode="singleChoice"
-        android:textSize="70sp" >
-    </ListView>
-
-    <EditText
-        android:id="@+id/numMaillot"
-        android:layout_width="700dp"
-        android:layout_height="80dp"
-        android:layout_alignLeft="@+id/listeEquipes"
-        android:layout_below="@+id/listeEquipes"
-        android:layout_marginTop="48dp"
-        android:ems="10"
-        android:hint="N° maillot"
-        android:inputType="number"
-        android:textSize="50sp" />
-
- 
-
 </RelativeLayout>
-
-

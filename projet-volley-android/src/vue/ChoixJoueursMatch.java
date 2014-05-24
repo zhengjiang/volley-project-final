@@ -268,9 +268,9 @@ public class ChoixJoueursMatch extends Activity {
 	    					//System.out.println(match.getDate()); => NE FONCTIONNE PAS
 	    					intent.putExtra("match", match);
 	    					intent.putParcelableArrayListExtra("titulairesEquipe1", arrayListJoueursTitulaires1);
-	    					intent.putParcelableArrayListExtra("remplacantsEquipe1", arrayListJoueursTitulaires1);
-	    					intent.putParcelableArrayListExtra("titulairesEquipe2", arrayListJoueursTitulaires1);
-	    					intent.putParcelableArrayListExtra("remplacantsEquipe2", arrayListJoueursTitulaires1);
+	    					intent.putParcelableArrayListExtra("remplacantsEquipe1", arrayListJoueursRemplacants1);
+	    					intent.putParcelableArrayListExtra("titulairesEquipe2", arrayListJoueursTitulaires2);
+	    					intent.putParcelableArrayListExtra("remplacantsEquipe2", arrayListJoueursRemplacants2);
 	    					startActivity(intent);
 	    				}
 	    			}
@@ -301,7 +301,7 @@ public class ChoixJoueursMatch extends Activity {
 		remplacant2 = (Button) findViewById(R.id.remplacant2);
 		nonTitulaire2 = (Button) findViewById(R.id.nonTitulaire2);
 		nonRemplacant2 = (Button) findViewById(R.id.nonRemplacant2);
-		precedent = (Button) findViewById(R.id.precedent35);
+		//precedent = (Button) findViewById(R.id.precedent);
 		valider = (Button) findViewById(R.id.valider4);
 		boutonAcceuil = (Button) findViewById(R.id.RetourAccueil);
 		
@@ -370,7 +370,7 @@ public class ChoixJoueursMatch extends Activity {
 		remplacant2.setOnTouchListener(touchListenerRemplacant2);
 		nonTitulaire2.setOnTouchListener(touchListenerNonTitulaire2);
 		nonRemplacant2.setOnTouchListener(touchListenerNonRemplacant2);
-		precedent.setOnTouchListener(touchListenerPrecedent);
+		//precedent.setOnTouchListener(touchListenerPrecedent);
 		valider.setOnTouchListener(touchListenerValider);
 		boutonAcceuil.setOnTouchListener(touchListenerAccueil);
 	}

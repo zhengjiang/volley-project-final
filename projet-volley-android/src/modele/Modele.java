@@ -55,6 +55,16 @@ public class Modele {
 	public void setRotation(int b){rotation = b;}
 	public void setNouveauPoint(boolean bool){nouveauPoint = bool;}
 	public void setNouveauMatch(boolean bool){nouveauMatch = bool;}
+	public void setEquipe1(ArrayList<Joueur> tit)
+	{
+		for (Joueur j : tit){eqBleu.add(j);}
+		
+	}
+	public void setEquipe2(ArrayList<Joueur> tit)
+	{
+		for (Joueur j : tit){eqRouge.add(j);}
+		
+	}
 
 
 	public void setNouveauSet(boolean bool){nouveauSet = bool;}
