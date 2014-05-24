@@ -38,7 +38,7 @@ public class ChoixEquipesMatch extends Activity {
 	private OnTouchListener touchListenerValider = new View.OnTouchListener() {
 	    public boolean onTouch(View v, MotionEvent event) {
 	    	if (equipes.get(listeEquipes1.getCheckedItemPosition()).getId() !=
-	    			equipes.get(listeEquipes2.getCheckedItemPosition()).getId()) {*/
+	    			equipes.get(listeEquipes2.getCheckedItemPosition()).getId()) {
 	    			if (lieu.getText().toString().trim().length() != 0) {
 				    	Intent intent = new Intent(ChoixEquipesMatch.this, ChoixJoueursMatch.class);
 				    	intent.putExtra("equipe1", equipes.get(listeEquipes1.getCheckedItemPosition()));
