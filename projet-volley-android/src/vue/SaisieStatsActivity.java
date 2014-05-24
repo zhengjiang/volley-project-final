@@ -68,6 +68,9 @@ public class SaisieStatsActivity extends Activity {
 	RadioButton[] equipeRouge = new RadioButton[6];
 	RadioButton[] equipeBleu = new RadioButton[6];
 	
+	TextView nomEquipe1 = null;
+	TextView nomEquipe2 = null;
+	
 	int matriceIdRouge[][] = new int [4][12];
 	TextView matriceTextViewRouge[][] = new TextView [4][12];
 	
@@ -1146,6 +1149,30 @@ public class SaisieStatsActivity extends Activity {
 			initialiseBleu(cpt, je.getNumMaillot(), je.getJoueur().getNom());
 			cpt++;
 		}
+		for (JoueurEquipe je : remplacantsEquipe1)
+		{
+			initialiseBleu(cpt, je.getNumMaillot(), je.getJoueur().getNom());
+			cpt++;
+		}
+		cpt = 0;
+		for (JoueurEquipe je : titulairesEquipe2)
+		{
+			initialiseRouge(cpt, je.getNumMaillot(), je.getJoueur().getNom());
+			cpt++;
+		}
+		for (JoueurEquipe je : remplacantsEquipe2)
+		{
+			initialiseRouge(cpt, je.getNumMaillot(), je.getJoueur().getNom());
+			cpt++;
+		}
+		cpt = 0;
+		
+		nomEquipe1 = (TextView) findViewById(R.id.nom_equipe1);
+		nomEquipe2 = (TextView) findViewById(R.id.nom_equipe2);
+		nomEquipe1.setText(titulairesEquipe1.get(0).getEquipe().getNom());
+		nomEquipe2.setText(titulairesEquipe2.get(0).getEquipe().getNom());
+
+		
 		
 		//bouton_fantome = (RadioButton) findViewById(R.id.button_service);
 		//bouton_fantome.setEnabled(true);

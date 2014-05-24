@@ -74,15 +74,16 @@ public class Modele {
 	{
 		eqRouge = new ArrayList<Joueur>(12);
 		eqBleu = new ArrayList<Joueur>(12);
-		Equipe eq1 = new Equipe(1, "Cadors", "Zlatan");
-		Equipe eq2 = new Equipe(2, "Arsouilles", "Zlatan");
-		Competition compet = new Competition(1, 2014, "test", "test");
-
-		match = new Match(1, "01/01/2014", "Grosville", eq1, eq2, new Competition(0, 2014, "Championnat", "Championnat"));
 		service = 0;
 		gagne = -1;
 		rotation = -1;
 		nouveauPoint = true;
+		/*Equipe eq1 = new Equipe(1, "Cadors", "Zlatan");
+		Equipe eq2 = new Equipe(2, "Arsouilles", "Zlatan");
+		Competition compet = new Competition(1, 2014, "test", "test");
+
+		match = new Match(1, "01/01/2014", "Grosville", eq1, eq2, new Competition(0, 2014, "Championnat", "Championnat"));
+		
 		
 		eqBleu.add(0, new Joueur(1, "Bleu0", 180, 25, 0));
 		eqBleu.add(1, new Joueur(2, "Bleu1", 180, 25, 1));
@@ -108,7 +109,7 @@ public class Modele {
 		eqRouge.add(8, new Joueur(21, "Rouge8", 180, 25, 8));
 		eqRouge.add(9, new Joueur(22, "Rouge9", 180, 25, 9));
 		eqRouge.add(10, new Joueur(13, "Rouge10", 180, 25, 10));
-		eqRouge.add(11, new Joueur(24, "Rouge11", 180, 25, 11));
+		eqRouge.add(11, new Joueur(24, "Rouge11", 180, 25, 11));*/
 		
 		
 		
