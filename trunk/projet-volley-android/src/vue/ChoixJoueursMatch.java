@@ -1,11 +1,14 @@
 package vue;
 
 import modele.*;
+
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+
+import com.l3info.projet_volley_android.R;
 
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -251,7 +254,7 @@ public class ChoixJoueursMatch extends Activity {
 	    			if (listViewRemplacants1.getCount() <= 6) {
 	    				if (listViewRemplacants2.getCount() <= 6) {
 	    					Intent intent = new Intent(ChoixJoueursMatch.this, SaisieStatsActivity.class);
-	    					Match match = new Match(0, dateMatch, lieuMatch, equipe1, equipe2);
+	    					Match match = new Match(0, dateMatch, lieuMatch, equipe1, equipe2, new Competition(0, 2014, "Championnat", "Championnat"));
 	    					//System.out.println(match.getDate()); => NE FONCTIONNE PAS
 	    					intent.putExtra("match", match);
 	    					intent.putParcelableArrayListExtra("titulairesEquipe1", arrayListJoueursTitulaires1);
@@ -364,7 +367,7 @@ public class ChoixJoueursMatch extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.creation_matchs, menu);
+		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
 

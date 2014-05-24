@@ -2,6 +2,8 @@ package modele;
 
 import java.util.ArrayList;
 
+import com.l3info.projet_volley_android.R;
+
 import android.content.ClipData.Item;
 import android.content.Context;
 import android.view.LayoutInflater;
