@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.l3info.projet_volley_android.R;
 
+import controleur.Controleur;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.app.Activity;
@@ -48,8 +49,10 @@ public class ChoixJoueursMatch extends Activity {
 	private Button boutonAcceuil;
 	private TextView nomEquipe1;
 	private TextView nomEquipe2;
+	private Controleur ctl = Controleur.getInstance(); //acces à la BD
 	
-	ArrayList<JoueurEquipe> arrayListTousJoueurs=InitialisationModele.initJoueurEquipe();
+	//ArrayList<JoueurEquipe> arrayListTousJoueurs=InitialisationModele.initJoueurEquipe();
+	ArrayList<JoueurEquipe> arrayListTousJoueurs;
 	
 	ArrayList<JoueurEquipe> arrayListJoueurs1 = new ArrayList<JoueurEquipe>();
 	JoueurEquipeAdapter joueurEquipeAdapter1;
@@ -285,6 +288,10 @@ public class ChoixJoueursMatch extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_choix_joueurs_match);
+		
+		this.ctl.jeb.open();
+		arrayListTousJoueurs = (ArrayList<JoueurEquipe>) this.ctl.jeb.selectionnerTout();
+		this.ctl.jeb.close();
 		
 		// on récupère les vues du fichier XML
 		listViewJoueurs1 = (ListView) findViewById(R.id.listJoueursEquipe1);

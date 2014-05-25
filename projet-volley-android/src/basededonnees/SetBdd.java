@@ -53,21 +53,20 @@ public class SetBdd extends BDD {
 	  /**
 	   * @param i l'identifiant du set à récupérer
 	   */
-	  /*
+	  
 	  public Set selectionner(int i){
 		  Cursor c = mDb.rawQuery("SELECT * FROM SETS WHERE idS = ?", new String[]{String.valueOf(i)});
 		  c.moveToFirst();
-		  return new Set(c.getInt(0), c.getInt(1), c.getInt(2), c.getInt(3), leMatch);
-	  }*/
+		  return new Set(c.getInt(0), c.getInt(1), c.getInt(2), c.getInt(3), new Match(c.getInt(4), "", "", null, null, null));
+	  }
 	  
 	  public List<Set> selectionnerTout(){
-		Cursor c = mDb.rawQuery("SELECT * FROM SETS", null);
-		List<Set> sets = new ArrayList<Set>();
-		Controleur ca = Controleur.getInstance();
-		while(c.moveToNext()){
-			sets.add(new Set(c.getInt(0), c.getInt(1), c.getInt(2), c.getInt(3), ca.mb.selectionner(c.getInt(4))));
-		}
-		c.close();
-		return sets;
-	  }
+			Cursor c = mDb.rawQuery("SELECT * FROM SETS", null);
+			List<Set> sets = new ArrayList<Set>();
+			while(c.moveToNext()){
+				sets.add(new Set(c.getInt(0), c.getInt(1), c.getInt(2), c.getInt(3), new Match(c.getInt(4), "", "", null, null, null)));
+			}
+			c.close();
+			return sets;
+		  }
 	}

@@ -7,6 +7,7 @@ import java.util.Calendar;
 
 import com.l3info.projet_volley_android.R;
 
+import controleur.Controleur;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -28,11 +29,13 @@ public class ChoixEquipesMatch extends Activity {
 	private Button boutonValider;
 	private DatePicker date;
 	private EditText lieu;
+	//private ArrayList<Equipe> equipes=InitialisationModele.initEquipes(); 
 	private ArrayList<Equipe> equipes=InitialisationModele.initEquipes(); 
 	private EquipeAdapter equipe1Adapter;
 	private EquipeAdapter equipe2Adapter;
 	private Button precedent;
 	private Button boutonAcceuil;
+	private Controleur ctl = Controleur.getInstance(); //acces à la BD
 	
 	
 	private OnTouchListener touchListenerValider = new View.OnTouchListener() {
@@ -83,6 +86,10 @@ public class ChoixEquipesMatch extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_choix_equipes_match);
+		
+		this.ctl.eb.open();
+		this.equipes = (ArrayList<Equipe>) this.ctl.eb.selectionnerTout();	
+		this.ctl.eb.close();
 
 	    
 		listeEquipes1 = (ListView) findViewById(R.id.listEquipes1);
