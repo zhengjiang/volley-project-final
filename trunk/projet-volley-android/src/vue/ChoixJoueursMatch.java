@@ -16,6 +16,7 @@ import android.os.Parcelable;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
@@ -51,8 +52,8 @@ public class ChoixJoueursMatch extends Activity {
 	private TextView nomEquipe2;
 	private Controleur ctl = Controleur.getInstance(); //acces à la BD
 	
-	ArrayList<JoueurEquipe> arrayListTousJoueurs=InitialisationModele.initJoueurEquipe();
-	//ArrayList<JoueurEquipe> arrayListTousJoueurs;
+	//ArrayList<JoueurEquipe> arrayListTousJoueurs=InitialisationModele.initJoueurEquipe();
+	ArrayList<JoueurEquipe> arrayListTousJoueurs;
 	
 	ArrayList<JoueurEquipe> arrayListJoueurs1 = new ArrayList<JoueurEquipe>();
 	JoueurEquipeAdapter joueurEquipeAdapter1;
@@ -267,7 +268,14 @@ public class ChoixJoueursMatch extends Activity {
 	    			if (listViewRemplacants1.getCount() <= 6) {
 	    				if (listViewRemplacants2.getCount() <= 6) {
 	    					Intent intent = new Intent(ChoixJoueursMatch.this, SaisieStatsActivity.class);
-	    					Match match = new Match(0, dateMatch, lieuMatch, equipe1, equipe2, new Competition(0, 2014, "Championnat", "Championnat"));
+	    					Match match = new Match(0, "14/04/1993", lieuMatch, equipe1, equipe2, new Competition(0, 2014, "Championnat", "Championnat"));
+	    					
+	    					Controleur c = Controleur.getInstance();
+	    					c.mb.open();
+	    					c.mb.ajouter(match);
+	    					c.mb.close();
+	    					
+	    					
 	    					//System.out.println(match.getDate()); => NE FONCTIONNE PAS
 	    					intent.putExtra("match", match);
 	    					intent.putParcelableArrayListExtra("titulairesEquipe1", arrayListJoueursTitulaires1);
@@ -289,9 +297,9 @@ public class ChoixJoueursMatch extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_choix_joueurs_match);
 		
-		/*this.ctl.jeb.open();
+		this.ctl.jeb.open();
 		arrayListTousJoueurs = (ArrayList<JoueurEquipe>) this.ctl.jeb.selectionnerTout();
-		this.ctl.jeb.close();*/
+		this.ctl.jeb.close();
 		
 		// on récupère les vues du fichier XML
 		listViewJoueurs1 = (ListView) findViewById(R.id.listJoueursEquipe1);

@@ -44,4 +44,17 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 		  db.execSQL("DROP TABLE IF EXISTS JOUEUR_ACTION;");
 		  this.onCreate(db);
 	  }
+	  
+	  @Override
+	  public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+		  db.execSQL("DROP TABLE IF EXISTS JOUEURS;");
+		  db.execSQL("DROP TABLE IF EXISTS EQUIPES;");
+		  db.execSQL("DROP TABLE IF EXISTS COMPETITIONS;");
+		  db.execSQL("DROP TABLE IF EXISTS JOUEUR_EQUIPE;");
+		  db.execSQL("DROP TABLE IF EXISTS ACTIONS;");
+		  db.execSQL("DROP TABLE IF EXISTS MATCHS;");
+		  db.execSQL("DROP TABLE IF EXISTS SETS;");
+		  db.execSQL("DROP TABLE IF EXISTS JOUEUR_ACTION;");
+		  this.onCreate(db);
+	  }
 	}
