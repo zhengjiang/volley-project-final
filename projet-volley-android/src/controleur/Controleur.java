@@ -51,12 +51,29 @@ public class Controleur {
 	}
 	
 	public void testBdd(){
-		/*this.sb.open();
-		this.sb.modifier(new Set(1, 2, 35, 4, new Match(1, "", "", null, null, null)));
-		this.sb.close();*/
-		/*for(int i = 0; i < j.size(); i++){
-			Log.v("test", j.get(i).getEquipe().getNom()+" "+j.get(i).getJoueur().getNom()+" "+j.get(i).getNumMaillot());
-		}*/
+		Equipe e1 = new Equipe(0, "Equipe1", "Entraineur1");
+		Equipe e2 = new Equipe(0, "Equipe2", "Entraineur2");
+		
+		this.eb.open();
+		e1.setId((int)this.eb.ajouter(e1));
+		e2.setId((int)this.eb.ajouter(e2));
+		this.eb.close();
+		
+		for(int i = 1; i <= 24; i++){
+			Equipe e3 = e1;
+			if(i >= 13){
+				e3 = e2;
+			}
+			this.jb.open();
+			Joueur j = new Joueur(0, "Joueur"+i, 170+i, 20+i, 1);
+			j.setId((int)this.jb.ajouter(j));
+			this.jb.close();
+			this.jeb.open();
+			JoueurEquipe je = new JoueurEquipe(0, j, e3, i%6, true);
+			this.jeb.ajouter(je);
+			this.jeb.close();
+		}
+		
 	}
 	
 	// Methodes accès Modèle
@@ -157,7 +174,9 @@ public class Controleur {
 		modele.nouveauPoint();
 	}
 	
-	public void soumettrePoint(){}
+	public void soumettrePoint(){
+		
+	}
 	
 	
 }

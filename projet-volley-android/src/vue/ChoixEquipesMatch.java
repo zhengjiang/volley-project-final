@@ -30,7 +30,7 @@ public class ChoixEquipesMatch extends Activity {
 	private DatePicker date;
 	private EditText lieu;
 	//private ArrayList<Equipe> equipes=InitialisationModele.initEquipes(); 
-	private ArrayList<Equipe> equipes=InitialisationModele.initEquipes(); 
+	private ArrayList<Equipe> equipes;
 	private EquipeAdapter equipe1Adapter;
 	private EquipeAdapter equipe2Adapter;
 	private Button precedent;
@@ -87,9 +87,9 @@ public class ChoixEquipesMatch extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_choix_equipes_match);
 		
-		/*this.ctl.eb.open();
+		this.ctl.eb.open();
 		this.equipes = (ArrayList<Equipe>) this.ctl.eb.selectionnerTout();	
-		this.ctl.eb.close();*/
+		this.ctl.eb.close();
 
 	    
 		listeEquipes1 = (ListView) findViewById(R.id.listEquipes1);

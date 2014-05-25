@@ -39,7 +39,7 @@ public class Match implements Parcelable {
 		this.lieu=lieuMatch;
 		this.equipe1=equipe1Match;
 		this.equipe2=equipe2Match;
-		//this.competition=competitionMatch;
+		this.competition = new Competition(0, 2014, "", "");
 	}
 
 	/**

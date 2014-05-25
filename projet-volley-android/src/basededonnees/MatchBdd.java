@@ -27,9 +27,9 @@ public class MatchBdd extends BDD {
 		  ContentValues value = new ContentValues();
 		  value.put("dateM", m.getDate());
 		  value.put("lieuM", m.getLieu());
-		  value.put("equipe1", m.getEquipeDomicile().getId());// A VERIFIEEEERRRR ET TESTER !
-		  value.put("equipe2", m.getEquipeExterieur().getId());// A VERIFIEEEERRRR ET TESTER !
-		  value.put("competition", m.getCompetition().getId());// A VERIFIEEEERRRR ET TESTER !
+		  value.put("equipe1", m.getEquipeDomicile().getId());
+		  value.put("equipe2", m.getEquipeExterieur().getId());
+		  value.put("competition", m.getCompetition().getId());
 		  long i = mDb.insert("MATCHS", null, value);
 		  return i;
 	  }
