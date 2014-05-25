@@ -2,7 +2,10 @@ package controleur;
 import java.util.ArrayList;
 import java.util.List;
 
+import vue.ChoixEquipesMatch;
+import vue.MainActivity;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import basededonnees.*;
 import modele.*;
@@ -72,8 +75,8 @@ public class Controleur {
 			JoueurEquipe je = new JoueurEquipe(0, j, e3, i%6, true);
 			this.jeb.ajouter(je);
 			this.jeb.close();
-		}
-		*/
+		}*/
+		
 	}
 	
 	// Methodes accès Modèle
@@ -146,11 +149,25 @@ public class Controleur {
 			modele.afficherScore();
 			
 			Set set = modele.getSet();
-			if ((set.getScoreEquipeDomicile() >= 25 || set.getScoreEquipeExterieur() >= 25) && (Math.abs(set.getScoreEquipeDomicile()-set.getScoreEquipeExterieur()) >= 2))
+			if (modele.getTabSet().size() < 5)
 			{
-				System.out.println("Gain de set détecté !");
-				modele.setNouveauSet(true);
-				
+				if ((set.getScoreEquipeDomicile() >= 25 || set.getScoreEquipeExterieur() >= 25) && (Math.abs(set.getScoreEquipeDomicile()-set.getScoreEquipeExterieur()) >= 2))
+				{
+					System.out.println("Gain de set détecté !");
+					if (finMatch() != -1)
+					{
+						modele.setFinMatch(true);
+					}
+					else{modele.setNouveauSet(true);}
+					
+				}
+			}
+			else
+			{
+				if ((set.getScoreEquipeDomicile() >= 15 || set.getScoreEquipeExterieur() >= 15) && (Math.abs(set.getScoreEquipeDomicile()-set.getScoreEquipeExterieur()) >= 2))
+				{
+					modele.setFinMatch(true);
+				} 
 			}
 			
 			
@@ -161,6 +178,24 @@ public class Controleur {
 		
 		
 		return true;
+	}
+	
+	public int finMatch()
+	{
+		int cptEq1 = 0;
+		int cptEq2 = 0;
+		for (Set s : modele.getTabSet())
+		{
+			if (s.getScoreEquipeDomicile() > s.getScoreEquipeExterieur())
+			{
+				cptEq1 ++;
+			}
+			else {cptEq2 ++;}
+		}
+		if (cptEq1 == 3){return 0;}
+		else if (cptEq2 == 3){return 1;}
+		else {return -1;}
+		
 	}
 	
 	public void nouveauSet()
