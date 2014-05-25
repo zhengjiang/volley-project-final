@@ -101,7 +101,7 @@ public class Controleur {
 		modele.ajouterAction(act);
 		modele.setJSuiv(j2);
 		
-		if (note == 2)
+		if ((note == 2) && ((type == "at") || (type == "bl") || (type == "se")))
 		{
 			modele.setGagne(eq);
 		}else if (note == -2){modele.setGagne((eq+1)%2);}

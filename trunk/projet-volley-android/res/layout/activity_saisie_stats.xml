@@ -939,6 +939,12 @@
 	    
 		    <RadioButton
 		        android:id="@+id/button_reception"
+		        android:button="@drawable/button_reception_selector"
+		        android:layout_width="match_parent"
+		        android:layout_marginTop="10dp" />
+		    
+		     <RadioButton
+		        android:id="@+id/button_defense"
 		        android:button="@drawable/button_defense_selector"
 		        android:layout_width="match_parent"
 		        android:layout_marginTop="10dp" />

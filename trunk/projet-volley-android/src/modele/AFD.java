@@ -93,11 +93,16 @@ class Automate {
 	*/
 	Automate() 
 	{
-		Etat in, se, re, at, pa, bl, ga, pe;
+		Etat in, se, re, at, pa, bl, ga, pe, de;
 		ArrayList<String> tmp;
 		tmp = new ArrayList<String>();
 		tmp.add("se");
 		in = new Etat(false, "in", tmp);
+		
+		tmp = new ArrayList<String>();
+		tmp.add("pa");
+		tmp.add("at");
+		re = new Etat(false, "re", tmp);
 		
 		tmp = new ArrayList<String>();
 		tmp.add("re");
@@ -107,10 +112,10 @@ class Automate {
 		tmp = new ArrayList<String>();
 		tmp.add("pa");
 		tmp.add("at");
-		re = new Etat(false, "re", tmp);
+		de = new Etat(false, "de", tmp);
 		
 		tmp = new ArrayList<String>();
-		tmp.add("re");
+		tmp.add("de");
 		tmp.add("bl");
 		tmp.add("at");
 		tmp.add("pa");
@@ -122,7 +127,7 @@ class Automate {
 		pa = new Etat(false, "pa", tmp);
 		
 		tmp = new ArrayList<String>();
-		tmp.add("re");
+		tmp.add("de");
 		tmp.add("bl");
 		tmp.add("at");
 		tmp.add("pa");
@@ -144,7 +149,7 @@ class Automate {
 		re.ajouteTransition("ga", ga);
 		re.ajouteTransition("pe", pe);
 		
-		at.ajouteTransition("re", re);
+		at.ajouteTransition("de", re);
 		at.ajouteTransition("pa", pa);
 		at.ajouteTransition("at", at);
 		at.ajouteTransition("bl", bl);
@@ -158,10 +163,15 @@ class Automate {
 		
 		bl.ajouteTransition("bl", bl);
 		bl.ajouteTransition("pa", bl);
-		bl.ajouteTransition("re", bl);
+		bl.ajouteTransition("de", bl);
 		bl.ajouteTransition("at", bl);
 		bl.ajouteTransition("ga", bl);
 		bl.ajouteTransition("pe", bl);
+		
+		de.ajouteTransition("pa", pa);
+		de.ajouteTransition("at", at);
+		de.ajouteTransition("ga", bl);
+		de.ajouteTransition("pe", bl);
 		
 		courant = in;
 		init = in;
