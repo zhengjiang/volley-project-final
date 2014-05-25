@@ -802,7 +802,11 @@ public class SaisieStatsActivity extends Activity {
 		    		{
 		    			System.out.println("Action " + joueurs_checked.get(0) + "  ====>  " + joueurs_checked.get(1));	    		
 		    			ctrl.soumettreAction(joueurs_checked.get(0), joueurs_checked.get(1), typeA, note);
-		    			
+		    			if(ctrl.getModele().getFinMatch())
+		    			{
+		    				Intent intent = new Intent(SaisieStatsActivity.this, MainActivity.class);
+		    				startActivity(intent);
+		    			}
 		    			//typeActionNonChecked();
 				    	typeActionNonEnabled();
 				    	// on decoche tout les boutons

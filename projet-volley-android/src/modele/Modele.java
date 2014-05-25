@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import controleur.Controleur;
 
 public class Modele {
-	/*classe qui servira à "stocker" les éléments "changeant" : 
+	/*classe qui servira à "stocker" les éléments "changeants" : 
 		- Match courant
 		- Joueurs équipes courant + poste
 		- Automate courant (quel état etc, ...)
@@ -20,6 +20,7 @@ public class Modele {
 	boolean nouveauMatch;
 	boolean nouveauSet;
 	boolean nouveauPoint;
+	boolean finMatch;
 	int rotation;
 	int service;
 	int gagne;
@@ -32,6 +33,7 @@ public class Modele {
 		score = new ArrayList<Set>(5);
 		nouveauMatch = true;
 		nouveauSet = true;
+		finMatch = false;
 		numPoint = 0;
 		jSuiv = -5;
 		courant = new Point();
@@ -52,6 +54,8 @@ public class Modele {
 	public int getJSuiv(){return jSuiv;}
 	public int getRotation(){return rotation;}
 	public Point getPoint(){return courant;}
+	public boolean getFinMatch(){return finMatch;}
+	
 	
 	public void setGagne(int i){gagne = i;}
 	public void setService(int i){service = i;}
@@ -61,6 +65,7 @@ public class Modele {
 	public void setMatch(Match m){
 		this.match = m;
 	}
+	public void setFinMatch(boolean bool){finMatch = bool;}
 	public void setEquipe1(ArrayList<Joueur> tit)
 	{
 		for (Joueur j : tit){eqBleu.add(j);}
