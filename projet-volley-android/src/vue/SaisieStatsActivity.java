@@ -134,6 +134,7 @@ public class SaisieStatsActivity extends Activity {
 
 	RadioButton bouton_service = null;
 	RadioButton bouton_defense = null;
+	RadioButton bouton_reception = null;
 	RadioButton bouton_passe = null;
 	RadioButton bouton_attaque = null;
 	RadioButton bouton_bloc = null;
@@ -204,6 +205,7 @@ public class SaisieStatsActivity extends Activity {
 		//test.setEnabled(false);
 		bouton_service.setEnabled(false);
 		bouton_defense.setEnabled(false);
+		bouton_reception.setEnabled(false);
 		bouton_passe.setEnabled(false);
 		bouton_attaque.setEnabled(false);
 		bouton_bloc.setEnabled(false);
@@ -454,6 +456,8 @@ public class SaisieStatsActivity extends Activity {
 			System.out.println("Passe disabled !");
 			bouton_passe.setChecked(false);
 			bouton_passe.setEnabled(false);
+			bouton_reception.setChecked(false);
+			bouton_reception.setEnabled(false);
 		}
 	}
 	private void cocheTitulaire(RadioButton rad, int indice)
@@ -834,6 +838,10 @@ public class SaisieStatsActivity extends Activity {
 		}
 		if (bouton_defense.isChecked())
 		{
+			return "de";
+		}
+		if (bouton_reception.isChecked())
+		{
 			return "re";
 		}
 		if (bouton_passe.isChecked())
@@ -1178,10 +1186,11 @@ public class SaisieStatsActivity extends Activity {
 		//bouton_fantome.setEnabled(true);
 		//bouton_fantome.setChecked(false);
 		bouton_service = (RadioButton) findViewById(R.id.button_service);
-		bouton_defense = (RadioButton) findViewById(R.id.button_reception);
+		bouton_defense = (RadioButton) findViewById(R.id.button_defense);
 		bouton_passe = (RadioButton) findViewById(R.id.button_passe);
 		bouton_attaque = (RadioButton) findViewById(R.id.button_attaque);
 		bouton_bloc = (RadioButton) findViewById(R.id.button_bloc);
+		bouton_reception = (RadioButton) findViewById(R.id.button_reception);
 		bouton_excellent = (RadioButton) findViewById(R.id.button_excellent);
 		bouton_bien = (RadioButton) findViewById(R.id.button_bien);
 		bouton_neutre = (RadioButton) findViewById(R.id.button_neutre);
@@ -1326,8 +1335,9 @@ public class SaisieStatsActivity extends Activity {
 		actionsPoss.clear();
 		for (String s : actPoss)
 		{
-			if (s == "re"){actionsPoss.add(bouton_defense);}
+			if (s == "re"){actionsPoss.add(bouton_reception);}
 			else if (s == "at"){actionsPoss.add(bouton_attaque);}
+			else if (s == "de"){actionsPoss.add(bouton_defense);}
 			else if (s == "pa"){actionsPoss.add(bouton_passe);}
 			else if (s == "bl"){actionsPoss.add(bouton_bloc);}
 			else if (s == "se"){actionsPoss.add(bouton_service);}

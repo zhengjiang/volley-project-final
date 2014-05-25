@@ -51,8 +51,8 @@ public class ChoixJoueursMatch extends Activity {
 	private TextView nomEquipe2;
 	private Controleur ctl = Controleur.getInstance(); //acces à la BD
 	
-	//ArrayList<JoueurEquipe> arrayListTousJoueurs=InitialisationModele.initJoueurEquipe();
-	ArrayList<JoueurEquipe> arrayListTousJoueurs;
+	ArrayList<JoueurEquipe> arrayListTousJoueurs=InitialisationModele.initJoueurEquipe();
+	//ArrayList<JoueurEquipe> arrayListTousJoueurs;
 	
 	ArrayList<JoueurEquipe> arrayListJoueurs1 = new ArrayList<JoueurEquipe>();
 	JoueurEquipeAdapter joueurEquipeAdapter1;
@@ -289,9 +289,9 @@ public class ChoixJoueursMatch extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_choix_joueurs_match);
 		
-		this.ctl.jeb.open();
+		/*this.ctl.jeb.open();
 		arrayListTousJoueurs = (ArrayList<JoueurEquipe>) this.ctl.jeb.selectionnerTout();
-		this.ctl.jeb.close();
+		this.ctl.jeb.close();*/
 		
 		// on récupère les vues du fichier XML
 		listViewJoueurs1 = (ListView) findViewById(R.id.listJoueursEquipe1);
