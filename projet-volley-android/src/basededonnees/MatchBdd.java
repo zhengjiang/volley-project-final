@@ -25,7 +25,7 @@ public class MatchBdd extends BDD {
 	   */
 	  public long ajouter(Match m) {
 		  ContentValues value = new ContentValues();
-		  value.put("dateM", m.getDate());
+		  value.put("dateM", "");
 		  value.put("lieuM", m.getLieu());
 		  value.put("equipe1", m.getEquipeDomicile().getId());
 		  value.put("equipe2", m.getEquipeExterieur().getId());
