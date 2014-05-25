@@ -11,7 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 
 public abstract class BDD {
-	  protected final static int VERSION = 5;
+	  protected final static int VERSION = 6;
 	  protected final static String NOM = "volley.db";
 	    
 	  protected SQLiteDatabase mDb = null;

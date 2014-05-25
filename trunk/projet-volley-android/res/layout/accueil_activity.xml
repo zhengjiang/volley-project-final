@@ -1,74 +1,64 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" 
-    android:stretchColumns="1">
-
-    
-	<TableRow>
-	     <Button
-	    android:layout_column="1"
-        android:id="@+id/creerMatch"
-        style="@style/styleBouton"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:text="Créer un match" />
-	</TableRow>
-   
-	<TableRow >
-	     <Button
-	    android:layout_column="1"
-        android:id="@+id/creerJoueur"
-        style="@style/styleBouton"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:text="Gestion des joueurs" />
-	</TableRow>
-   
-
-	<TableRow >
-	    <Button
-	    android:layout_column="1"
-        android:id="@+id/creerEquipe"
-        style="@style/styleBouton"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:text="Gestion des équipes" />
-	</TableRow>
-    
-
-	<TableRow >
-	    <Button
-	    android:layout_column="1"
-        android:id="@+id/listeMatchs"
-        style="@style/styleBouton"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:text="Liste des matchs" />
-	</TableRow>
-	
-	<TableRow >
-	    <Button
-	    android:layout_column="1"
-        android:id="@+id/statsJoueurs"
-        style="@style/styleBouton"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:text="Statistiques des joueurs" />
-	</TableRow>
-	
-	
-    
-    
-
+   xmlns:tools="http://schemas.android.com/tools"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+   android:stretchColumns="1">
+ 
+        <ScrollView
+            android:id="@+id/scrollView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+ 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
+ 
+                <Button
+                    android:id="@+id/creerMatch"
+                    style="@style/styleBouton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Créer un match" />
+ 
+                <Button
+                    android:id="@+id/creerJoueur"
+                    style="@style/styleBouton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Gestion des joueurs" />
+ 
+                <Button
+                    android:id="@+id/creerEquipe"
+                    style="@style/styleBouton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Gestion des équipes" />
+ 
+                <Button
+                    android:id="@+id/statsJoueurs"
+                    style="@style/styleBouton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Statistiques des joueurs" />
+            </LinearLayout>
+ 
+        </ScrollView>
+ 
 </TableLayout>

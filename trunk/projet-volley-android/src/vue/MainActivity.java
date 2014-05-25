@@ -66,13 +66,13 @@ public class MainActivity extends Activity{
 		creationMatch = (Button) findViewById(R.id.creerMatch);
 		gestionJoueur = (Button) findViewById(R.id.creerJoueur);
 		gestionEquipe = (Button) findViewById(R.id.creerEquipe);
-		listeMatch = (Button) findViewById(R.id.listeMatchs);
+		//listeMatch = (Button) findViewById(R.id.listeMatchs);
 		statsJoueurs = (Button) findViewById(R.id.statsJoueurs);
 		
 		creationMatch.setOnClickListener(clikSurBouton);
 		gestionJoueur.setOnClickListener(clikSurBouton);
 		gestionEquipe.setOnClickListener(clikSurBouton);
-		listeMatch.setOnClickListener(clikSurBouton);
+		//listeMatch.setOnClickListener(clikSurBouton);
 		statsJoueurs.setOnClickListener(clikSurBouton);
 	}
 

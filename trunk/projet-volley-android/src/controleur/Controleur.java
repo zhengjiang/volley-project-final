@@ -54,8 +54,15 @@ public class Controleur {
 	}
 	
 	public void testBdd(){
-		/*Equipe e1 = new Equipe(0, "Equipe1", "Entraineur1");
-		Equipe e2 = new Equipe(0, "Equipe2", "Entraineur2");
+		this.eb.open();
+		List<Equipe> e = this.eb.selectionnerTout();
+		this.eb.close();
+		if(e.size() > 0){
+			return;
+		}
+		this.eb.open();
+		Equipe e1 = new Equipe(0, "VolleyRoxor", "Jacques Palmier");
+		Equipe e2 = new Equipe(0, "SmasheurFou", "Fredon Sacqué");
 		
 		this.eb.open();
 		e1.setId((int)this.eb.ajouter(e1));
@@ -75,7 +82,7 @@ public class Controleur {
 			JoueurEquipe je = new JoueurEquipe(0, j, e3, i%6, true);
 			this.jeb.ajouter(je);
 			this.jeb.close();
-		}*/
+		}
 		
 	}
 	
