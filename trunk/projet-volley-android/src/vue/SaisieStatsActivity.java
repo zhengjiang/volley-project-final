@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 import modele.Joueur;
 import modele.JoueurEquipe;
+import modele.Match;
 
 import com.l3info.projet_volley_android.R;
 
@@ -890,6 +891,9 @@ public class SaisieStatsActivity extends Activity {
 		ArrayList<JoueurEquipe> titulairesEquipe2 = intent.getParcelableArrayListExtra("titulairesEquipe2");
 		ArrayList<JoueurEquipe> remplacantsEquipe1 = intent.getParcelableArrayListExtra("remplacantsEquipe1");
 		ArrayList<JoueurEquipe> remplacantsEquipe2 = intent.getParcelableArrayListExtra("remplacantsEquipe2");
+		
+		Match match = (Match) intent.getParcelableExtra("match");
+		ctrl.getModele().setMatch(match);
 		System.out.println("======================================");
 		
 		titulairesEquipe1.size();

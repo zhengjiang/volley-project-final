@@ -51,7 +51,7 @@ public class Controleur {
 	}
 	
 	public void testBdd(){
-		Equipe e1 = new Equipe(0, "Equipe1", "Entraineur1");
+		/*Equipe e1 = new Equipe(0, "Equipe1", "Entraineur1");
 		Equipe e2 = new Equipe(0, "Equipe2", "Entraineur2");
 		
 		this.eb.open();
@@ -73,7 +73,7 @@ public class Controleur {
 			this.jeb.ajouter(je);
 			this.jeb.close();
 		}
-		
+		*/
 	}
 	
 	// Methodes accès Modèle
@@ -175,7 +175,7 @@ public class Controleur {
 	}
 	
 	public void soumettrePoint(){
-		
+		modele.getPoint().sauvegarderPoint();
 	}
 	
 	

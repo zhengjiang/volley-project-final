@@ -2,6 +2,8 @@ package modele;
 
 import java.util.ArrayList;
 
+import controleur.Controleur;
+
 public class Modele {
 	/*classe qui servira à "stocker" les éléments "changeant" : 
 		- Match courant
@@ -49,12 +51,16 @@ public class Modele {
 	public int getGagne(){return gagne;}
 	public int getJSuiv(){return jSuiv;}
 	public int getRotation(){return rotation;}
+	public Point getPoint(){return courant;}
 	
 	public void setGagne(int i){gagne = i;}
 	public void setService(int i){service = i;}
 	public void setRotation(int b){rotation = b;}
 	public void setNouveauPoint(boolean bool){nouveauPoint = bool;}
 	public void setNouveauMatch(boolean bool){nouveauMatch = bool;}
+	public void setMatch(Match m){
+		this.match = m;
+	}
 	public void setEquipe1(ArrayList<Joueur> tit)
 	{
 		for (Joueur j : tit){eqBleu.add(j);}
@@ -153,7 +159,12 @@ public class Modele {
 	
 	public void ajouterNouveauSet()
 	{
-		score.add(new Set(0, score.size()+1, 0, 0, match));
+		Controleur c = Controleur.getInstance();
+		c.sb.open();
+		Set s = new Set(0, score.size()+1, 0, 0, match);
+		s.setId((int)c.sb.ajouter(s));
+		c.sb.close();
+		score.add(s);
 	}
 	
 	public void nouveauPoint()

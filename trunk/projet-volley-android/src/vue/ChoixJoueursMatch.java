@@ -268,13 +268,12 @@ public class ChoixJoueursMatch extends Activity {
 	    			if (listViewRemplacants1.getCount() <= 6) {
 	    				if (listViewRemplacants2.getCount() <= 6) {
 	    					Intent intent = new Intent(ChoixJoueursMatch.this, SaisieStatsActivity.class);
-	    					Match match = new Match(0, "14/04/1993", lieuMatch, equipe1, equipe2, new Competition(0, 2014, "Championnat", "Championnat"));
+	    					Match match = new Match(0, "", lieuMatch, equipe1, equipe2, new Competition(0, 2014, "Championnat", "Championnat"));
 	    					
 	    					Controleur c = Controleur.getInstance();
 	    					c.mb.open();
-	    					c.mb.ajouter(match);
+	    					match.setId((int)c.mb.ajouter(match));
 	    					c.mb.close();
-	    					
 	    					
 	    					//System.out.println(match.getDate()); => NE FONCTIONNE PAS
 	    					intent.putExtra("match", match);
